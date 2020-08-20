@@ -10,7 +10,9 @@
 
 <form action="" method="post">
     <input th:field="${user.name}" type="text">
+    <p th:errors="${user.name}"></p>
     <input th:field="${user.passwordHash}" type="text">
+    <p th:errors="${user.passwordHash}"></p>
     <button type="submit">Submit</button>
 </form>
 
