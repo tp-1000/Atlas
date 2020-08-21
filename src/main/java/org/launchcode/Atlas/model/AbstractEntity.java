@@ -29,6 +29,4 @@ public abstract class AbstractEntity {
         return Objects.hash(id);
     }
 
-    //    needs the base for generating a unique entity
-//    id, and supporting methods and validation
 }

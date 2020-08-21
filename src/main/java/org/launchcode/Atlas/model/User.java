@@ -5,8 +5,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 
 @Entity
@@ -20,7 +18,6 @@ public class User extends AbstractEntity{
 
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
 
 
     public void setUserName(String userName) {
