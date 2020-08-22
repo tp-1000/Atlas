@@ -1,15 +1,15 @@
 # Atlas
 #### Imagine taking a walk in your neighborhood with a personal tour guide.
 
-Atlas is a web app that lets people add a [marker](#marker) and view markers for an area. In addition to its [location](#location) data each marker supports several other [attributes](#marker-attribute). 
+Atlas is a web app that lets people add a [marker](#marker) and view markers for an area. In addition to its [location](#location) data, each marker supports several other [attributes](#marker-attribute). 
 
-Beyond the structure for posting and sharing there is little else in the application to dictate the nature of the content. People will be encouraged to share what they find interesting. I hope by seeing a broad collection of details (our content) we can get a glimpse of the much larger whole, the neighborhood.
+Beyond the structure for posting and sharing there is little else in Atlas to dictate the nature of the content. People will be encouraged to share what they find interesting. I hope by seeing a broad collection of details (our content) we can get a glimpse of the much larger whole, the neighborhood.
 ## Background
-I have always been ready for a quick history lesson or story, and as I walk my neighborhood, I am lucky to have found neighbors willing to indulge me. Over time, I have come to appreciate the way our physical environment can prompt us into sharing some detail of the past. I wanted a way to share these stories and observations and hoped a web app would allow for such an experience. 
+I have always been ready for a quick history lesson or story. Walking my neighborhood, I am lucky to have found neighbors willing to indulge me. Over time, I have come to appreciate the way our physical environment prompts us into sharing some detail of the past. I wanted a way to share these stories and observations and hoped a web app would allow for such an experience. 
 
 Let the experiment begin.
 ## Tech/Frameworks
-Complete in the MVC style using:
+Completed in the MVC style using:
 - Spring (Java)
 - Thymeleaf
 - PostgreSQL
@@ -27,7 +27,7 @@ It wouldn't hurt to have at least a basic understanding of:
 ## Features
 - Secure login
 - Create a marker at a specific location
-- View makers for an area
+- View markers for an area
 - Set marker text attribute
 - Set marker name attribute
 - Set marker photo attribute
@@ -36,8 +36,8 @@ It wouldn't hurt to have at least a basic understanding of:
 
 ## So you forked it... now what?
 
-Configuration will be necessary to connect Atlas with a database.
-For the database you will need [PostgreSQL](https://www.postgresql.org) and the extension [PostGIS](https://postgis.net).
+Atlas will need to be configured to connect with a database.
+[PostgreSQL](https://www.postgresql.org) and the extension [PostGIS](https://postgis.net) were chosen and required for easier querying.
 
 ### Local Configuration:
 Atlas requires a connection to a PostgreSQL database. The connection can be found in [application.properties](src/main/resources/application.properties) and is set using local environment variables.
@@ -66,13 +66,13 @@ feature (and subset feature-xxxx-xxxx) | working space for getting code stable a
 ## Future
 ### Dreams ––
 
-- Take a tour. Save a set of markers and walking directions will guide your from marker to marker. Someone could make an old house tour.
+- Take a tour. Save a set of markers and walking directions will guide a user from marker to marker. Allowing a user to walk someones historical home tour.
 
-- Users can log request for information by making an "open" marker. I think it would increase collaboration, and increase contributions, and result in an improved user experience. 
+- Users can log requests for information by making an "open" marker, to be handed off to another user. The goal would be to increase collaboration, build contributions, and result in an improved user experience. 
 
 - Advanced search and tagging features (such as ability to add custom marker attributes) would make for a richer experience.
 
-- An ability to handle API requests. I see this being used to create different flavors of Atlas, so that for example, *Atals-Plants* will only contain markers about plants. The marker *attributes* and *search* features would also be tailored to plants.  
+- Atlas API. API access could be used to create different flavors of Atlas, so that for example, *Atlas-Plants* will only contain markers about plants. The marker *attributes* and *search* features would also be tailored to plants.  
 
 Contributions are welcomed but adoption may be slow.
 
