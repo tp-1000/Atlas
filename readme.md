@@ -1,7 +1,7 @@
 # Atlas
 #### Imagine taking a walk in your neighborhood with a personal tour guide.
 
-Atlas is a web app that lets people add a [marker](#marker) and view markers for an area. In addition to its [location](#location) data each marker supports several other [attributes](#-marker-attribute). 
+Atlas is a web app that lets people add a [marker](#marker) and view markers for an area. In addition to its [location](#location) data each marker supports several other [attributes](#marker-attribute). 
 
 Beyond the structure for posting and sharing there is little else in the application to dictate the nature of the content. People will be encouraged to share what they find interesting. I hope by seeing a broad collection of details (our content) we can get a glimpse of the much larger whole, the neighborhood.
 ## Background
@@ -82,9 +82,9 @@ Special thanks to [LauchCode](https://www.launchcode.org/), whose guidance and s
 ## Definitions
 ##### Marker
 : a specific spot on a map tied to a location and possessing attributes
-##### marker attribute
+##### Marker attribute
 : any supporting data, not including a marker's location
-##### location 
+##### Location 
 : GeoPoint or Longitude and Latitude (38°37'29.0"N 90°11'04.8"W) or (38.624724, -90.184664)
 
 ## License
