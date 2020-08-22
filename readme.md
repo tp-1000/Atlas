@@ -1,5 +1,5 @@
 # Atlas
-__ Imagine taking a walk in your neighborhood with a personal tour guide. __
+#### Imagine taking a walk in your neighborhood with a personal tour guide.
 
 Atlas is a web app that lets people add a [marker](#marker) and view markers for an area. In addition to its [location](#location) data each marker supports several other [attributes](#-marker-attribute). 
 
@@ -39,10 +39,10 @@ It wouldn't hurt to have at least a basic understanding of:
 Configuration will be necessary to connect Atlas with a database.
 For the database you will need [PostgreSQL](https://www.postgresql.org) and the extension [PostGIS](https://postgis.net).
 
-###Local Configuration:
+### Local Configuration:
 Atlas requires a connection to a PostgreSQL database. The connection can be found in [application.properties](src/main/resources/application.properties) and is set using local environment variables.
 
-Atlas also uses [Google Map API](https://developers.google.com/maps/documentation) and is subject to Google's constraints. At the time of writing, relatively low usage of Google Maps is free. It's connection is also set using an environment variable. See table below.
+Atlas also uses [Google Map API](https://developers.google.com/maps/documentation) and is subject to Google's constraints. At the time of writing, relatively low usage of Google Maps is free. Its connection uses an environment variable. See table below.
 
 Environment Variable | Value
 -------- | ---------
@@ -53,21 +53,18 @@ DBUSER| [database username]
 NAME| [database name]
 Google_Map_API_key | [Your Google MAP API key]
 
-###Notes on branches:
+### Notes on branches:
 Feel free to use as you see fit but commits may be easier to follow knowing how I worked.
 
-master
-: receives stable finished code from development
- 
-development
-: a place where features come together before moving to master
-
-feature (and subset feature-xxxx-xxxx)
-: working space for getting code stable and ready to add to development or back to its parent.
+branch | description
+------ | :-----------
+master | receives stable finished code from development
+development | a place where features come together before moving to master
+feature (and subset feature-xxxx-xxxx) | working space for getting code stable and ready to add to development or back to its parent.
 
 
 ## Future
-###Dreams ––
+### Dreams ––
 
 - Take a tour. Save a set of markers and walking directions will guide your from marker to marker. Someone could make an old house tour.
 
@@ -93,5 +90,5 @@ Special thanks to [LauchCode](https://www.launchcode.org/), whose guidance and s
 ## License
 Full text for [License](LICENSE.txt).
 
-MIT © Tom Petty
+MIT © Tom Petty 2020
 
