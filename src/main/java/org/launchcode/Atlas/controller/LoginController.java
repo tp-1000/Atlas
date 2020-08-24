@@ -1,6 +1,7 @@
 package org.launchcode.Atlas.controller;
 
 import org.launchcode.Atlas.data.UserRepository;
+import org.launchcode.Atlas.dto.LoginUserDTO;
 import org.launchcode.Atlas.dto.RegisterUserDTO;
 import org.launchcode.Atlas.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
@@ -19,13 +24,35 @@ public class LoginController {
     @Autowired
     UserRepository userRepository;
 
+    //string to be used in new session attribute
+    private static final String USERSESSIONKEY = "default_user";
+
+    //set a user (if present) into the seesion attributes returns nothong.
+    public void setSessionWithUser(HttpSession session, User user){
+        session.setAttribute(USERSESSIONKEY, user.getId());
+    }
+
+    //get user from session data --> and check USERSESSIONKEY for a user returns user if present or null.
+    public User getUserFromSession(HttpSession session) {
+        Integer userID = (Integer) session.getAttribute(USERSESSIONKEY);
+        if(userID == null){
+            return null;
+        }
+
+        Optional<User> user = userRepository.findById(userID);
+        if(user.isEmpty()){
+            return null;
+        }
+
+        return user.get();
+    }
+
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute(new RegisterUserDTO());
-        return "login/index";
+        return "login/register";
     }
 
-//    form gets submittied and then the fields get data binding
     @PostMapping("/register")
     public String processRegisterForm(@ModelAttribute @Valid RegisterUserDTO registerUserDTO, Errors error, Model model) {
         if(error.hasErrors()){
@@ -46,4 +73,34 @@ public class LoginController {
         userRepository.save(user);
         return "login/success";
     }
+
+    @GetMapping("/login")
+    public String loginForm(Model model) {
+        model.addAttribute(new LoginUserDTO());
+        return "login/index";
+    }
+
+    @PostMapping("/login")
+    public String processLoginForm(@ModelAttribute @Valid LoginUserDTO loginUserDTO, Errors error, HttpServletRequest request) {
+        //any form errors stop processing
+        if(error.hasErrors()){
+            return "login/index";
+        }
+        //check if user exists
+        User loggedInUser  = userRepository.findByuserName(loginUserDTO.getUserName());
+        if(loggedInUser != null){
+            Boolean isCorrectPass = loggedInUser.isPasswordValid(loginUserDTO.getPassword());
+            if(isCorrectPass){
+                setSessionWithUser(request.getSession(), loggedInUser);
+                return "login/success";
+            }
+            error.rejectValue("password", "password.incorrect", "Incorrect password, try again");
+                return "login/index";
+
+        }
+        //no user
+        error.rejectValue("userName", "username.doesntexist", "No user with that name exists");
+        return "login/index";
+    }
+
 }

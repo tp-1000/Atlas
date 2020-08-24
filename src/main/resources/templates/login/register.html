@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Atlas-Login</title>
+    <title>Atlas-Register</title>
 </head>
 <body>
 
 <div th:replace="fragments :: navigation"></div>
 
-<form action="" method="post">
+<form action="/register" method="post">
     <input th:field="${registerUserDTO.userName}" type="text">
     <p th:errors="${registerUserDTO.userName}"></p>
     <input th:field="${registerUserDTO.password}" type="text">
