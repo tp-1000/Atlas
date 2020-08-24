@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas-Register</title>
+</head>
+<body>
+
+<div th:replace="fragments :: navigation"></div>
+
+<form action="" method="post">
+    <input th:field="${registerUserDTO.userName}" type="text">
+    <p th:errors="${registerUserDTO.userName}"></p>
+    <input th:field="${registerUserDTO.password}" type="text">
+    <p th:errors="${registerUserDTO.password}"></p>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
