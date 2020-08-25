@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas-Login</title>
+    <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}"
+            defer
+    ></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script th:src="@{/js/generate_map.js}"></script>
+
+</head>
+<body>
+
+<div th:replace="fragments :: navigation"></div>
+
+<div id="map"></div>
+
+</body>
+</html>
