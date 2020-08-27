@@ -8,6 +8,7 @@
     ></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script th:src="@{/js/generate_map.js}"></script>
+    <script th:src="@{/js/get_all_markers_area.js}" defer></script>
 
 </head>
 <body>
@@ -15,6 +16,21 @@
 <div th:replace="fragments :: navigation"></div>
 
 <div id="map"></div>
+
+<form id="setLocation">
+    <p>Set Zipcode</p>
+    <input id="zip" type="text">
+
+    <button type="submit" th:onclick="setLocationWithZipcode(key)">submit</button>
+</form>
+
+<th:block th:each="marker : ${markers}">
+    <object th:name="marker">
+    <param name="name" th:value="${marker.markerName}">
+    <param name="x" th:value="${marker.location.x}">
+    <param name="y" th:value="${marker.location.y}">
+    </object>
+</th:block>
 
 </body>
 </html>

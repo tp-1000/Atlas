@@ -28,6 +28,9 @@ public class MarkerController {
 
     @GetMapping("/view")
     public String viewMap(Model model){
+        //get all markers from repository
+        model.addAttribute("markers", markerRepository.findAll());
+
         model.addAttribute("API_KEY", API_KEY);
         return "marker/index";
     }
@@ -58,3 +61,12 @@ public class MarkerController {
     }
 
 }
+
+//TODO use story - Show marker for area
+// - []There is a form that takes a location and returns a map of that area
+// - []Markers are selected from database based on location parameter and displayed on the map
+// - []A message displays no markers for an area if there are no markers.
+// - []if there are markers for an area they are displayed
+// - []problems with the form location data produce an error message
+// - [x]map can zoom and pan
+// - []A new location can be entered and a new map generated.

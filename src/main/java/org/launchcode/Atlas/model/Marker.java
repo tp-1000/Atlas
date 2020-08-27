@@ -14,6 +14,9 @@ public class Marker extends AbstractEntity{
     //@Column(columnDefinition = "Point")
     private Point location;
 
+    public Marker() {
+    }
+
     public Marker(String markerName, String lng, String lat) {
         this.markerName = markerName;
         Double x = Double.valueOf(lng);

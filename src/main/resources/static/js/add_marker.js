@@ -40,7 +40,6 @@ function setLocationWithZipcode(key) {
 }
 
 window.addEventListener("load", function () {
-   map.markers
    google.maps.event.addListener(map, "click", function(event){ //or event => .. { for multi line
         clickLocation = event.latLng;
 
