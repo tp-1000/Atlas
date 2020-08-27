@@ -6,23 +6,36 @@
     <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}"
             defer
     ></script>
+    <script th:inline="javascript">let key = [[${API_KEY}]];</script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script th:src="@{/js/add_marker.js}"></script>
-
 </head>
 <body>
 <!--TODO form for adding markers (location and name)-->
 <div th:replace="fragments :: navigation"></div>
 
 <div id="map"></div>
-<form action="/marker/add" method="post">
+
+<form id="setLocation">
+    <p>Set Zipcode</p>
+    <input id="zip" type="text">
+
+    <button type="submit" th:onclick="setLocationWithZipcode(key)">submit</button>
+</form>
+
+
+<form id="create-marker" action="/marker/add" method="post">
     <p>Name</p>
-    <input type="text" id="name">
+    <input type="text" th:field="${addMarkerDTO.markerName}">
+    <p th:errors="${addMarkerDTO.markerName}"></p>
     <p>Lat</p>
-    <input type="text" id="latitude">
+    <input type="text" th:field="${addMarkerDTO.latitude}">
+    <p th:errors="${addMarkerDTO.latitude}"></p>
     <p>Lng</p>
-    <input type="text" id="longitude">
+    <input type="text" th:field="${addMarkerDTO.longitude}">
+    <p th:errors="${addMarkerDTO.longitude}"></p>
     <button type="submit">submit</button>
 </form>
+
 </body>
 </html>
