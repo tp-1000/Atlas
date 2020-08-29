@@ -4,7 +4,7 @@
 // from for adding markers (name and submit)
 //TODO Map with add marker ability
 //TODO Ablity to set location
-let map, marker;
+let map, marker, clickLocation;
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {center: {lat: 38.624632, lng: -90.184770}, zoom: 4});
 }
@@ -13,7 +13,9 @@ function initMap() {
 function addMarker(clickLocation){
     if(marker == null) {
         marker = new google.maps.Marker({
-            position: clickLocation, map
+            position: clickLocation,
+            map,
+            draggable: true
         });
         return;
     }
@@ -42,11 +44,18 @@ function setLocationWithZipcode(key) {
 window.addEventListener("load", function () {
    google.maps.event.addListener(map, "click", function(event){ //or event => .. { for multi line
         clickLocation = event.latLng;
-
-        document.getElementById("latitude").value = clickLocation.lat();
-        document.getElementById("longitude").value = clickLocation.lng();
-
         addMarker(clickLocation);
     })
 })
 
+
+function setLngLat() {
+        if(clickLocation == null){
+            let event = window.event;
+            document.querySelector("#message").innerHTML="Click a location on the map to set marker."
+            event.preventDefault();
+        return;
+        }
+        document.getElementById("latitude").value = clickLocation.lat();
+        document.getElementById("longitude").value = clickLocation.lng();
+}

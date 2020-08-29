@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script th:src="@{/js/generate_map.js}"></script>
     <script th:src="@{/js/get_all_markers_area.js}" defer></script>
+    <script th:inline="javascript">let key = [[${API_KEY}]];</script>
 
 </head>
 <body>
@@ -16,6 +17,7 @@
 <div th:replace="fragments :: navigation"></div>
 
 <div id="map"></div>
+<span id="message" th:text="${instructions}"></span>
 
 <form id="setLocation">
     <p>Set Zipcode</p>
@@ -23,6 +25,13 @@
 
     <button type="submit" th:onclick="setLocationWithZipcode(key)">submit</button>
 </form>
+
+
+<form action="/marker/view" method="post" id="setEpicenter">
+    <input id="location" name="locationString" type="text">
+    <button type="submit" th:onclick="generateQueryString()">Set Epicenter</button>
+</form>
+
 
 <th:block th:each="marker : ${markers}">
     <object th:name="marker">

@@ -15,6 +15,7 @@
 <div th:replace="fragments :: navigation"></div>
 
 <div id="map"></div>
+<span id="message"></span>
 
 <form id="setLocation">
     <p>Set Zipcode</p>
@@ -34,7 +35,7 @@
     <p>Lng</p>
     <input type="text" th:field="${addMarkerDTO.longitude}">
     <p th:errors="${addMarkerDTO.longitude}"></p>
-    <button type="submit">submit</button>
+    <button type="submit" th:onclick="setLngLat()">submit</button>
 </form>
 
 </body>
