@@ -64,14 +64,12 @@ public class LoginController {
             error.rejectValue("userName", "username.alreadyexists", "A user with that name already exists");
             return "login/register";
         }
-        //if object fields not valid --> get "index" mapped to failed object and error message "field [failed requirement]"
-        //if name in use --> get "index" mapped to new object and error message "name take"
-        // if unused name and valid data --> get "success" and save user
+
         User user = new User();
         user.setPasswordHash(registerUserDTO.getPassword());
         user.setUserName(registerUserDTO.getUserName());
         userRepository.save(user);
-        return "login/success";
+        return "login/register";
     }
 
     @GetMapping("/login")
@@ -92,7 +90,7 @@ public class LoginController {
             Boolean isCorrectPass = loggedInUser.isPasswordValid(loginUserDTO.getPassword());
             if(isCorrectPass){
                 setSessionWithUser(request.getSession(), loggedInUser);
-                return "login/success";
+                return "login/index";
             }
             error.rejectValue("password", "password.incorrect", "Incorrect password, try again");
                 return "login/index";

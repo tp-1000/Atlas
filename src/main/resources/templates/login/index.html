@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Atlas-Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
 </head>
+
 <body>
 
 <div th:replace="fragments :: navigation"></div>
 
-<form action="/login" method="post">
-    <input th:field="${loginUserDTO.userName}" type="text">
-    <p th:errors="${loginUserDTO.userName}"></p>
-    <input th:field="${loginUserDTO.password}" type="text">
-    <p th:errors="${loginUserDTO.password}"></p>
-    <button type="submit">Submit</button>
-</form>
+<div th:replace="fragments :: loginForm"></div>
+
 
 </body>
 </html>

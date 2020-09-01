@@ -60,7 +60,7 @@ public class MarkerController {
         Optional<Marker> marker = markerRepository.findById(aMarker.getId());
         Marker marker1 = marker.get();
         model.addAttribute("works", marker1.getLocation());
-        return "login/success";
+        return "marker/success";
     }
 
 }

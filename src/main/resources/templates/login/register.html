@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Atlas-Register</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
 </head>
+
 <body>
 
 <div th:replace="fragments :: navigation"></div>
 
-<form action="/register" method="post">
-    <input th:field="${registerUserDTO.userName}" type="text">
-    <p th:errors="${registerUserDTO.userName}"></p>
-    <input th:field="${registerUserDTO.password}" type="text">
-    <p th:errors="${registerUserDTO.password}"></p>
-    <button type="submit">Submit</button>
-</form>
+<div th:replace="fragments :: registerForm"></div>
+
 
 </body>
 </html>

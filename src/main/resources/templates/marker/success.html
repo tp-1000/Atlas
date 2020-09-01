@@ -2,13 +2,16 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Atlas-Login</title>
+    <title>Atlas-Success</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
 </head>
+
 <body>
 
 <div th:replace="fragments :: navigation"></div>
+<div th:replace="fragments :: success"></div>
 
-<p>Success!</p>
-<p th:text="${works}"></p>
+
 </body>
 </html>

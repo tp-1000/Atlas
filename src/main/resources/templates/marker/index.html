@@ -2,44 +2,28 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Atlas-Login</title>
-    <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}"
-            defer
-    ></script>
+    <title>Atlas-View</title>
+    <script th:with="key=${API_KEY}" th:inline="javascript">let key = [[${API_KEY}]];</script>
+    <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}" defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
-    <script th:src="@{/js/generate_map.js}"></script>
-    <script th:src="@{/js/get_all_markers_area.js}" defer></script>
-    <script th:inline="javascript">let key = [[${API_KEY}]];</script>
+    <script th:src="@{/js/generateMap.js}"></script>
+    <script th:src="@{/js/markerSearch.js}" defer></script>
+    <script th:src="@{/js/zipCodeZoom.js}" defer></script>
+
 
 </head>
 <body>
-
 <div th:replace="fragments :: navigation"></div>
-
 <div id="map"></div>
-<span id="message" th:text="${instructions}"></span>
 
-<form id="setLocation">
-    <p>Set Zipcode</p>
-    <input id="zip" type="text">
-
-    <button type="submit" th:onclick="setLocationWithZipcode(key)">submit</button>
-</form>
+<div th:replace="fragments :: zipCodeZoomComponent"></div>
+<div th:replace="fragments :: showAllMarkersComponent"></div>
+<div th:replace="fragments :: selectAreaAndSearchComponent"></div>
 
 
-<form action="/marker/view" method="post" id="setEpicenter">
-    <input id="location" name="locationString" type="text">
-    <button type="submit" th:onclick="generateQueryString()">Set Epicenter</button>
-</form>
-
-
-<th:block th:each="marker : ${markers}">
-    <object th:name="marker">
-    <param name="name" th:value="${marker.markerName}">
-    <param name="x" th:value="${marker.location.x}">
-    <param name="y" th:value="${marker.location.y}">
-    </object>
-</th:block>
+<!--<div id="map"></div>-->
+<!--<div th:replace="fragments :: MAP"></div>-->
+<!--<div th:replace="fragments :: ZipCodeZoomComponent"></div>-->
 
 </body>
 </html>

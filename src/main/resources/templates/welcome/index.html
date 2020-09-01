@@ -2,16 +2,17 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Atlas-Welcome</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
 </head>
+
 <body>
 
 <div th:replace="fragments :: navigation"></div>
 
-<div id="explore-add-container">
-    <a th:href="@{/marker/view}">View Markers</a>
-    <a th:href="@{/marker/add}">Add Marker</a>
-</div>
+<div th:replace="fragments :: welcomeIntro"></div>
+
 
 </body>
 </html>
