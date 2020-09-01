@@ -47,6 +47,13 @@ public class LoginController {
         return user.get();
     }
 
+    @ModelAttribute("validUser")
+    public User getSession(HttpServletRequest request) {
+        HttpSession session = request.getSession(); //get current session or make new one
+        return getUserFromSession(session);
+//        User user = loginController.getUserFromSession(session); //look for user from session, if present then login process worked (could be null)
+    }
+
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute(new RegisterUserDTO());
@@ -71,6 +78,7 @@ public class LoginController {
         user.setPasswordHash(registerUserDTO.getPassword());
         user.setUserName(registerUserDTO.getUserName());
         userRepository.save(user);
+        model.addAttribute("validUser", user);
         return "login/success";
     }
 
@@ -81,7 +89,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute @Valid LoginUserDTO loginUserDTO, Errors error, HttpServletRequest request) {
+    public String processLoginForm(@ModelAttribute @Valid LoginUserDTO loginUserDTO, Errors error, HttpServletRequest request, Model model) {
         //any form errors stop processing
         if(error.hasErrors()){
             return "login/index";
@@ -92,6 +100,7 @@ public class LoginController {
             Boolean isCorrectPass = loggedInUser.isPasswordValid(loginUserDTO.getPassword());
             if(isCorrectPass){
                 setSessionWithUser(request.getSession(), loggedInUser);
+                model.addAttribute("validUser", loggedInUser);
                 return "login/success";
             }
             error.rejectValue("password", "password.incorrect", "Incorrect password, try again");
@@ -101,6 +110,12 @@ public class LoginController {
         //no user
         error.rejectValue("userName", "username.doesntexist", "No user with that name exists");
         return "login/index";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+            request.getSession().invalidate();
+            return "redirect/login";
     }
 
 }

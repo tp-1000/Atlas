@@ -8,8 +8,16 @@
 
 <div th:fragment="navigation">
     <a th:href="@{/}"><img src="" width="50px" height="50px">Home</a>
-    <a th:href="@{/login}"><img src="" width="50px" height="50px">Login</a>
-    <a th:href="@{/register}"><img src="" width="50px" height="50px">Register</a>
+<!--if user is true show logged-in block .. -->
+    <th:block th:unless="${validUser}">
+        <a  th:href="@{/login}"><img src="" width="50px" height="50px">Login</a>
+        <a th:href="@{/register}"><img src="" width="50px" height="50px">Register</a>
+    </th:block>
+<!--if user is false show register block .. -->
+    <th:block th:if="${validUser}">
+        <a th:href="@{/welcome}"><img src="" width="50px" height="50px" th:text="${validUser.userName}" ></a>
+        <a th:href="@{/logout}"><img src="" width="50px" height="50px">Logout</a>
+    </th:block>
 </div>
 
 
