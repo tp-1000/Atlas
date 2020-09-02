@@ -24,7 +24,7 @@ public class LoginController extends AtlasController{
     }
 
     @PostMapping("/register")
-    public String processRegisterForm(@ModelAttribute @Valid RegisterUserDTO registerUserDTO, Errors error, Model model) {
+    public String processRegisterForm(@ModelAttribute @Valid RegisterUserDTO registerUserDTO, Errors error, Model model, HttpServletRequest request) {
         if(error.hasErrors()){
             model.addAttribute(registerUserDTO);
             return "login/register";
@@ -35,11 +35,12 @@ public class LoginController extends AtlasController{
             return "login/register";
         }
 
-        User user = new User();
-        user.setPasswordHash(registerUserDTO.getPassword());
-        user.setUserName(registerUserDTO.getUserName());
-        userRepository.save(user);
-        model.addAttribute("validUser", user);
+        User newUser = new User();
+        newUser.setPasswordHash(registerUserDTO.getPassword());
+        newUser.setUserName(registerUserDTO.getUserName());
+        userRepository.save(newUser);
+        setSessionWithUser(request.getSession(), newUser);
+        model.addAttribute("validUser", newUser);
         return "welcome/index";
 
     }
