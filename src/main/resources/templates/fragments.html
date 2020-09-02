@@ -37,6 +37,7 @@
     <p id="viewMarkerMessage"></p>
     <th:block th:each="marker : ${markers}">
         <object th:name="marker">
+            <param name="id" th:value="${marker.id}">
             <param name="name" th:value="${marker.markerName}">
             <param name="x" th:value="${marker.location.x}">
             <param name="y" th:value="${marker.location.y}">

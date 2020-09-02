@@ -1,5 +1,6 @@
-function getMyMarkers() {
+    let markers = [];
     let setOfMarkers = document.querySelectorAll('[name="marker"]');
+function getMyMarkers() {
 
     //if no markers were found -- "no marker message"
     if(setOfMarkers.length == 0) {
@@ -9,15 +10,21 @@ function getMyMarkers() {
 
     //if markers were found -- add them to the map
     setOfMarkers.forEach(mapMarker => {
-        let myLatlng = new google.maps.LatLng(mapMarker.childNodes[5].value,mapMarker.childNodes[3].value);
-        new google.maps.Marker({
-            position: myLatlng, map
-        });
-    })
-
+        let lat = mapMarker.querySelector('[name="y"]').value;
+        let lng = mapMarker.querySelector('[name="x"]').value;
+        let myLatlng = new google.maps.LatLng(lat,lng);
+        markers.push(
+            new google.maps.Marker({
+                markerId: mapMarker.querySelector('[name="id"]').value,
+                title: mapMarker.querySelector('[name="name"]').value,
+                position: myLatlng,
+                map
+            })
+        );
+    });
+};
 //    TODO make it so map doesn't reload, only request of Markers is completed. Call it on the end of the "Fetch"
 
-}
 
 window.addEventListener("load", getMyMarkers())
 
@@ -68,3 +75,15 @@ function generateQueryString() {
      //needs to match this format 'SRID=4326;POINT(-90.350927 38.588407)'
      document.querySelector("#location").value= `SRID=4326;POINT(${location.lng()} ${location.lat()})`;
 }
+
+//marker info helper window -- add click listener that displays the info for the marker
+//to be called as they are created
+function addMarkerListener() {
+    markers.forEach(mapMarker => {
+        mapMarker.addListener("click",  () => {
+            let activeMarker = event.target;
+            document.querySelector("#markerInfo").innerHTML = activeMarker.title;
+        });
+    });
+}
+window.addEventListener("load", addMarkerListener());
