@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("marker")
-public class MarkerController {
+public class MarkerController extends AtlasController{
 
     @Autowired
     MarkerRepository markerRepository;
