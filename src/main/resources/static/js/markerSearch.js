@@ -1,5 +1,5 @@
     let markers = [];
-    let setOfMarkers = document.querySelectorAll('[name="marker"]');
+    let setOfMarkers = document.querySelectorAll('table[name="marker"]');
 function getMyMarkers() {
 
     //if no markers were found -- "no marker message"
@@ -10,13 +10,13 @@ function getMyMarkers() {
 
     //if markers were found -- add them to the map
     setOfMarkers.forEach(mapMarker => {
-        let lat = mapMarker.querySelector('[name="y"]').value;
-        let lng = mapMarker.querySelector('[name="x"]').value;
+        let lat = mapMarker.querySelector('td[name="y"]').innerHTML;
+        let lng = mapMarker.querySelector('td[name="x"]').innerHTML;
         let myLatlng = new google.maps.LatLng(lat,lng);
         markers.push(
             new google.maps.Marker({
-                markerId: mapMarker.querySelector('[name="id"]').value,
-                title: mapMarker.querySelector('[name="name"]').value,
+                markerId: mapMarker.id,
+                title: mapMarker.querySelector('td[name="name"]').innerHTML,
                 position: myLatlng,
                 map
             })
@@ -81,8 +81,8 @@ function generateQueryString() {
 function addMarkerListener() {
     markers.forEach(mapMarker => {
         mapMarker.addListener("click",  () => {
-            let activeMarker = event.target;
-            document.querySelector("#markerInfo").innerHTML = activeMarker.title;
+            let activeMarker = mapMarker;
+            document.querySelector("#markerInfo").innerHTML = activeMarker.title + " ID: " + activeMarker.markerId;
         });
     });
 }

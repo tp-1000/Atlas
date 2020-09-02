@@ -35,14 +35,13 @@
 <!--view-->
 <div th:fragment="showAllMarkersComponent">
     <p id="viewMarkerMessage"></p>
-    <th:block th:each="marker : ${markers}">
-        <object th:name="marker">
-            <param name="id" th:value="${marker.id}">
-            <param name="name" th:value="${marker.markerName}">
-            <param name="x" th:value="${marker.location.x}">
-            <param name="y" th:value="${marker.location.y}">
-        </object>
-    </th:block>
+        <table th:each="marker : ${markers}" th:id="${marker.id}" th:name="marker">
+            <tbody>
+                <tr><td name="name" th:text="${marker.markerName}"></td></tr>
+                <tr><td name="x" th:text="${marker.location.x}"></td></tr>
+                <tr><td name="y" th:text="${marker.location.y}"></td></tr>
+            </tbody>
+        </table>
 </div>
 <!---->
 <!--TODO error handling if no location chosen-->
