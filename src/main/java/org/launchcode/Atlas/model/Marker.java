@@ -3,8 +3,7 @@ package org.launchcode.Atlas.model;
 
 import org.locationtech.jts.geom.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 
 @Entity
@@ -14,6 +13,10 @@ public class Marker extends AbstractEntity{
 
     @Column(columnDefinition="geography(Point,4326)")
     private Point location;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn
+    private User user;
 
     public Marker() {
     }
@@ -26,6 +29,14 @@ public class Marker extends AbstractEntity{
         GeometryFactory gf = new GeometryFactory( pm,4326);
         Coordinate xy = new Coordinate(x,y);
         this.location = gf.createPoint(xy);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMarkerName() {
@@ -44,7 +55,4 @@ public class Marker extends AbstractEntity{
         this.location = location;
     }
 
-//    public String wKT() {
-//        return "SRID=4326;POINT("+getLocation().getX() + " " + getLocation().getY() + ")";
-//    }
 }

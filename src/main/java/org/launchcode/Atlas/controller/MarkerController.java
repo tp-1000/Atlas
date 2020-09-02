@@ -1,15 +1,17 @@
 package org.launchcode.Atlas.controller;
 
 import org.launchcode.Atlas.data.MarkerRepository;
+import org.launchcode.Atlas.data.UserRepository;
 import org.launchcode.Atlas.dto.AddMarkerDTO;
 import org.launchcode.Atlas.model.Marker;
+import org.launchcode.Atlas.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -20,6 +22,9 @@ public class MarkerController extends AtlasController{
 
     @Autowired
     MarkerRepository markerRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     //get Environment var to protect API key
     String API_KEY = System.getenv("API_KEY");
@@ -47,7 +52,7 @@ public class MarkerController extends AtlasController{
     }
 
     @PostMapping("/add")
-    public String processAddMarkerForm(@ModelAttribute @Valid AddMarkerDTO addMarkerDTO, Errors error, Model model) {
+    public String processAddMarkerForm(@ModelAttribute @Valid AddMarkerDTO addMarkerDTO, Errors error, Model model, HttpSession session) {
         if(error.hasErrors()) {
             model.addAttribute("API_KEY", API_KEY);
             model.addAttribute("addMarkerDTO", addMarkerDTO);
@@ -55,8 +60,10 @@ public class MarkerController extends AtlasController{
         }
 
         Marker aMarker = new Marker(addMarkerDTO.getMarkerName(), addMarkerDTO.getLongitude(), addMarkerDTO.getLatitude());
+        User user = getUserFromSession(session);
+        aMarker.setUser(user);
         markerRepository.save(aMarker);
-        // confirm placement only used to provide success details on success page
+//         confirm placement only used to provide success details on success page
         Optional<Marker> marker = markerRepository.findById(aMarker.getId());
         Marker marker1 = marker.get();
         model.addAttribute("works", marker1.getLocation());

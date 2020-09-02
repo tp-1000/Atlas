@@ -3,8 +3,11 @@ package org.launchcode.Atlas.model;
 import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 
 @Entity
@@ -15,10 +18,23 @@ public class User extends AbstractEntity{
 
     private String passwordHash;
 
+    //ill need a marker create and remove and update... so the user gets matched
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Marker> markers = new ArrayList<>();
+
 
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+
+    public User addMarker(Marker marker) {
+        markers.add(marker);
+        return this;
+    }
+
+    public List<Marker> getMarkers() {
+        return markers;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -43,9 +59,4 @@ public class User extends AbstractEntity{
         return passwordHash;
     }
 
-//    name
-//    needs the basics of a user class
-//    password
-//    password verification method
-//    password converter/set
 }
