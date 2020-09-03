@@ -16,4 +16,5 @@ public interface MarkerRepository extends CrudRepository<Marker, Integer> {
     @Query(value = "SELECT * FROM marker WHERE ST_Distance(location, ST_GeographyFromText(?1)) < 1000", nativeQuery = true)
     List<Marker> getMarkerNearPoint(String point);
 
+    List<Marker> findByUser_id(int user_id);
 }

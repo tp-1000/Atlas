@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Atlas-View</title>
+    <script th:with="key=${API_KEY}" th:inline="javascript">let key = [[${API_KEY}]];</script>
+    <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}" defer></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script th:src="@{/js/generateMap.js}"></script>
+    <script th:src="@{/js/markerSearch.js}" defer></script>
+    <script th:src="@{/js/zipCodeZoom.js}" defer></script>
+
+
+</head>
+<body>
+<div th:replace="fragments :: navigation"></div>
+<div id="map"></div>
+
+<div th:replace="fragments :: zipCodeZoomComponent"></div>
+<div th:replace="fragments :: showAllMarkersComponent"></div>
+
+<p id="markerInfo"></p>
+
+</body>
+</html>
