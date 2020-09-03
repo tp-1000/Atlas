@@ -4,6 +4,7 @@ package org.launchcode.Atlas.model;
 import org.locationtech.jts.geom.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 
 @Entity
@@ -21,10 +22,10 @@ public class Marker extends AbstractEntity{
     public Marker() {
     }
 
-    public Marker(String markerName, String lng, String lat) {
+    public Marker(String markerName, BigDecimal lng, BigDecimal lat) {
         this.markerName = markerName;
-        Double x = Double.valueOf(lng);
-        Double y = Double.valueOf(lat);
+        Double x = lng.doubleValue();
+        Double y = lat.doubleValue();
         PrecisionModel pm = new PrecisionModel();
         GeometryFactory gf = new GeometryFactory( pm,4326);
         Coordinate xy = new Coordinate(x,y);
