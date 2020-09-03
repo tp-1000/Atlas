@@ -1,7 +1,12 @@
 package org.launchcode.Atlas.dto;
 
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 public class AddMarkerDTO {
 
@@ -9,13 +14,15 @@ public class AddMarkerDTO {
     @Size(max = 25, min = 1, message = "Name needs 1 to 25 characters")
     private String markerName;
 
-    //TODO figure out proper validation
-    // - will break if not a number
-    @NotBlank(message = "Latitude required Ex: 31.353637")
-    private String latitude;
+    @DecimalMin("-90.0000")
+    @DecimalMax("90.0000")
+    private BigDecimal latitude;
+    //@NotBlank(message = "Latitude required Ex: 31.353637")
 
-    @NotBlank(message = "Longitude required Ex: 40.548475")
-    private String longitude;
+    @DecimalMin("-180.0000")
+    @DecimalMax("180.0000")
+    private BigDecimal longitude;
+    //@NotBlank(message = "Longitude required Ex: 40.548475")
 
     public String getMarkerName() {
         return markerName;
@@ -25,19 +32,19 @@ public class AddMarkerDTO {
         this.markerName = markerName;
     }
 
-    public String getLatitude() {
+    public BigDecimal getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(BigDecimal latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public BigDecimal getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
 }
