@@ -7,8 +7,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.CascadeType.ALL;
-
 
 @Entity
 @Table(name = "Atlas_User")
@@ -18,7 +16,6 @@ public class User extends AbstractEntity{
 
     private String passwordHash;
 
-    //ill need a marker create and remove and update... so the user gets matched
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Marker> markers = new ArrayList<>();
 

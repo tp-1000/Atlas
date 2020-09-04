@@ -10,7 +10,7 @@
 <!--marker-->
 <!---->
 <form th:fragment="zipCodeZoomComponent" id="setLocation">
-    <p>Set Zipcode</p>
+    <label for="zip">Set Zipcode</label>
     <input id="zip" type="text">
     <button type="submit" th:onclick="setLocationWithZipcode(key)">submit</button>
 </form>
@@ -19,20 +19,20 @@
 <div th:fragment="addMarkerComponent">
     <p id="addMarkerMessage"></p>
     <form id="create-marker" action="/marker/add" method="post">
-        <p>Name</p>
+        <lable>Name</lable>
         <input type="text" th:field="${addMarkerDTO.markerName}">
         <p th:errors="${addMarkerDTO.markerName}"></p>
-        <p>Lat</p>
+        <lable>Lat</lable>
         <input type="text" th:field="${addMarkerDTO.latitude}">
         <p th:errors="${addMarkerDTO.latitude}"></p>
-        <p>Lng</p>
+        <lable>Lng</lable>
         <input type="text" th:field="${addMarkerDTO.longitude}">
         <p th:errors="${addMarkerDTO.longitude}"></p>
         <button type="submit" th:onclick="setLngLat()">submit</button>
     </form>
 </div>
 <!---->
-<!--view-->
+<!--view table-->
 <div th:fragment="showAllMarkersComponent">
     <p id="viewMarkerMessage"></p>
         <table th:each="marker : ${markers}" th:id="${marker.id}" th:name="marker">
@@ -47,8 +47,9 @@
 <!--TODO error handling if no location chosen-->
 <div th:fragment="selectAreaAndSearchComponent">
     <form action="/marker/view" method="post" id="setEpicenter">
+        <label for="location"></label>
         <input id="location" name="locationString" type="text">
-        <button type="submit" th:onclick="generateQueryString()">Set Epicenter</button>
+        <button type="submit" th:onclick="generateQueryString()">Retrieve markers in area</button>
     </form>
 </div>
 
@@ -69,19 +70,23 @@
 </div>
 
 <!--LOGIN-->
-<!---->
+<!--loginForm-->
 <form th:fragment="loginForm" action="/login" method="post">
+    <label for="userName">Username</label>
     <input th:field="${loginUserDTO.userName}" type="text">
     <p th:errors="${loginUserDTO.userName}"></p>
+    <label for="password">Password</label>
     <input th:field="${loginUserDTO.password}" type="text">
     <p th:errors="${loginUserDTO.password}"></p>
     <button type="submit">Submit</button>
 </form>
 <!---->
-<!---->
+<!--RegisterForm-->
 <form th:fragment="registerForm" action="/register" method="post">
+    <label for="userName">Username</label>
     <input th:field="${registerUserDTO.userName}" type="text">
     <p th:errors="${registerUserDTO.userName}"></p>
+    <label for="password">Password</label>
     <input th:field="${registerUserDTO.password}" type="text">
     <p th:errors="${registerUserDTO.password}"></p>
     <button type="submit">Submit</button>
@@ -100,6 +105,33 @@
     <a th:href="@{/marker/add}">Add Marker</a>
 </div>
 
+
+<!--USER-->
+<!--update marker form-->
+<div th:fragment="updateMarkerComponent">
+    <p id="updateMarkerMessage">Make changes</p>
+    <form id="update-marker" action="/user/update" method="post">
+        <lable for="id">Id</lable>
+        <input type="text" th:field="${updateMarkerDTO.id}" readonly>
+        <p name="error" th:errors="${updateMarkerDTO.id}"></p>
+        <lable for="markerName">Name</lable>
+        <input th:field="${updateMarkerDTO.markerName}">
+        <p name="error" th:errors="${updateMarkerDTO.markerName}"></p>
+        <lable for="latitude">Lat</lable>
+        <input type="text" th:field="${updateMarkerDTO.latitude}">
+        <p name="error" th:errors="${updateMarkerDTO.latitude}"></p>
+        <lable for="longitude">Lng</lable>
+        <input type="text" th:field="${updateMarkerDTO.longitude}">
+        <p name="error" th:errors="${updateMarkerDTO.longitude}"></p>
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+<form th:fragment="deleteMarkerComponent" method="post" action="/user/delete">
+    <label for="deleteMarkerId">Id</label>
+    <input id="deleteMarkerId" name="deleteThisMarkerId" readonly></input>
+    <button id="delete" type="submit">Delete</button>
+</form>
 
 </body>
 </html>

@@ -3,6 +3,7 @@ package org.launchcode.Atlas.controller;
 import org.launchcode.Atlas.data.UserRepository;
 import org.launchcode.Atlas.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +42,11 @@ public class AtlasController {
     public User getSession(HttpServletRequest request) {
         HttpSession session = request.getSession(); //get current session or make new one
         return getUserFromSession(session);
-//        User user = loginController.getUserFromSession(session); //look for user from session, if present then login process worked (could be null)
     }
+
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        model.addAttribute("API_KEY", System.getenv("API_KEY"));
+    }
+
 }

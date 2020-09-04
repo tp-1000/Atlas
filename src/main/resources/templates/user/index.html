@@ -7,7 +7,7 @@
     <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}" defer></script>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
     <script th:src="@{/js/generateMap.js}"></script>
-    <script th:src="@{/js/markerSearch.js}" defer></script>
+    <script th:src="@{/js/updateMarkerForm.js}" defer></script>
     <script th:src="@{/js/zipCodeZoom.js}" defer></script>
 
 
@@ -18,8 +18,12 @@
 
 <div th:replace="fragments :: zipCodeZoomComponent"></div>
 <div th:replace="fragments :: showAllMarkersComponent"></div>
-
 <p id="markerInfo"></p>
+
+<div th:replace="fragments :: updateMarkerComponent"></div>
+<div th:replace="fragments :: deleteMarkerComponent"></div>
+
+
 
 </body>
 </html>

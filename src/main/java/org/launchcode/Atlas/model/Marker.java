@@ -15,8 +15,7 @@ public class Marker extends AbstractEntity{
     @Column(columnDefinition="geography(Point,4326)")
     private Point location;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     public Marker() {
@@ -54,6 +53,15 @@ public class Marker extends AbstractEntity{
 
     public void setLocation(Point location) {
         this.location = location;
+    }
+
+    public void setLocationWithBigDecimal(BigDecimal lng, BigDecimal lat){
+        Double x = lng.doubleValue();
+        Double y = lat.doubleValue();
+        PrecisionModel pm = new PrecisionModel();
+        GeometryFactory gf = new GeometryFactory( pm,4326);
+        Coordinate xy = new Coordinate(x,y);
+        this.location = gf.createPoint(xy);
     }
 
 }

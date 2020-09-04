@@ -23,30 +23,21 @@ public class MarkerController extends AtlasController{
     @Autowired
     MarkerRepository markerRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-    //get Environment var to protect API key
-    String API_KEY = System.getenv("API_KEY");
-
     @GetMapping("/view")
     public String viewMap(Model model){
-        model.addAttribute("API_KEY", API_KEY);
         model.addAttribute("instructions", "Click the map to look for Markers");
         return "marker/index";
     }
 
     @PostMapping("/view")
     public String processViewMapFrom(@RequestParam String locationString, Model model) {
-        model.addAttribute("API_KEY", API_KEY);
-
+        // TODO better zoom after region selected (old center and zoom level passeed to controller) (mapDTO?) could be used to keep views consitent- the other way would be without a page reload)
         model.addAttribute("markers", markerRepository.getMarkerNearPoint(locationString));
         return "marker/index";
     }
 
     @GetMapping("/add")
     public String viewAddMarker(Model model){
-        model.addAttribute("API_KEY", API_KEY);
         model.addAttribute(new AddMarkerDTO());
         return "marker/add_marker";
     }
@@ -54,7 +45,7 @@ public class MarkerController extends AtlasController{
     @PostMapping("/add")
     public String processAddMarkerForm(@ModelAttribute @Valid AddMarkerDTO addMarkerDTO, Errors error, Model model, HttpSession session) {
         if(error.hasErrors()) {
-            model.addAttribute("API_KEY", API_KEY);
+            //seeing old marker would be good TODO
             model.addAttribute("addMarkerDTO", addMarkerDTO);
             return "marker/add_marker";
         }
@@ -71,14 +62,3 @@ public class MarkerController extends AtlasController{
     }
 
 }
-
-//TODO use story - Show marker for area
-// - [x]There is a form that takes a location and returns a map of that area
-// - [x]Markers are selected from database based on location parameter and displayed on the map
-// - []A message displays no markers for an area if there are no markers.
-// - [x]if there are markers for an area they are displayed
-// - []problems with the form location data produce an error message
-// - [x]map can zoom and pan
-// - [x]A new location can be entered and a new map generated.
-
-//TODO clean up with RestController
