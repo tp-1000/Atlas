@@ -19,13 +19,15 @@
 <div th:fragment="addMarkerComponent">
     <p id="addMarkerMessage"></p>
     <form id="create-marker" action="/marker/add" method="post">
-        <lable>Name</lable>
+        <lable for="markerName">Name</lable>
         <input type="text" th:field="${addMarkerDTO.markerName}">
         <p th:errors="${addMarkerDTO.markerName}"></p>
-        <lable>Lat</lable>
+        <label for="image">Upload Photo</label>
+        <input type="file" th:field="${addMarkerDTO.image}">
+        <lable for="latitude">Lat</lable>
         <input type="text" th:field="${addMarkerDTO.latitude}">
         <p th:errors="${addMarkerDTO.latitude}"></p>
-        <lable>Lng</lable>
+        <lable for="longitude">Lng</lable>
         <input type="text" th:field="${addMarkerDTO.longitude}">
         <p th:errors="${addMarkerDTO.longitude}"></p>
         <button type="submit" th:onclick="setLngLat()">submit</button>
@@ -126,12 +128,14 @@
         <button type="submit">Update</button>
     </form>
 </div>
-
+<!---->
+<!--delete marker form-->
 <form th:fragment="deleteMarkerComponent" method="post" action="/user/delete">
     <label for="deleteMarkerId">Id</label>
     <input id="deleteMarkerId" name="deleteThisMarkerId" readonly></input>
     <button id="delete" type="submit">Delete</button>
 </form>
+
 
 </body>
 </html>

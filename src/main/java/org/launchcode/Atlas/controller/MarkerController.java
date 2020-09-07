@@ -1,7 +1,6 @@
 package org.launchcode.Atlas.controller;
 
 import org.launchcode.Atlas.data.MarkerRepository;
-import org.launchcode.Atlas.data.UserRepository;
 import org.launchcode.Atlas.dto.AddMarkerDTO;
 import org.launchcode.Atlas.model.Marker;
 import org.launchcode.Atlas.model.User;
