@@ -18,18 +18,23 @@
 <!--add-->
 <div th:fragment="addMarkerComponent">
     <p id="addMarkerMessage"></p>
-    <form id="create-marker" action="/marker/add" method="post">
+    <form id="create-marker" action="/marker/add" method="post" enctype="multipart/form-data">
         <lable for="markerName">Name</lable>
         <input type="text" th:field="${addMarkerDTO.markerName}">
         <p th:errors="${addMarkerDTO.markerName}"></p>
+
         <label for="image">Upload Photo</label>
         <input type="file" th:field="${addMarkerDTO.image}">
+        <p th:errors="${addMarkerDTO.image}"></p>
+
         <lable for="latitude">Lat</lable>
         <input type="text" th:field="${addMarkerDTO.latitude}">
         <p th:errors="${addMarkerDTO.latitude}"></p>
+
         <lable for="longitude">Lng</lable>
         <input type="text" th:field="${addMarkerDTO.longitude}">
         <p th:errors="${addMarkerDTO.longitude}"></p>
+
         <button type="submit" th:onclick="setLngLat()">submit</button>
     </form>
 </div>
@@ -42,6 +47,7 @@
                 <tr><td name="name" th:text="${marker.markerName}"></td></tr>
                 <tr><td name="x" th:text="${marker.location.x}"></td></tr>
                 <tr><td name="y" th:text="${marker.location.y}"></td></tr>
+                <tr><td name="markerImage"></td><img th:src="@{'http://localhost:8080/api/download/' + ${marker.imageName}}"></tr>
             </tbody>
         </table>
 </div>

@@ -1,5 +1,6 @@
 package org.launchcode.Atlas.dto;
 
+import org.launchcode.Atlas.validation.image.ValidImage;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.DecimalMax;
@@ -24,7 +25,7 @@ public class AddMarkerDTO {
     private BigDecimal longitude;
     //@NotBlank(message = "Longitude required Ex: 40.548475")
 
-
+    @ValidImage
     private MultipartFile image;
 
     public String getMarkerName() {

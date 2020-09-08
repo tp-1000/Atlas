@@ -1,4 +1,4 @@
-package org.launchcode.Atlas.validation;
+package org.launchcode.Atlas.validation.coordinate;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

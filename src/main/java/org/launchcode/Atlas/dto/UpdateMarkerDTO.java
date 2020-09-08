@@ -1,6 +1,6 @@
 package org.launchcode.Atlas.dto;
 
-import org.launchcode.Atlas.validation.CoordinatesNotNull;
+import org.launchcode.Atlas.validation.coordinate.CoordinatesNotNull;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;

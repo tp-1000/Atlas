@@ -18,10 +18,12 @@ public class Marker extends AbstractEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    private String imageName;
+
     public Marker() {
     }
 
-    public Marker(String markerName, BigDecimal lng, BigDecimal lat) {
+    public Marker(String markerName, BigDecimal lng, BigDecimal lat, String imageName) {
         this.markerName = markerName;
         Double x = lng.doubleValue();
         Double y = lat.doubleValue();
@@ -29,6 +31,15 @@ public class Marker extends AbstractEntity{
         GeometryFactory gf = new GeometryFactory( pm,4326);
         Coordinate xy = new Coordinate(x,y);
         this.location = gf.createPoint(xy);
+        this.imageName = imageName;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     public User getUser() {
@@ -63,5 +74,6 @@ public class Marker extends AbstractEntity{
         Coordinate xy = new Coordinate(x,y);
         this.location = gf.createPoint(xy);
     }
+
 
 }
