@@ -18,6 +18,6 @@ public class ImageValidator implements ConstraintValidator<ValidImage, Multipart
             return true;
         }
             String fileName = value.getOriginalFilename();
-            return Pattern.matches("[^\\s]+\\.((jpeg)|(png)|(gif)|(jpg))", fileName);
+            return Pattern.matches("[^\\s].+\\.((jpeg)|(png)|(gif)|(jpg))", fileName);
     }
 }
