@@ -1,12 +1,13 @@
 package org.launchcode.Atlas.model;
 
-
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.launchcode.Atlas.data.MarkerSerializer;
 import org.locationtech.jts.geom.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-
+@JsonSerialize(using = MarkerSerializer.class)
 @Entity
 public class Marker extends AbstractEntity{
 
@@ -18,12 +19,14 @@ public class Marker extends AbstractEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    private String imageName;
+    String imageName;
+
+    String description;
 
     public Marker() {
     }
 
-    public Marker(String markerName, BigDecimal lng, BigDecimal lat, String imageName) {
+    public Marker(String markerName, BigDecimal lng, BigDecimal lat, String originalName, String description) {
         this.markerName = markerName;
         Double x = lng.doubleValue();
         Double y = lat.doubleValue();
@@ -31,15 +34,32 @@ public class Marker extends AbstractEntity{
         GeometryFactory gf = new GeometryFactory( pm,4326);
         Coordinate xy = new Coordinate(x,y);
         this.location = gf.createPoint(xy);
-        this.imageName = imageName;
+        setImageName(originalName);
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImageName() {
-        return imageName;
+        if(imageName.equals("no_image_picked")){
+            return imageName;
+        }
+        return this.getId()+imageName;
     }
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
+    //preserves extension and adds marker id to the base
+    public void setImageName(String originalName) {
+        if(originalName == null || originalName.isEmpty()){
+            this.imageName = "no_image_picked";
+        } else {
+            this.imageName = "_image." + originalName.replaceAll(".*\\.", "");
+        }
     }
 
     public User getUser() {
@@ -74,6 +94,5 @@ public class Marker extends AbstractEntity{
         Coordinate xy = new Coordinate(x,y);
         this.location = gf.createPoint(xy);
     }
-
 
 }

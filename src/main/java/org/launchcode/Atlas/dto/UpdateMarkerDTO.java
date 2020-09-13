@@ -1,6 +1,8 @@
 package org.launchcode.Atlas.dto;
 
 import org.launchcode.Atlas.validation.coordinate.CoordinatesNotNull;
+import org.launchcode.Atlas.validation.image.ValidImage;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -24,6 +26,29 @@ public class UpdateMarkerDTO {
     @DecimalMax("180.0000")
     @CoordinatesNotNull
     private BigDecimal longitude;
+
+    @ValidImage
+    private MultipartFile image;
+
+    @NotBlank
+    @Size(min = 1, max = 1000, message = "Must be 1 to 1000 characters")
+    private String description;
+
+
+    public MultipartFile getImage() {
+        return image;
+    }
+    public void setImage(MultipartFile image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public int getId() {
         return id;

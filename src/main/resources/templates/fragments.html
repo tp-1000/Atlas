@@ -9,10 +9,10 @@
 
 <!--marker-->
 <!---->
-<form th:fragment="zipCodeZoomComponent" id="setLocation">
+<form th:fragment="zipCodeZoomComponent" id="setLocation" th:onsubmit="setLocationWithZipcode(key, this)">
     <label for="zip">Set Zipcode</label>
-    <input id="zip" type="text">
-    <button type="submit" th:onclick="setLocationWithZipcode(key)">submit</button>
+    <input id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)">
+    <button type="submit">submit</button>
 </form>
 <!---->
 <!--add-->
@@ -24,8 +24,12 @@
         <p th:errors="${addMarkerDTO.markerName}"></p>
 
         <label for="image">Upload Photo</label>
-        <input type="file" th:field="${addMarkerDTO.image}">
+        <input type="file" th:field="${addMarkerDTO.image}" accept="image/*">
         <p th:errors="${addMarkerDTO.image}"></p>
+
+        <label for="description">Description</label>
+        <input th:field="${addMarkerDTO.description}">
+        <p th:errors="${addMarkerDTO.description}"></p>
 
         <lable for="latitude">Lat</lable>
         <input type="text" th:field="${addMarkerDTO.latitude}">
@@ -38,26 +42,12 @@
         <button type="submit" th:onclick="setLngLat()">submit</button>
     </form>
 </div>
-<!---->
-<!--view table-->
-<div th:fragment="showAllMarkersComponent">
-    <p id="viewMarkerMessage"></p>
-        <table th:each="marker : ${markers}" th:id="${marker.id}" th:name="marker">
-            <tbody>
-                <tr><td name="name" th:text="${marker.markerName}"></td></tr>
-                <tr><td name="x" th:text="${marker.location.x}"></td></tr>
-                <tr><td name="y" th:text="${marker.location.y}"></td></tr>
-                <tr><td name="markerImage"></td><img th:src="@{'http://localhost:8080/api/download/' + ${marker.imageName}}"></tr>
-            </tbody>
-        </table>
-</div>
+
 <!---->
 <!--TODO error handling if no location chosen-->
 <div th:fragment="selectAreaAndSearchComponent">
-    <form action="/marker/view" method="post" id="setEpicenter">
-        <label for="location"></label>
-        <input id="location" name="locationString" type="text">
-        <button type="submit" th:onclick="generateQueryString()">Retrieve markers in area</button>
+    <form id="setEpicenter">
+        <button id="search" type="submit" th:onclick="markerSearch()">Retrieve markers in area</button>
     </form>
 </div>
 
@@ -118,20 +108,33 @@
 <!--update marker form-->
 <div th:fragment="updateMarkerComponent">
     <p id="updateMarkerMessage">Make changes</p>
-    <form id="update-marker" action="/user/update" method="post">
+    <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data">
         <lable for="id">Id</lable>
         <input type="text" th:field="${updateMarkerDTO.id}" readonly>
         <p name="error" th:errors="${updateMarkerDTO.id}"></p>
+
         <lable for="markerName">Name</lable>
         <input th:field="${updateMarkerDTO.markerName}">
         <p name="error" th:errors="${updateMarkerDTO.markerName}"></p>
+
+        <lable for="image">Image</lable>
+        <input type="file" th:field="${updateMarkerDTO.image}" accept="image/*">
+        <p name="error" th:errors="${updateMarkerDTO.image}"></p>
+        <img id="updateImage">
+
+        <lable for="description">Description</lable>
+        <input th:field="${updateMarkerDTO.description}">
+        <p name="error" th:errors="${updateMarkerDTO.description}"></p>
+
         <lable for="latitude">Lat</lable>
         <input type="text" th:field="${updateMarkerDTO.latitude}">
         <p name="error" th:errors="${updateMarkerDTO.latitude}"></p>
+
         <lable for="longitude">Lng</lable>
         <input type="text" th:field="${updateMarkerDTO.longitude}">
         <p name="error" th:errors="${updateMarkerDTO.longitude}"></p>
-        <button type="submit">Update</button>
+
+        <button type="submit" >Update</button>
     </form>
 </div>
 <!---->
@@ -141,6 +144,21 @@
     <input id="deleteMarkerId" name="deleteThisMarkerId" readonly></input>
     <button id="delete" type="submit">Delete</button>
 </form>
+
+<!---->
+<!--view markers table-->
+<div th:fragment="showAllUserMarkersComponent">
+    <p id="viewMarkerMessage"></p>
+    <table th:each="marker : ${markers}" th:id="${marker.id}" th:name="marker">
+        <tbody>
+        <tr><td name="name" th:text="${marker.markerName}"></td></tr>
+        <tr><td name="description" th:text="${marker.description}"></td></tr>
+        <tr><td name="x" th:text="${marker.location.x}"></td></tr>
+        <tr><td name="y" th:text="${marker.location.y}"></td></tr>
+        <tr><td name="markerImage"></td><img th:src="@{'http://localhost:8080/api/download/' + ${marker.getImageName()}}"></tr>
+        </tbody>
+    </table>
+</div>
 
 
 </body>

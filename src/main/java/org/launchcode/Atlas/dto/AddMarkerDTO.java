@@ -3,10 +3,7 @@ package org.launchcode.Atlas.dto;
 import org.launchcode.Atlas.validation.image.ValidImage;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.DecimalMax;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 public class AddMarkerDTO {
@@ -27,6 +24,18 @@ public class AddMarkerDTO {
 
     @ValidImage
     private MultipartFile image;
+
+    @NotBlank
+    @Size(min = 1, max = 1000, message = "Must be 1 to 1000 characters")
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getMarkerName() {
         return markerName;

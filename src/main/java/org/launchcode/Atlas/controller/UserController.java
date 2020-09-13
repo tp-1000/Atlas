@@ -1,6 +1,7 @@
 package org.launchcode.Atlas.controller;
 
 import org.launchcode.Atlas.data.MarkerRepository;
+import org.launchcode.Atlas.data.fileSystemService.AtlasFileSystemStorage;
 import org.launchcode.Atlas.dto.UpdateMarkerDTO;
 import org.launchcode.Atlas.model.Marker;
 import org.launchcode.Atlas.model.User;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -20,6 +22,8 @@ public class UserController extends AtlasController{
 
     @Autowired
     MarkerRepository markerRepository;
+    @Autowired
+    AtlasFileSystemStorage atlasFileSystemStorage;
 
     @GetMapping("/all")
     public String showAllMarkers(Model model, HttpSession session) {
@@ -43,16 +47,29 @@ public class UserController extends AtlasController{
             model.addAttribute("works", "Error Updating marker – try again");
             return "marker/success";
         }
-//        prevents creative javascript from submission -- via altering marker id -- TODO add custom validation
+//        prevents creative javascript from submission -- via altering marker id --
         if(markerToBeUpdated.get().getUser().getId() != getUserFromSession(session).getId()) {
             model.addAttribute("works", "Error Updating marker – try again");
             return "marker/success";
         }
 
+        MultipartFile image = updateMarkerDTO.getImage();
         Marker markerTBU = markerToBeUpdated.get();
+
+//      updates marker input (rewrites with old)
         markerTBU.setLocationWithBigDecimal(updateMarkerDTO.getLongitude(), updateMarkerDTO.getLatitude());
         markerTBU.setMarkerName(updateMarkerDTO.getMarkerName());
+        markerTBU.setDescription(updateMarkerDTO.getDescription());
+
+        //Check if there is a file to update with and remove old file
+        if(image != null && ! image.isEmpty()) {
+            String oldImageName = markerTBU.getImageName();
+            markerTBU.setImageName(image.getOriginalFilename());
+            atlasFileSystemStorage.deleteFile(oldImageName);
+        }
+
         markerRepository.save(markerTBU);
+        atlasFileSystemStorage.saveFile(image, markerTBU.getImageName());
 
         model.addAttribute("works", "updated!");
         return "marker/success";
@@ -60,21 +77,15 @@ public class UserController extends AtlasController{
 
     @PostMapping("/delete")
     public String processDeleteMarkerForm(@RequestParam int deleteThisMarkerId, Model model, HttpSession session) {
-        //what does an error look like? wrong or invalid id -- custom validation
-//        if (error.hasErrors()) {
-//            model.addAttribute("updateMarkerDTO", updateMarkerDTO);
-//            User user = getUserFromSession(session);
-//            model.addAttribute("markers", markerRepository.findByUser_id(user.getId()));
-//            return "user/index";
-//        }
+
         //is marker really a marker
         Optional<Marker> markerToBeUpdated = markerRepository.findById(deleteThisMarkerId);
         if(markerToBeUpdated.isEmpty()) {
             model.addAttribute("works", "Error deleting selected marker – Try again");
             return "marker/success";
         }
-//      does marker belong to current user
-//      prevents creative javascript from submission -- via altering marker id
+//      Test if marker belongs to current user?
+//      prevents creative javascript form submission -- via altering marker id
         if(markerToBeUpdated.get().getUser().getId() != getUserFromSession(session).getId()) {
             model.addAttribute("works", "Error deleting selected marker – Try again");
             return "marker/success";
@@ -82,7 +93,9 @@ public class UserController extends AtlasController{
 
         Marker markerTBU = markerToBeUpdated.get();
         model.addAttribute("works", "Marker \"" + markerTBU.getMarkerName() + "\" deleted.");
+        String imageName = markerTBU.getImageName();
         markerRepository.deleteById(markerTBU.getId());
+        atlasFileSystemStorage.deleteFile(imageName);
         return "marker/success";
     }
 

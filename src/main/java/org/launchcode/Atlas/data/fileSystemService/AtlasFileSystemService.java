@@ -13,10 +13,7 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+import java.nio.file.*;
 
 @Service
 public class AtlasFileSystemService implements AtlasFileSystemStorage{
@@ -39,11 +36,16 @@ public class AtlasFileSystemService implements AtlasFileSystemStorage{
         }
     }
 
+
     @Override
-    public String saveFile(MultipartFile file) {
-        //try with resources to auto close
+    public String saveFile(MultipartFile file, String newName) {
+        if(newName.equals("no_image_picked")){
+            return "no image was uploaded";
+        }
+
+            //try with resources to auto close
         try (InputStream fileStream = file.getInputStream()) {
-            String fileName = file.getOriginalFilename();
+            String fileName = newName;
             Path dfile = this.DIRLOCATION.resolve(fileName);
             //no other option but replace existing at this time
             // input stream, target, options.
@@ -68,5 +70,26 @@ public class AtlasFileSystemService implements AtlasFileSystemStorage{
        } catch (MalformedURLException e) {
             throw new AtlasFileNotFoundException("Could not download file");
        }
+    }
+
+    @Override
+    public void deleteFile(String fileName) {
+        if(fileName.equals("no_image_picked")){
+            return; //nothing to delete so don't continue method
+        }
+        try {
+            Path file = this.DIRLOCATION.resolve(fileName).normalize();
+            Resource resource = new UrlResource(file.toUri());
+            if(resource.exists() || resource.isReadable()) {
+                resource.getFile().delete();
+            }
+            else {
+                throw new AtlasFileNotFoundException("Could not find file");
+            }
+        } catch (MalformedURLException e) {
+            throw new AtlasFileNotFoundException("Could not download file");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

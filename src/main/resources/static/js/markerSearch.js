@@ -1,37 +1,87 @@
-    let markers = [];
-    let setOfMarkers = document.querySelectorAll('table[name="marker"]');
-function getMyMarkers() {
+let markers = []; //all markers
+let circleMap; //a circle on the map
 
-    //if no markers were found -- "no marker message"
-    if(setOfMarkers.length == 0) {
+
+window.addEventListener("load", () => {
+    epicenter();
+    document.querySelector("#search").addEventListener("click", (event) => event.preventDefault());
+});
+
+//Click map event needed to trigger function
+function markerSearch () {
+    let temp = [];
+
+//when a point on the map is clicked, its latlag is passed via API path and those markers are returned
+// request resources with formatted string -- uses circlecenter
+    let circleLat = circleMap.getCenter().lat();
+    let circleLng = circleMap.getCenter().lng();
+    let allMarkerURl = "/api/markers/search?lat=" + circleLat + "&lng="+ circleLng;
+        fetch(allMarkerURl)
+        .then(response => response.json())
+        .then(data => {
+            let temp = [];
+            //set marker objects from data
+            for(let i = 0; i < data.length; i++){
+                //if the data.id(a marker) isn't present in markers[] add it or break loop if it exists
+                block_1: {
+                    for(let y = 0; y < markers.length; y++) {
+                        if(markers[y].markerId == data[i].id){
+                            break block_1;
+                         };
+                    };
+                    let lat = data[i].lat;
+                    let lng = data[i].lng;
+                    let myLatlng = new google.maps.LatLng(lat,lng);
+                    temp.push(new google.maps.Marker({
+                        markerId: data[i].id,
+                        title: data[i].name,
+                        description: data[i].description,
+                        position: myLatlng,
+                        imageName: data[i].imageName,
+                        map
+                    }));
+                };
+            };
+
+            temp.forEach(mapMarker => {
+                markers.push(mapMarker);
+                mapMarker.addListener("click",  () => {
+                    document.querySelector("#markerInfo").innerHTML = mapMarker.title + " ID: " + mapMarker.markerId;
+                });
+            });
+        });
+
+}
+
+function continueProcessingSearchRequest(temp){
+//    if no markers were found -- "no marker message"
+    if(temp.length == 0) {
         document.querySelector("#viewMarkerMessage").innerHTML="No markers found for that area. Select a new area and press Set epicenter";
         return;
     }
 
-    //if markers were found -- add them to the map
-    setOfMarkers.forEach(mapMarker => {
-        let lat = mapMarker.querySelector('td[name="y"]').innerHTML;
-        let lng = mapMarker.querySelector('td[name="x"]').innerHTML;
+//    if markers were found -- add them to the map
+    temp = markers.map(mapMarker => {
+        let lat = mapMarker.lat;
+        let lng = mapMarker.lng;
         let myLatlng = new google.maps.LatLng(lat,lng);
-        markers.push(
+        temp.push(
             new google.maps.Marker({
                 markerId: mapMarker.id,
-                title: mapMarker.querySelector('td[name="name"]').innerHTML,
+                title: mapMarker.name,
+                description: mapMarker.description,
                 position: myLatlng,
+                imageName: mapMarker.imageName,
                 map
             })
         );
     });
-};
-//    TODO make it so map doesn't reload, only request of Markers is completed. Call it on the end of the "Fetch"
 
-
-window.addEventListener("load", getMyMarkers())
+}
 
 //Add circle to illustrate search zone
-let circleMap;
-function epicenter(event) {
-
+function epicenter() {
+    google.maps.event.addListener(map, "click", (event) => {
         if(circleMap == null) {
             circleMap = new google.maps.Circle({
             center: new google.maps.LatLng(event.latLng.lat(),event.latLng.lng()),
@@ -51,39 +101,8 @@ function epicenter(event) {
         if(map.getZoom() < 13) {
             map.setZoom(13);
         }
-}
-
-
-
-
-//event listener for map
-function mapRespondsToClick() {
-    google.maps.event.addListener(map, "click", event => {
-        epicenter(event);
-        })
-}
-
-
-mapRespondsToClick();
-
-
-
-//Custom input for string -  format for (query string) (called with button click)
-function generateQueryString() {
-     let location = circleMap.getCenter();
-
-     //needs to match this format 'SRID=4326;POINT(-90.350927 38.588407)'
-     document.querySelector("#location").value= `SRID=4326;POINT(${location.lng()} ${location.lat()})`;
-}
-
-//marker info helper window -- add click listener that displays the info for the marker
-//to be called as they are created
-function addMarkerListener() {
-    markers.forEach(mapMarker => {
-        mapMarker.addListener("click",  () => {
-            let activeMarker = mapMarker;
-            document.querySelector("#markerInfo").innerHTML = activeMarker.title + " ID: " + activeMarker.markerId;
-        });
     });
+
 }
-window.addEventListener("load", addMarkerListener());
+
+

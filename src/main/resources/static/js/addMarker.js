@@ -1,6 +1,9 @@
 let myMarker;
 
 window.addEventListener("load", function () {
+   document.querySelector("#create-marker [name = 'latitude']").value = "";
+   document.querySelector("#create-marker [name = 'longitude']").value = "";
+
    google.maps.event.addListener(map, "click", event => {
         addMarker(event.latLng);
     })

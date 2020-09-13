@@ -32,13 +32,6 @@ public class MarkerController extends AtlasController{
         return "marker/index";
     }
 
-    @PostMapping("/view")
-    public String processViewMapFrom(@RequestParam String locationString, Model model) {
-        // TODO better zoom after region selected (old center and zoom level passeed to controller) (mapDTO?) could be used to keep views consitent- the other way would be without a page reload)
-        model.addAttribute("markers", markerRepository.getMarkerNearPoint(locationString));
-        return "marker/index";
-    }
-
     @GetMapping("/add")
     public String viewAddMarker(Model model){
         model.addAttribute(new AddMarkerDTO());
@@ -49,19 +42,19 @@ public class MarkerController extends AtlasController{
     public String processAddMarkerForm(@ModelAttribute @Valid AddMarkerDTO addMarkerDTO, Errors error, Model model, HttpSession session) {
 
         if(error.hasErrors()) {
-            //seeing old marker would be good TODO
             model.addAttribute("addMarkerDTO", addMarkerDTO);
             return "marker/add_marker";
         }
-        // try block? in case the image fails to meet the setting config on sizes
+
         MultipartFile image = addMarkerDTO.getImage();
-        atlasFileSystemStorage.saveFile(image);
 
-
-        Marker aMarker = new Marker(addMarkerDTO.getMarkerName(), addMarkerDTO.getLongitude(), addMarkerDTO.getLatitude(), image.getOriginalFilename());
+        Marker aMarker = new Marker(addMarkerDTO.getMarkerName(), addMarkerDTO.getLongitude(), addMarkerDTO.getLatitude(), image.getOriginalFilename(), addMarkerDTO.getDescription());
         User user = getUserFromSession(session);
         aMarker.setUser(user);
+
         markerRepository.save(aMarker);
+
+        atlasFileSystemStorage.saveFile(image, aMarker.getImageName());
 //         confirm placement only used to provide success details on success page
         Optional<Marker> marker = markerRepository.findById(aMarker.getId());
         Marker marker1 = marker.get();
