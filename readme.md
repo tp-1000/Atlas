@@ -88,7 +88,7 @@ Special thanks to [LauchCode](https://www.launchcode.org/), whose guidance and s
 : GeoPoint or Longitude and Latitude (38°37'29.0"N 90°11'04.8"W) or (38.624724, -90.184664)
 
 ## License
-Full text for [License](LICENSE.txt).
+Full text for [License](LICENSE).
 
 MIT © Tom Petty 2020
 
