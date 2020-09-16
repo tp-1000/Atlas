@@ -52,6 +52,10 @@ function markerSearch () {
                     document.querySelector("#miImage").src = "http://localhost:8080/api/download/" + mapMarker.imageName;
                 });
             });
+            if(temp.length == 0) {
+                document.querySelector("#viewMarkerMessage").innerHTML="No markers found for that area. Select a new area and press Set epicenter";
+                return;
+            }
         });
 
 }
