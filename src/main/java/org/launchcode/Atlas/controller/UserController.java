@@ -61,15 +61,15 @@ public class UserController extends AtlasController{
         markerTBU.setMarkerName(updateMarkerDTO.getMarkerName());
         markerTBU.setDescription(updateMarkerDTO.getDescription());
 
-        //Check if there is a file to update with and remove old file
+        //Check if there is a file, update with it and remove old file
         if(image != null && ! image.isEmpty()) {
             String oldImageName = markerTBU.getImageName();
             markerTBU.setImageName(image.getOriginalFilename());
             atlasFileSystemStorage.deleteFile(oldImageName);
         }
 
+        //no image for updating -- just save the marker
         markerRepository.save(markerTBU);
-        atlasFileSystemStorage.saveFile(image, markerTBU.getImageName());
 
         model.addAttribute("works", "updated!");
         return "marker/success";
