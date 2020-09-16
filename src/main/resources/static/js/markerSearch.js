@@ -46,7 +46,10 @@ function markerSearch () {
             temp.forEach(mapMarker => {
                 markers.push(mapMarker);
                 mapMarker.addListener("click",  () => {
-                    document.querySelector("#markerInfo").innerHTML = mapMarker.title + " ID: " + mapMarker.markerId;
+                    document.querySelector("#miId").innerHTML = " ID: " + mapMarker.markerId;
+                    document.querySelector("#miName").innerHTML = " Name: " + mapMarker.title;
+                    document.querySelector("#miDescription").innerHTML = "Description: " + mapMarker.description;
+                    document.querySelector("#miImage").src = "http://localhost:8080/api/download/" + mapMarker.imageName;
                 });
             });
         });
