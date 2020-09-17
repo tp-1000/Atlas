@@ -1,4 +1,4 @@
-let markers = []; //all markers
+let temp = []; //all markers
 let circleMap; //a circle on the map
 
 
@@ -9,7 +9,8 @@ window.addEventListener("load", () => {
 
 //Click map event needed to trigger function
 function markerSearch () {
-    let temp = [];
+    temp.forEach(x => x.setMap(null));
+    temp = [];
 
 //when a point on the map is clicked, its latlag is passed via API path and those markers are returned
 // request resources with formatted string -- uses circlecenter
@@ -19,32 +20,23 @@ function markerSearch () {
         fetch(allMarkerURl)
         .then(response => response.json())
         .then(data => {
-            let temp = [];
+            //let temp = [];
             //set marker objects from data
             for(let i = 0; i < data.length; i++){
-                //if the data.id(a marker) isn't present in markers[] add it or break loop if it exists
-                block_1: {
-                    for(let y = 0; y < markers.length; y++) {
-                        if(markers[y].markerId == data[i].id){
-                            break block_1;
-                         };
-                    };
-                    let lat = data[i].lat;
-                    let lng = data[i].lng;
-                    let myLatlng = new google.maps.LatLng(lat,lng);
-                    temp.push(new google.maps.Marker({
-                        markerId: data[i].id,
-                        title: data[i].name,
-                        description: data[i].description,
-                        position: myLatlng,
-                        imageName: data[i].imageName,
-                        map
-                    }));
-                };
+                let lat = data[i].lat;
+                let lng = data[i].lng;
+                let myLatlng = new google.maps.LatLng(lat,lng);
+                temp.push(new google.maps.Marker({
+                    markerId: data[i].id,
+                    title: data[i].name,
+                    description: data[i].description,
+                    position: myLatlng,
+                    imageName: data[i].imageName,
+                    map
+                }));
             };
 
             temp.forEach(mapMarker => {
-                markers.push(mapMarker);
                 mapMarker.addListener("click",  () => {
                     document.querySelector("#miId").innerHTML = " ID: " + mapMarker.markerId;
                     document.querySelector("#miName").innerHTML = " Name: " + mapMarker.title;
@@ -52,37 +44,14 @@ function markerSearch () {
                     document.querySelector("#miImage").src = "http://localhost:8080/api/download/" + mapMarker.imageName;
                 });
             });
+
             if(temp.length == 0) {
                 document.querySelector("#viewMarkerMessage").innerHTML="No markers found for that area. Select a new area and press Set epicenter";
                 return;
+            } else {
+                document.querySelector("#viewMarkerMessage").innerHTML="";
             }
         });
-
-}
-
-function continueProcessingSearchRequest(temp){
-//    if no markers were found -- "no marker message"
-    if(temp.length == 0) {
-        document.querySelector("#viewMarkerMessage").innerHTML="No markers found for that area. Select a new area and press Set epicenter";
-        return;
-    }
-
-//    if markers were found -- add them to the map
-    temp = markers.map(mapMarker => {
-        let lat = mapMarker.lat;
-        let lng = mapMarker.lng;
-        let myLatlng = new google.maps.LatLng(lat,lng);
-        temp.push(
-            new google.maps.Marker({
-                markerId: mapMarker.id,
-                title: mapMarker.name,
-                description: mapMarker.description,
-                position: myLatlng,
-                imageName: mapMarker.imageName,
-                map
-            })
-        );
-    });
 
 }
 
