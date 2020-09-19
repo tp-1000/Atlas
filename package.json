@@ -1,0 +1,12 @@
+{
+  "name": "Atlas-live-reload",
+  "scripts": {
+    "watch": "gulp watch",
+    "build": "gulp build"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.12",
+    "gulp": "^4.0.2",
+    "gulp-watch": "^5.0.1"
+  }
+}

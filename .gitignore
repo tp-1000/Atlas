@@ -33,3 +33,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Dev only ###
+/target/
+/node_modules/
+/package-lock.json
