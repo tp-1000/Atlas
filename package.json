@@ -7,6 +7,13 @@
   "devDependencies": {
     "browser-sync": "^2.26.12",
     "gulp": "^4.0.2",
+    "gulp-environments": "^1.0.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-terser": "^1.4.0",
+    "gulp-uglifycss": "^1.1.0",
     "gulp-watch": "^5.0.1"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.8.10"
   }
 }
