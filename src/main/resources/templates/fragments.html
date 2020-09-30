@@ -39,10 +39,10 @@
 </div>
 
 <!--searchzipp-->
-<form th:fragment="zipCodeZoomComponent" id="setLocation" th:onsubmit="setLocationWithZipcode(key, this)" class="bg-white flex shadow" >
+<form th:fragment="zipCodeZoomComponent" id="setLocation" th:onsubmit="setLocationWithZipcode(key, this)" class="flex shadow-lg" >
         <label for="zip"></label>
-        <input class="border-none w-full" id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)" placeholder="zipcode" required>
-        <button class="border-none inline block hover:bg-gray-300" type="submit">Go!</button>
+        <input class="border-none w-24 h-10 text-lg rounded text-center" id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)" placeholder="zipcode" required>
+        <button class="border-none ml-4 w-10 text-lg text-center rounded shadow-lg inline bg-white block hover:bg-blue-700 hover:font-semibold hover:text-white" type="submit">Go!</button>
 </form>
 
 <!--No longer used, auto search from setting circle center-->
@@ -96,40 +96,55 @@
 </button>
 
 <!--LOGIN-->
+<!--intro-->
+<div class="mx-auto max-w-xs mt-6" name="introduction" th:fragment="intro">
+    <p class="text-sm font-medium pb-4">Explore your neighborhood.
+        <span class="text-sm font-thin">Let Atlas guide be your guide. Use an interactive map to discover points of interest in your area.</span>
+    </p>
+
+    <p class="text-sm font-medium pb-8">Share your own points of interest.
+        <span class="text-sm font-thin">Pick a spot on a map and add supporting details to your marker.
+    Have Atlas save it for others to discover.</span>
+    </p>
+
+
+</div>
 <!--loginForm-->
-<form th:fragment="loginForm" class="flex justify-center mx-auto max-w-xs bg-white shadow-md rounded mt-40 pt-10 pb-10" action="/login" method="post">
+<form th:fragment="loginForm" class="flex justify-center mx-auto max-w-xs bg-white shadow-xl rounded pt-5 pb-5" action="/login" method="post">
     <div>
-        <div class="">
-            <label class="block" for="userName">Username</label>
-            <input class="shadow appearance-none border rounded" th:field="${loginUserDTO.userName}" type="text">
+        <p class="pt-2 pb-5">Please <b>login</b> or <a class="text-blue-700 hover:underline" th:href="@{/register}">register</a> to continue</p>
+        <div class="flex flex-col">
+            <label class="block text-sm font-medium" for="userName">Username</label>
+            <input class="pl-2 shadow appearance-none border rounded" th:field="${loginUserDTO.userName}" type="text">
             <p class="input-error" th:errors="${loginUserDTO.userName}"></p>
         </div>
-        <div class="">
-            <label class="block" for="password">Password</label>
-            <input class="shadow appearance-none border rounded" th:field="${loginUserDTO.password}" type="text">
+        <div class="flex mt-2 flex-col">
+            <label class="block text-sm font-medium" for="password">Password</label>
+            <input class="pl-2 shadow appearance-none border rounded" th:field="${loginUserDTO.password}" type="password">
             <p class="input-error" th:errors="${loginUserDTO.password}"></p>
         </div>
-        <div class="">
-            <button type="submit">Sign In</button>
+        <div class="mt-5 flex flex-col">
+            <button class="h-10 px-2 self-center border rounded shadow-lg hover:bg-blue-700 hover:font-semibold hover:text-white" type="submit">Login</button>
         </div>
     </div>
 </form>
 <!---->
 <!--RegisterForm-->
-<form class="flex justify-center mx-auto max-w-xs bg-white shadow-md rounded mt-40 pt-10 pb-10" th:fragment="registerForm" action="/register" method="post">
+<form class="flex justify-center mx-auto max-w-xs bg-white shadow-xl rounded pt-5 pb-5" th:fragment="registerForm" action="/register" method="post">
     <div>
-        <div class="">
-            <label class="block" for="userName">Username</label>
-            <input class="shadow appearance-none border rounded" th:field="${registerUserDTO.userName}" type="text">
+        <p class="pt-2 pb-5">Please <b>register</b> or <a class="text-blue-700 hover:underline" th:href="@{/login}">login</a> to continue</p>
+        <div class="flex flex-col">
+            <label class="block text-sm font-medium" for="userName">Username</label>
+            <input class="pl-2 shadow appearance-none border rounded" th:field="${registerUserDTO.userName}" type="text">
             <p class="input-error" th:errors="${registerUserDTO.userName}"></p>
         </div>
-        <div class="">
-            <label class="block" for="password">Password</label>
-            <input class="shadow appearance-none border rounded" th:field="${registerUserDTO.password}" type="text">
+        <div class="flex mt-2 flex-col">
+            <label class="block text-sm font-medium" for="password">Password</label>
+            <input class="pl-2 shadow appearance-none border rounded" th:field="${registerUserDTO.password}" type="password">
             <p class="input-error" th:errors="${registerUserDTO.password}"></p>
         </div>
-        <div class="">
-            <button type="submit">Register</button>
+        <div class="mt-5 flex flex-col">
+            <button class="h-10 px-2 self-center border rounded shadow-lg hover:bg-blue-700 hover:font-semibold hover:text-white" type="submit">Register</button>
         </div>
     </div>
 </form>
