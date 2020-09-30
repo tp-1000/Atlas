@@ -9,11 +9,6 @@
 
 <!--marker-->
 <!---->
-<form th:fragment="zipCodeZoomComponent" id="setLocation" th:onsubmit="setLocationWithZipcode(key, this)">
-    <label for="zip">Set Zipcode</label>
-    <input id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)">
-    <button type="submit">submit</button>
-</form>
 <!---->
 <!--add-->
 <div th:fragment="addMarkerComponent">
@@ -43,51 +38,100 @@
     </form>
 </div>
 
-<!---->
-<!--TODO error handling if no location chosen-->
-<div th:fragment="selectAreaAndSearchComponent">
-    <form id="setEpicenter">
-        <button id="search" type="submit" th:onclick="markerSearch()">Retrieve markers in area</button>
-    </form>
-</div>
+<!--searchzipp-->
+<form th:fragment="zipCodeZoomComponent" id="setLocation" th:onsubmit="setLocationWithZipcode(key, this)" class="bg-white flex shadow" >
+        <label for="zip"></label>
+        <input class="border-none w-full" id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)" placeholder="zipcode" required>
+        <button class="border-none inline block hover:bg-gray-300" type="submit">Go!</button>
+</form>
+
+<!--No longer used, auto search from setting circle center-->
+<!--<div class="" th:fragment="selectAreaAndSearchComponent">-->
+<!--    <form id="setEpicenter">-->
+<!--        <button class="border block hover:bg-gray-100" id="search" type="submit" th:onclick="markerSearch()">Retrieve markers in area</button>-->
+<!--    </form>-->
+<!--</div>-->
 
 <!--NAVIGATION-->
 <!---->
-<div th:fragment="navigation">
-    <a th:href="@{/}"><img src="" width="50px" height="50px">Home</a>
-<!--if user is true show logged-in block .. -->
+<div th:fragment="navigation" class="shadow bg-black bg-opacity-25 w-screen flex text-3xl" >
+<!--    logo/home-->
+    <div class="">
+        <a class="max-w-none" th:href="@{/}">
+            <img class="m-4 h-16"  th:src="@{/image/logo/atlas2.svg}" alt="Home atlas logo">
+        </a>
+    </div>
+    <!--if user is true show logged-in block .. -->
     <th:block th:unless="${validUser}">
-        <a  th:href="@{/login}"><img src="" width="50px" height="50px">Login</a>
-        <a th:href="@{/register}"><img src="" width="50px" height="50px">Register</a>
+        <div class="self-center ml-auto mr-5">
+            <a class="hover:underline" th:href="@{/login}">Login</a>
+        </div>
+        <div class="self-center hover:underline mr-5">
+            <a th:href="@{/register}">Register</a>
+        </div>
     </th:block>
-<!--if user is false show register block .. -->
+    <!--if user is false show register block .. -->
     <th:block th:if="${validUser}">
-        <a th:href="@{/user/all}"><img src="" width="50px" height="50px" th:text="${validUser.userName}" ></a>
-        <a th:href="@{/logout}"><img src="" width="50px" height="50px">Logout</a>
+            <div class="self-center hover:underline ml-auto mr-5">
+                <a th:href="@{/user/all}" th:text="${validUser.userName}"></a>
+            </div>
+            <div class="self-center hover:underline mr-5">
+                <a th:href="@{/logout}">Logout</a>
+            </div>
     </th:block>
 </div>
 
+<!-- hamburger menu-->
+<button th:fragment="hamburger" id="hMenuBtn" class="pt-3 pl-3 grid gird-row-3" onclick="hMenuShow()">
+
+    <a name="bar" class="w-6 h-2 pt-1 group-hover:bg-white">
+        <div class="pt-1 w-full h-1 bg-black"></div>
+    </a>
+    <a name="bar" class="w-6 h-2 pt-1 group-hover:bg-white">
+        <div class="pt-1 w-full h-1 bg-black"></div>
+    </a>
+    <a name="bar" class="w-6 h-2 pt-1 group-hover:bg-white">
+        <div class="pt-1 w-full h-1 bg-black"></div>
+    </a>
+</button>
+
 <!--LOGIN-->
 <!--loginForm-->
-<form th:fragment="loginForm" action="/login" method="post">
-    <label for="userName">Username</label>
-    <input th:field="${loginUserDTO.userName}" type="text">
-    <p th:errors="${loginUserDTO.userName}"></p>
-    <label for="password">Password</label>
-    <input th:field="${loginUserDTO.password}" type="text">
-    <p th:errors="${loginUserDTO.password}"></p>
-    <button type="submit">Submit</button>
+<form th:fragment="loginForm" class="flex justify-center mx-auto max-w-xs bg-white shadow-md rounded mt-40 pt-10 pb-10" action="/login" method="post">
+    <div>
+        <div class="">
+            <label class="block" for="userName">Username</label>
+            <input class="shadow appearance-none border rounded" th:field="${loginUserDTO.userName}" type="text">
+            <p class="input-error" th:errors="${loginUserDTO.userName}"></p>
+        </div>
+        <div class="">
+            <label class="block" for="password">Password</label>
+            <input class="shadow appearance-none border rounded" th:field="${loginUserDTO.password}" type="text">
+            <p class="input-error" th:errors="${loginUserDTO.password}"></p>
+        </div>
+        <div class="">
+            <button type="submit">Sign In</button>
+        </div>
+    </div>
 </form>
 <!---->
 <!--RegisterForm-->
-<form th:fragment="registerForm" action="/register" method="post">
-    <label for="userName">Username</label>
-    <input th:field="${registerUserDTO.userName}" type="text">
-    <p th:errors="${registerUserDTO.userName}"></p>
-    <label for="password">Password</label>
-    <input th:field="${registerUserDTO.password}" type="text">
-    <p th:errors="${registerUserDTO.password}"></p>
-    <button type="submit">Submit</button>
+<form class="flex justify-center mx-auto max-w-xs bg-white shadow-md rounded mt-40 pt-10 pb-10" th:fragment="registerForm" action="/register" method="post">
+    <div>
+        <div class="">
+            <label class="block" for="userName">Username</label>
+            <input class="shadow appearance-none border rounded" th:field="${registerUserDTO.userName}" type="text">
+            <p class="input-error" th:errors="${registerUserDTO.userName}"></p>
+        </div>
+        <div class="">
+            <label class="block" for="password">Password</label>
+            <input class="shadow appearance-none border rounded" th:field="${registerUserDTO.password}" type="text">
+            <p class="input-error" th:errors="${registerUserDTO.password}"></p>
+        </div>
+        <div class="">
+            <button type="submit">Register</button>
+        </div>
+    </div>
 </form>
 <!---->
 <!---->
@@ -98,9 +142,10 @@
 
 <!--welcome-->
 <!---->
-<div th:fragment="welcomeIntro" id="explore-add-container">
-    <a th:href="@{/marker/view}">View Markers</a>
-    <a th:href="@{/marker/add}">Add Marker</a>
+<div class="mx-auto mt-40 max-w-xs" th:fragment="welcomeIntro" id="explore-add-container">
+    <p class="text-3xl font-semibold text-center">Welcome to Atlas</p>
+    <a class="border shadow rounded-sm block text-center pt-4 pb-4 hover:bg-blue-700 hover:text-white hover:font-medium" th:href="@{/marker/view}">Search for markers</a>
+    <a class="border shadow rounded-sm block text-center mt-2 pt-4 pb-4 hover:bg-blue-700 hover:text-white hover:font-medium" th:href="@{/marker/add}">Create a new marker</a>
 </div>
 
 
@@ -158,6 +203,28 @@
         <tr><td name="markerImage"></td><img th:src="@{'http://localhost:8080/api/download/' + ${marker.getImageName()}}"></tr>
         </tbody>
     </table>
+</div>
+
+<!---->
+<!--marker info card-->
+<div name="tab-toggle" th:fragment="markerCard" id="markerInfo" class="h-full pt-2 bg-white hidden">
+        <div id="markInfo_contents" class="hidden flex flex-col pl-5 pr-5 justify-between h-full w-full">
+            <div>
+                <p id="miName" class="text-3xl font-semibold"></p>
+                <p id="miDescription" class="font-light"></p>
+            </div>
+            <div>
+                <img class="w-full" id="miImage" src="">
+            </div>
+            <div>
+                <p class="text-right text-gray-600 font-hairline text-xs " id="miId"></p>
+            </div>
+        </div>
+</div>
+
+<!--marker list-->
+<div name="tab-toggle" class="w-full pt-2 bg-white h-full flex flex-col" id="markerList" th:fragment="markerList">
+    <button class="bg-gray-100 text-left pl-5 pr-5 h-8 font-light hover:bg-blue-600 hover:text-white hover:font-medium" th:each="marker : ${markers}" th:text="marker.name"></button>
 </div>
 
 

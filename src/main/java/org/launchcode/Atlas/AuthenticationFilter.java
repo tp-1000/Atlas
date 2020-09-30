@@ -17,7 +17,7 @@ public class AuthenticationFilter extends HandlerInterceptorAdapter {
     @Autowired
     LoginController loginController;
 
-    List<String> allowList = Arrays.asList("/login", "/register", "/css");
+    List<String> allowList = Arrays.asList("/login", "/register", "/css", "/image");
 
     //is beginning of path on Allow_List
     public Boolean isInAllowList(String path) {

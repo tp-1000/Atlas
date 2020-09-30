@@ -5,7 +5,7 @@
     <title>Atlas-View</title>
     <script th:with="key=${API_KEY}" th:inline="javascript">let key = [[${API_KEY}]];</script>
     <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}" defer></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/atlasCss/base-style.css}" />
     <script th:src="@{/js/generateMap.js}"></script>
     <script th:src="@{/js/updateMarkerForm.js}" defer></script>
     <script th:src="@{/js/zipCodeZoom.js}" defer></script>

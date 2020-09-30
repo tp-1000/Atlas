@@ -8,35 +8,48 @@ const postcss = require('gulp-postcss');
 
 const production = environments.production;
 
-
-gulp.task('watch', () => {
-    browserSync.init({
-        proxy: 'localhost:8080',});
-    gulp.watch(['src/main/resources/**/*.html'], gulp.series('copy-html-and-reload'));
-    gulp.watch(['src/main/resources/**/*.css'], gulp.series('copy-css-and-reload'));
-    gulp.watch(['src/main/resources/**/*.js'], gulp.series('copy-js-and-reload'));
-});
-
-gulp.task('copy-html', () => gulp.src(['src/main/resources/**/*.html']));
-//.pipe(gulp.dest('target/classes/')));
-
-gulp.task('copy-css', () =>
-    gulp.src(['src/main/resources/**/*.css'])
+gulp.task('setup-css', () =>
+    gulp.src(['src/main/resources/static/css/base-style.css'])
         .pipe(postcss([
             require('tailwindcss'),
             require('autoprefixer'),
         ]))
         .pipe(production(uglifycss()))
-        .pipe(gulp.dest('target/classes/'))
+        .pipe(gulp.dest('src/main/resources/static/css/atlasCss/'))
+);
+
+
+gulp.task('watch', () => {
+    browserSync.init({
+        proxy: 'localhost:8080',
+        browser: 'firefox'});
+    gulp.watch(['src/main/resources/**/*.html'], gulp.series(reload));
+    gulp.watch(['src/main/resources/**/*.css'], gulp.series(reload));
+    gulp.watch(['src/main/resources/**/*.js'], gulp.series(reload));
+});
+
+
+
+
+gulp.task('copy-html', () => gulp.src(['src/main/resources/**/*.html']));
+
+gulp.task('copy-css', () =>
+    gulp.src(['src/main/resources/**/style.css'])
+        .pipe(postcss([
+            require('tailwindcss'),
+            require('autoprefixer'),
+        ]))
+        .pipe(production(uglifycss()))
+        .pipe(gulp.dest('target/classes'))
 );
 
 gulp.task('copy-js', () => gulp.src(['src/main/resources/**/*.js']).pipe(gulp.dest('target/classes/')));
-
+/* not needed*/
 gulp.task('copy-html-and-reload', gulp.series('copy-html', reload));
 gulp.task('copy-css-and-reload', gulp.series('copy-css', reload));
 gulp.task('copy-js-and-reload', gulp.series('copy-js', reload));
 
-gulp.task('build', gulp.series('copy-html', 'copy-css', 'copy-js'));
+gulp.task('build', gulp.series('setup-css', 'copy-html', 'copy-css', 'copy-js'));
 gulp.task('default', gulp.series('watch'));
 
 

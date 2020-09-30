@@ -5,27 +5,62 @@
     <title>Atlas-View</title>
     <script th:with="key=${API_KEY}" th:inline="javascript">let key = [[${API_KEY}]];</script>
     <script th:src="@{https://maps.googleapis.com/maps/api/js?key={API_KEY}&callback=initMap&libraries=&v=weekly(API_KEY=${API_KEY})}" defer></script>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/atlasCss/base-style.css}" />
     <script th:src="@{/js/generateMap.js}"></script>
     <script th:src="@{/js/markerSearch.js}" defer></script>
     <script th:src="@{/js/zipCodeZoom.js}" defer></script>
 
 
 </head>
-<body>
-<div th:replace="fragments :: navigation"></div>
-<div id="map"></div>
-<p id="viewMarkerMessage"></p>
-
-<div th:replace="fragments :: zipCodeZoomComponent"></div>
-<div th:replace="fragments :: selectAreaAndSearchComponent"></div>
-
-<div id="markerInfo">
-    <p id="miId"></p>
-    <p id="miName"></p>
-    <p id="miDescription"></p>
-    <img id="miImage" src=""></img>
+<body class="min-h-0">
+<div id="mapContainer" class="absolute top-0 left-0 h-screen w-screen z-0">
+    <div id="map"></div>
 </div>
+
+    <div class="relative min-h-0 flex flex-col w-64 h-full">
+        <div th:replace="fragments :: navigation"></div>
+
+        <div>
+            <div class="h-0">
+                <div th:replace="fragments :: hamburger"></div>
+            </div>
+        </div>
+
+
+        <div name="hMenu" id="cards" class="hidden min-h-0 flex-1 flex flex-col bg-black bg-opacity-25 w-full">
+            <button class="block w-64 h-12" onclick="tabToggle()">
+                <div id="tab_mask" class="rounded-t-lg h-full w-32 bg-white"></div>
+            </button>
+
+            <p id="viewMarkerMessage" class="bg-white pl-5 text-sm text-blue-800"></p>
+            <div class="flex-1 overflow-auto text-sm min-h-0 w-64">
+                <div th:replace="fragments :: markerList"></div>
+                <div th:replace="fragments :: markerCard"></div>
+            </div>
+        </div>
+    </div>
+
+
+<!--TODO look at adding to the nav disabled on most pages-->
+    <div class="absolute top-0 left-0 z-40 pl-16 mt-8 ml-64">
+        <div class="w-64">
+           <div th:replace="fragments :: zipCodeZoomComponent"></div>
+        </div>
+    </div>
+
+
+<!--    <div name="hMenu" class="hidden absolute flex top-0 left-0 flex mt-32 h-10 w-64 20">-->
+<!--        <div id="tab-list" class="rounded-t-lg h-full w-32 bg-white">list</div>-->
+<!--        <div id="tab-info" class="rounded-t-lg h-full w-32 bg-white">info</div>-->
+<!--    </div>-->
+
+<!--    <div name="hMenu" class="absolute hidden top-0 left-0 pt-48 h-full w-64 z-20">-->
+<!--        <div name="hMenu" id="tab-toggle-mask" class="hidden rounded-t-lg h-10 w-32 bg-white" onclick="tabToggle()">list</div>-->
+
+<!--    </div>-->
+
 
 </body>
 </html>
+
+<!--TODO aria-labels and alt-text (role img -- black box get all info and use for description aria label houses said description 
