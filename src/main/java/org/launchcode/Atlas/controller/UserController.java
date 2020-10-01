@@ -66,6 +66,8 @@ public class UserController extends AtlasController{
             String oldImageName = markerTBU.getImageName();
             markerTBU.setImageName(image.getOriginalFilename());
             atlasFileSystemStorage.deleteFile(oldImageName);
+            atlasFileSystemStorage.saveFile(image, markerTBU.getImageName());
+
         }
 
         //no image for updating -- just save the marker
