@@ -98,12 +98,17 @@
 <!--LOGIN-->
 <!--intro-->
 <div class="mx-auto max-w-xs mt-6" name="introduction" th:fragment="intro">
+    <div class="">
+        <a class="w-auto" th:href="@{/}">
+            <img class="mx-auto mb-8 h-24"  th:src="@{/image/logo/atlas2.svg}" alt="Home atlas logo">
+        </a>
+    </div>
     <p class="text-sm font-medium pb-4">Explore your neighborhood.
-        <span class="text-sm font-thin">Let Atlas guide be your guide. Use an interactive map to discover points of interest in your area.</span>
+        <span class="text-sm font-thin">Let Atlas be your guide. Use an interactive map to discover points of interest in your area.</span>
     </p>
 
     <p class="text-sm font-medium pb-8">Share your own points of interest.
-        <span class="text-sm font-thin">Pick a spot on a map and add supporting details to your marker.
+        <span class="text-sm font-thin">Pick a spot on a map and add details to your marker.
     Have Atlas save it for others to discover.</span>
     </p>
 
@@ -124,7 +129,7 @@
             <p class="input-error" th:errors="${loginUserDTO.password}"></p>
         </div>
         <div class="mt-5 flex flex-col">
-            <button class="h-10 px-2 self-center border rounded shadow-lg hover:bg-blue-700 hover:font-semibold hover:text-white" type="submit">Login</button>
+            <button class="h-10 px-2 self-center border rounded hover:bg-blue-200 shadow-lg bg-blue-700 font-semibold text-white" type="submit">Login</button>
         </div>
     </div>
 </form>
@@ -144,7 +149,7 @@
             <p class="input-error" th:errors="${registerUserDTO.password}"></p>
         </div>
         <div class="mt-5 flex flex-col">
-            <button class="h-10 px-2 self-center border rounded shadow-lg hover:bg-blue-700 hover:font-semibold hover:text-white" type="submit">Register</button>
+            <button class="h-10 px-2 self-center border rounded shadow-lg hover:bg-blue-200 bg-blue-700 font-semibold text-white" type="submit">Register</button>
         </div>
     </div>
 </form>
@@ -159,66 +164,87 @@
 <!---->
 <div class="mx-auto mt-40 max-w-xs" th:fragment="welcomeIntro" id="explore-add-container">
     <p class="text-3xl font-semibold text-center">Welcome to Atlas</p>
-    <a class="border shadow rounded-sm block text-center pt-4 pb-4 hover:bg-blue-700 hover:text-white hover:font-medium" th:href="@{/marker/view}">Search for markers</a>
-    <a class="border shadow rounded-sm block text-center mt-2 pt-4 pb-4 hover:bg-blue-700 hover:text-white hover:font-medium" th:href="@{/marker/add}">Create a new marker</a>
+    <a class="border shadow rounded-sm block text-center pt-4 pb-4 hover:bg-blue-200 bg-blue-700 text-white font-medium" th:href="@{/marker/view}">Search for markers</a>
+    <a class="border shadow rounded-sm block text-center mt-2 pt-4 pb-4 hover:bg-blue-200 bg-blue-700 text-white font-medium" th:href="@{/marker/add}">Create a new marker</a>
 </div>
 
 
 <!--USER-->
 <!--update marker form-->
-<div th:fragment="updateMarkerComponent">
-    <p id="updateMarkerMessage">Make changes</p>
-    <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data">
-        <lable for="id">Id</lable>
-        <input type="text" th:field="${updateMarkerDTO.id}" readonly>
-        <p name="error" th:errors="${updateMarkerDTO.id}"></p>
+<div name="tab-toggle" th:fragment="updateMarkerComponent" class="h-full pt-2 bg-white hidden">
+<!--    <p id="updateMarkerMessage">Make changes</p>-->
+    <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data" class="hidden flex flex-col pl-5 pr-5 justify-between bg-white w-full">
+        <div class="w-full pb-4">
+            <p class="input-error" name="error" th:errors="${updateMarkerDTO.markerName}"></p>
+            <label for="markerName"></label>
+            <textarea th:field="${updateMarkerDTO.markerName}" rows="2" cols="14" class="resize-none text-3xl w-full font-semibold"></textarea>
+        </div>
 
-        <lable for="markerName">Name</lable>
-        <input th:field="${updateMarkerDTO.markerName}">
-        <p name="error" th:errors="${updateMarkerDTO.markerName}"></p>
+        <div>
+            <p class="input-error" name="error" th:errors="${updateMarkerDTO.description}"></p>
+            <label for="description"></label>
+            <textarea th:field="${updateMarkerDTO.description}" class="px-2 mb-4 resize-none leading-tight font-light w-full h-24"></textarea>
+        </div>
 
-        <lable for="image">Image</lable>
-        <input type="file" th:field="${updateMarkerDTO.image}" accept="image/*">
-        <p name="error" th:errors="${updateMarkerDTO.image}"></p>
-        <img id="updateImage">
+        <div>
+            <p class="input-error" name="error" th:errors="${updateMarkerDTO.image}"></p>
+            <label class="cursor-pointer"><img id="updateImage" class=" shadow-2xl mx-auto border-2 h-32 rounded hover:border-8 hover:border-white">
+                <input type="file" th:field="${updateMarkerDTO.image}" accept="image/*" class="block h-0 w-0" onchange="preview(this)">
+            </label>
 
-        <lable for="description">Description</lable>
-        <input th:field="${updateMarkerDTO.description}">
-        <p name="error" th:errors="${updateMarkerDTO.description}"></p>
+        </div>
 
-        <lable for="latitude">Lat</lable>
-        <input type="text" th:field="${updateMarkerDTO.latitude}">
-        <p name="error" th:errors="${updateMarkerDTO.latitude}"></p>
+        <div class="mx-auto mt-16 mb-2">
+            <button type="submit" style="background-color:#b9d3c2" class="h-10 w-24 px-2 self-center border rounded text-sm shadow-lg font-semibold text-white hover:border-4 hover:border-white">Update</button>
+            <button form="update-marker" type="submit" style="background-color:#ea4335" formaction="/user/delete" class="h-10 w-18 px-2 self-center text-sm border rounded shadow-lg font-semibold text-white hover:border-4 hover:border-white">Delete</button>
+        </div>
 
-        <lable for="longitude">Lng</lable>
-        <input type="text" th:field="${updateMarkerDTO.longitude}">
-        <p name="error" th:errors="${updateMarkerDTO.longitude}"></p>
+       <div class="flex flex-col leading-tight text-right text-gray-400 font-hairline text-xs pb-2 ">
 
-        <button type="submit" >Update</button>
+            <div class="pt-2 border-t-2">
+                <p class="input-error" name="error" th:errors="${updateMarkerDTO.id}"></p>
+                <label for="id" class="">Id</label>
+                <input type="text" th:field="${updateMarkerDTO.id}" class="leading-tight text-left text-gray-400 font-hairline text-xs" readonly>
+            </div>
+
+            <div>
+                <p class="input-error" name="error" th:errors="${updateMarkerDTO.latitude}"></p>
+                <label for="latitude">Lat</label>
+                <input type="text" th:field="${updateMarkerDTO.latitude}" class="leading-tight text-left text-gray-400 font-hairline text-xs" readolny>
+            </div>
+
+            <div>
+                <p class="input-error"name="error" th:errors="${updateMarkerDTO.longitude}"></p>
+                <label for="longitude">Lng</label>
+                <input type="text" th:field="${updateMarkerDTO.longitude}" class="leading-tight text-left text-gray-400 font-hairline text-xs" readonly>
+            </div>
+
+       </div>
+
     </form>
 </div>
 <!---->
 <!--delete marker form-->
-<form th:fragment="deleteMarkerComponent" method="post" action="/user/delete">
-    <label for="deleteMarkerId">Id</label>
-    <input id="deleteMarkerId" name="deleteThisMarkerId" readonly></input>
-    <button id="delete" type="submit">Delete</button>
-</form>
+<!--<form th:fragment="deleteMarkerComponent" method="post" action="/user/delete">-->
+<!--    <label for="deleteMarkerId">Id</label>-->
+<!--    <input id="deleteMarkerId" name="deleteThisMarkerId" readonly></input>-->
+<!--    <button id="delete" type="submit">Delete</button>-->
+<!--</form>-->
 
 <!---->
 <!--view markers table-->
-<div th:fragment="showAllUserMarkersComponent">
-    <p id="viewMarkerMessage"></p>
-    <table th:each="marker : ${markers}" th:id="${marker.id}" th:name="marker">
-        <tbody>
-        <tr><td name="name" th:text="${marker.markerName}"></td></tr>
-        <tr><td name="description" th:text="${marker.description}"></td></tr>
-        <tr><td name="x" th:text="${marker.location.x}"></td></tr>
-        <tr><td name="y" th:text="${marker.location.y}"></td></tr>
-        <tr><td name="markerImage"></td><img th:src="@{'http://localhost:8080/api/download/' + ${marker.getImageName()}}"></tr>
-        </tbody>
-    </table>
-</div>
+<!--<div th:fragment="showAllUserMarkersComponent">-->
+<!--    <p id="viewMarkerMessage"></p>-->
+<!--    <table th:each="marker : ${markers}" th:id="${marker.id}" th:name="marker">-->
+<!--        <tbody>-->
+<!--        <tr><td name="name" th:text="${marker.markerName}"></td></tr>-->
+<!--        <tr><td name="description" th:text="${marker.description}"></td></tr>-->
+<!--        <tr><td name="x" th:text="${marker.location.x}"></td></tr>-->
+<!--        <tr><td name="y" th:text="${marker.location.y}"></td></tr>-->
+<!--        <tr><td name="markerImage"></td><img th:src="@{'http://localhost:8080/api/download/' + ${marker.getImageName()}}"></tr>-->
+<!--        </tbody>-->
+<!--    </table>-->
+<!--</div>-->
 
 <!---->
 <!--marker info card-->
@@ -239,7 +265,7 @@
 
 <!--marker list-->
 <div name="tab-toggle" class="w-full pt-2 bg-white h-full flex flex-col" id="markerList" th:fragment="markerList">
-    <button class="bg-gray-100 text-left pl-5 pr-5 h-8 font-light hover:bg-blue-600 hover:text-white hover:font-medium" th:each="marker : ${markers}" th:text="marker.name"></button>
+    <button name="listedMarker" class="bg-gray-100 text-left pl-5 pr-5 h-8 font-light hover:bg-blue-600 hover:text-white hover:font-medium" th:each="marker : ${markers}" th:text="${marker.markerName}" th:id="${marker.id}"></button>
 </div>
 
 

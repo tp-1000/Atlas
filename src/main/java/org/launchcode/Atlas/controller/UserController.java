@@ -78,10 +78,11 @@ public class UserController extends AtlasController{
     }
 
     @PostMapping("/delete")
-    public String processDeleteMarkerForm(@RequestParam int deleteThisMarkerId, Model model, HttpSession session) {
+    //public String processDeleteMarkerForm(@RequestParam int deleteThisMarkerId, Model model, HttpSession session) {
+    public String processDeleteMarkerForm(@ModelAttribute UpdateMarkerDTO updateMarkerDTO, Model model, HttpSession session) {
 
         //is marker really a marker
-        Optional<Marker> markerToBeUpdated = markerRepository.findById(deleteThisMarkerId);
+        Optional<Marker> markerToBeUpdated = markerRepository.findById(updateMarkerDTO.getId());
         if(markerToBeUpdated.isEmpty()) {
             model.addAttribute("works", "Error deleting selected marker – Try again");
             return "marker/success";

@@ -61,7 +61,11 @@ function updateMarkerInfo(marker) {
     document.querySelector("#miId").innerHTML = " ID: " + marker.markerId;
     document.querySelector("#miName").innerHTML = marker.title;
     document.querySelector("#miDescription").innerHTML = marker.description;
-    document.querySelector("#miImage").src = "http://localhost:8080/api/download/" + marker.imageName;
+    if(marker.imageName !== "no_image_picked") {
+        document.querySelector("#miImage").src = "http://localhost:8080/api/download/" + marker.imageName;
+    } else {
+                document.querySelector("#miImage").src ="";
+    }
         //make sure menu is visible
         if(!isMenuVisible) {
             hMenuShow();

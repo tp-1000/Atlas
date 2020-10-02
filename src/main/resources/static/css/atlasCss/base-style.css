@@ -21,6 +21,7 @@ html, body {
   color: rgba(245, 101, 101, var(--text-opacity));
   font-size: 0.75rem;
   font-style: italic;
+  line-height: 1.25;
 }
 
 /*-------------------*/

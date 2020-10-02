@@ -12,17 +12,36 @@
 
 
 </head>
-<body>
-<div th:replace="fragments :: navigation"></div>
-<div id="map"></div>
+<body class="min-h-0">
+<div id="mapContainer" class="absolute top-0 left-0 h-screen w-screen z-0">
+    <div id="map"></div>
+</div>
 
-<div th:replace="fragments :: zipCodeZoomComponent"></div>
-<div th:replace="fragments :: showAllUserMarkersComponent"></div>
-<p id="markerInfo"></p>
+<div class="relative min-h-0 flex flex-col w-0 h-full">
+    <div th:replace="fragments :: navigation"></div>
 
-<div th:replace="fragments :: updateMarkerComponent"></div>
-<div th:replace="fragments :: deleteMarkerComponent"></div>
+    <div>
+        <div class="h-0">
+            <div th:replace="fragments :: hamburger"></div>
+        </div>
+    </div>
 
+    <div class="absolute top-0 left-0 z-40 pl-16 mt-8 ml-64">
+        <div th:replace="fragments :: zipCodeZoomComponent"></div>
+    </div>
+
+    <div name="hMenu" id="cards" class="hidden min-h-0 flex-1 flex flex-col bg-black bg-opacity-25 w-full">
+        <button class="block w-64 h-12" onclick="tabToggle()">
+            <div id="tab_mask" class="rounded-t-lg h-full w-32 bg-white"></div>
+        </button>
+
+        <p id="viewMarkerMessage" class="bg-white pl-5 text-sm text-blue-800"></p>
+        <div class="flex-1 overflow-auto text-sm min-h-0 w-64">
+            <div th:replace="fragments :: markerList"></div>
+            <div th:replace="fragments :: updateMarkerComponent"></div>
+        </div>
+    </div>
+</div>
 
 
 </body>
