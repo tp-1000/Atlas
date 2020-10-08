@@ -9,6 +9,10 @@ module.exports = {
   },
   variants: {
       backgroundColor: ['responsive', 'group-hover', 'hover', 'focus'],
+          borderColor: ['responsive', 'hover', 'focus', 'checked'],
+              borderWidth: ['responsive', 'checked'],
+
+
   },
   plugins: [],
 }

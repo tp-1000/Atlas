@@ -7,12 +7,21 @@
 
 </head>
 
-<body>
+<body class="bg-gray-300">
 
-<div th:replace="fragments :: navigation"></div>
+<!--<div th:replace="fragments :: navigation"></div>-->
+<div class="w-64 pt-4 mx-auto" style="width:32rem">
+    <a class="" th:href="@{/}">
+        <img class="mx-auto m-4 h-32"  th:src="@{/image/logo/atlas2.svg}" alt="Home atlas logo">
+    </a>
 
-<div th:replace="fragments :: intro"></div>
-<div th:replace="fragments :: loginForm"></div>
+    <div class="flex">
+        <div th:replace="fragments :: intro"></div>
+        <div th:replace="fragments :: loginForm"></div>
+    </div>
+</div>
+
+
 
 
 

@@ -58,7 +58,7 @@ public class MarkerController extends AtlasController{
 //         confirm placement only used to provide success details on success page
         Optional<Marker> marker = markerRepository.findById(aMarker.getId());
         Marker marker1 = marker.get();
-        model.addAttribute("works", marker1.getLocation());
+        model.addAttribute("works", marker1.getMarkerName());
         return "marker/success";
     }
 

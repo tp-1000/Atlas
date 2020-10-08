@@ -1,9 +1,9 @@
+
 /*project required css*/
 
 #map {
   height: 100%;
 }
-
 
 /* Optional: Makes the sample page fill the window. */
 
@@ -13,7 +13,25 @@ html, body {
   padding: 0;
 }
 
+/**/
+
 /* custome utilities */
+
+input[type='radio']:checked + div {
+    //border-bottom-style: solid;
+    //border-width: .15rem;
+    //border-color: white;
+        position: absolute;
+        bottom: .15rem;
+        left: 42%;
+      width: .30rem;
+      height: .30rem;
+      background-color: #36f;
+      border-radius: 50%;
+      border-width: .1rem;
+      border-color: white;
+    }
+}
 
 .input-error {
   --text-opacity: 1;
@@ -21,7 +39,6 @@ html, body {
   color: rgba(245, 101, 101, var(--text-opacity));
   font-size: 0.75rem;
   font-style: italic;
-  line-height: 1.25;
 }
 
 /*-------------------*/
@@ -9887,6 +9904,566 @@ video {
   border-color: rgba(112, 36, 89, var(--border-opacity));
 }
 
+.checked\:border-transparent:checked {
+  border-color: transparent;
+}
+
+.checked\:border-current:checked {
+  border-color: currentColor;
+}
+
+.checked\:border-black:checked {
+  --border-opacity: 1;
+  border-color: #000;
+  border-color: rgba(0, 0, 0, var(--border-opacity));
+}
+
+.checked\:border-white:checked {
+  --border-opacity: 1;
+  border-color: #fff;
+  border-color: rgba(255, 255, 255, var(--border-opacity));
+}
+
+.checked\:border-gray-100:checked {
+  --border-opacity: 1;
+  border-color: #f7fafc;
+  border-color: rgba(247, 250, 252, var(--border-opacity));
+}
+
+.checked\:border-gray-200:checked {
+  --border-opacity: 1;
+  border-color: #edf2f7;
+  border-color: rgba(237, 242, 247, var(--border-opacity));
+}
+
+.checked\:border-gray-300:checked {
+  --border-opacity: 1;
+  border-color: #e2e8f0;
+  border-color: rgba(226, 232, 240, var(--border-opacity));
+}
+
+.checked\:border-gray-400:checked {
+  --border-opacity: 1;
+  border-color: #cbd5e0;
+  border-color: rgba(203, 213, 224, var(--border-opacity));
+}
+
+.checked\:border-gray-500:checked {
+  --border-opacity: 1;
+  border-color: #a0aec0;
+  border-color: rgba(160, 174, 192, var(--border-opacity));
+}
+
+.checked\:border-gray-600:checked {
+  --border-opacity: 1;
+  border-color: #718096;
+  border-color: rgba(113, 128, 150, var(--border-opacity));
+}
+
+.checked\:border-gray-700:checked {
+  --border-opacity: 1;
+  border-color: #4a5568;
+  border-color: rgba(74, 85, 104, var(--border-opacity));
+}
+
+.checked\:border-gray-800:checked {
+  --border-opacity: 1;
+  border-color: #2d3748;
+  border-color: rgba(45, 55, 72, var(--border-opacity));
+}
+
+.checked\:border-gray-900:checked {
+  --border-opacity: 1;
+  border-color: #1a202c;
+  border-color: rgba(26, 32, 44, var(--border-opacity));
+}
+
+.checked\:border-red-100:checked {
+  --border-opacity: 1;
+  border-color: #fff5f5;
+  border-color: rgba(255, 245, 245, var(--border-opacity));
+}
+
+.checked\:border-red-200:checked {
+  --border-opacity: 1;
+  border-color: #fed7d7;
+  border-color: rgba(254, 215, 215, var(--border-opacity));
+}
+
+.checked\:border-red-300:checked {
+  --border-opacity: 1;
+  border-color: #feb2b2;
+  border-color: rgba(254, 178, 178, var(--border-opacity));
+}
+
+.checked\:border-red-400:checked {
+  --border-opacity: 1;
+  border-color: #fc8181;
+  border-color: rgba(252, 129, 129, var(--border-opacity));
+}
+
+.checked\:border-red-500:checked {
+  --border-opacity: 1;
+  border-color: #f56565;
+  border-color: rgba(245, 101, 101, var(--border-opacity));
+}
+
+.checked\:border-red-600:checked {
+  --border-opacity: 1;
+  border-color: #e53e3e;
+  border-color: rgba(229, 62, 62, var(--border-opacity));
+}
+
+.checked\:border-red-700:checked {
+  --border-opacity: 1;
+  border-color: #c53030;
+  border-color: rgba(197, 48, 48, var(--border-opacity));
+}
+
+.checked\:border-red-800:checked {
+  --border-opacity: 1;
+  border-color: #9b2c2c;
+  border-color: rgba(155, 44, 44, var(--border-opacity));
+}
+
+.checked\:border-red-900:checked {
+  --border-opacity: 1;
+  border-color: #742a2a;
+  border-color: rgba(116, 42, 42, var(--border-opacity));
+}
+
+.checked\:border-orange-100:checked {
+  --border-opacity: 1;
+  border-color: #fffaf0;
+  border-color: rgba(255, 250, 240, var(--border-opacity));
+}
+
+.checked\:border-orange-200:checked {
+  --border-opacity: 1;
+  border-color: #feebc8;
+  border-color: rgba(254, 235, 200, var(--border-opacity));
+}
+
+.checked\:border-orange-300:checked {
+  --border-opacity: 1;
+  border-color: #fbd38d;
+  border-color: rgba(251, 211, 141, var(--border-opacity));
+}
+
+.checked\:border-orange-400:checked {
+  --border-opacity: 1;
+  border-color: #f6ad55;
+  border-color: rgba(246, 173, 85, var(--border-opacity));
+}
+
+.checked\:border-orange-500:checked {
+  --border-opacity: 1;
+  border-color: #ed8936;
+  border-color: rgba(237, 137, 54, var(--border-opacity));
+}
+
+.checked\:border-orange-600:checked {
+  --border-opacity: 1;
+  border-color: #dd6b20;
+  border-color: rgba(221, 107, 32, var(--border-opacity));
+}
+
+.checked\:border-orange-700:checked {
+  --border-opacity: 1;
+  border-color: #c05621;
+  border-color: rgba(192, 86, 33, var(--border-opacity));
+}
+
+.checked\:border-orange-800:checked {
+  --border-opacity: 1;
+  border-color: #9c4221;
+  border-color: rgba(156, 66, 33, var(--border-opacity));
+}
+
+.checked\:border-orange-900:checked {
+  --border-opacity: 1;
+  border-color: #7b341e;
+  border-color: rgba(123, 52, 30, var(--border-opacity));
+}
+
+.checked\:border-yellow-100:checked {
+  --border-opacity: 1;
+  border-color: #fffff0;
+  border-color: rgba(255, 255, 240, var(--border-opacity));
+}
+
+.checked\:border-yellow-200:checked {
+  --border-opacity: 1;
+  border-color: #fefcbf;
+  border-color: rgba(254, 252, 191, var(--border-opacity));
+}
+
+.checked\:border-yellow-300:checked {
+  --border-opacity: 1;
+  border-color: #faf089;
+  border-color: rgba(250, 240, 137, var(--border-opacity));
+}
+
+.checked\:border-yellow-400:checked {
+  --border-opacity: 1;
+  border-color: #f6e05e;
+  border-color: rgba(246, 224, 94, var(--border-opacity));
+}
+
+.checked\:border-yellow-500:checked {
+  --border-opacity: 1;
+  border-color: #ecc94b;
+  border-color: rgba(236, 201, 75, var(--border-opacity));
+}
+
+.checked\:border-yellow-600:checked {
+  --border-opacity: 1;
+  border-color: #d69e2e;
+  border-color: rgba(214, 158, 46, var(--border-opacity));
+}
+
+.checked\:border-yellow-700:checked {
+  --border-opacity: 1;
+  border-color: #b7791f;
+  border-color: rgba(183, 121, 31, var(--border-opacity));
+}
+
+.checked\:border-yellow-800:checked {
+  --border-opacity: 1;
+  border-color: #975a16;
+  border-color: rgba(151, 90, 22, var(--border-opacity));
+}
+
+.checked\:border-yellow-900:checked {
+  --border-opacity: 1;
+  border-color: #744210;
+  border-color: rgba(116, 66, 16, var(--border-opacity));
+}
+
+.checked\:border-green-100:checked {
+  --border-opacity: 1;
+  border-color: #f0fff4;
+  border-color: rgba(240, 255, 244, var(--border-opacity));
+}
+
+.checked\:border-green-200:checked {
+  --border-opacity: 1;
+  border-color: #c6f6d5;
+  border-color: rgba(198, 246, 213, var(--border-opacity));
+}
+
+.checked\:border-green-300:checked {
+  --border-opacity: 1;
+  border-color: #9ae6b4;
+  border-color: rgba(154, 230, 180, var(--border-opacity));
+}
+
+.checked\:border-green-400:checked {
+  --border-opacity: 1;
+  border-color: #68d391;
+  border-color: rgba(104, 211, 145, var(--border-opacity));
+}
+
+.checked\:border-green-500:checked {
+  --border-opacity: 1;
+  border-color: #48bb78;
+  border-color: rgba(72, 187, 120, var(--border-opacity));
+}
+
+.checked\:border-green-600:checked {
+  --border-opacity: 1;
+  border-color: #38a169;
+  border-color: rgba(56, 161, 105, var(--border-opacity));
+}
+
+.checked\:border-green-700:checked {
+  --border-opacity: 1;
+  border-color: #2f855a;
+  border-color: rgba(47, 133, 90, var(--border-opacity));
+}
+
+.checked\:border-green-800:checked {
+  --border-opacity: 1;
+  border-color: #276749;
+  border-color: rgba(39, 103, 73, var(--border-opacity));
+}
+
+.checked\:border-green-900:checked {
+  --border-opacity: 1;
+  border-color: #22543d;
+  border-color: rgba(34, 84, 61, var(--border-opacity));
+}
+
+.checked\:border-teal-100:checked {
+  --border-opacity: 1;
+  border-color: #e6fffa;
+  border-color: rgba(230, 255, 250, var(--border-opacity));
+}
+
+.checked\:border-teal-200:checked {
+  --border-opacity: 1;
+  border-color: #b2f5ea;
+  border-color: rgba(178, 245, 234, var(--border-opacity));
+}
+
+.checked\:border-teal-300:checked {
+  --border-opacity: 1;
+  border-color: #81e6d9;
+  border-color: rgba(129, 230, 217, var(--border-opacity));
+}
+
+.checked\:border-teal-400:checked {
+  --border-opacity: 1;
+  border-color: #4fd1c5;
+  border-color: rgba(79, 209, 197, var(--border-opacity));
+}
+
+.checked\:border-teal-500:checked {
+  --border-opacity: 1;
+  border-color: #38b2ac;
+  border-color: rgba(56, 178, 172, var(--border-opacity));
+}
+
+.checked\:border-teal-600:checked {
+  --border-opacity: 1;
+  border-color: #319795;
+  border-color: rgba(49, 151, 149, var(--border-opacity));
+}
+
+.checked\:border-teal-700:checked {
+  --border-opacity: 1;
+  border-color: #2c7a7b;
+  border-color: rgba(44, 122, 123, var(--border-opacity));
+}
+
+.checked\:border-teal-800:checked {
+  --border-opacity: 1;
+  border-color: #285e61;
+  border-color: rgba(40, 94, 97, var(--border-opacity));
+}
+
+.checked\:border-teal-900:checked {
+  --border-opacity: 1;
+  border-color: #234e52;
+  border-color: rgba(35, 78, 82, var(--border-opacity));
+}
+
+.checked\:border-blue-100:checked {
+  --border-opacity: 1;
+  border-color: #ebf8ff;
+  border-color: rgba(235, 248, 255, var(--border-opacity));
+}
+
+.checked\:border-blue-200:checked {
+  --border-opacity: 1;
+  border-color: #bee3f8;
+  border-color: rgba(190, 227, 248, var(--border-opacity));
+}
+
+.checked\:border-blue-300:checked {
+  --border-opacity: 1;
+  border-color: #90cdf4;
+  border-color: rgba(144, 205, 244, var(--border-opacity));
+}
+
+.checked\:border-blue-400:checked {
+  --border-opacity: 1;
+  border-color: #63b3ed;
+  border-color: rgba(99, 179, 237, var(--border-opacity));
+}
+
+.checked\:border-blue-500:checked {
+  --border-opacity: 1;
+  border-color: #4299e1;
+  border-color: rgba(66, 153, 225, var(--border-opacity));
+}
+
+.checked\:border-blue-600:checked {
+  --border-opacity: 1;
+  border-color: #3182ce;
+  border-color: rgba(49, 130, 206, var(--border-opacity));
+}
+
+.checked\:border-blue-700:checked {
+  --border-opacity: 1;
+  border-color: #2b6cb0;
+  border-color: rgba(43, 108, 176, var(--border-opacity));
+}
+
+.checked\:border-blue-800:checked {
+  --border-opacity: 1;
+  border-color: #2c5282;
+  border-color: rgba(44, 82, 130, var(--border-opacity));
+}
+
+.checked\:border-blue-900:checked {
+  --border-opacity: 1;
+  border-color: #2a4365;
+  border-color: rgba(42, 67, 101, var(--border-opacity));
+}
+
+.checked\:border-indigo-100:checked {
+  --border-opacity: 1;
+  border-color: #ebf4ff;
+  border-color: rgba(235, 244, 255, var(--border-opacity));
+}
+
+.checked\:border-indigo-200:checked {
+  --border-opacity: 1;
+  border-color: #c3dafe;
+  border-color: rgba(195, 218, 254, var(--border-opacity));
+}
+
+.checked\:border-indigo-300:checked {
+  --border-opacity: 1;
+  border-color: #a3bffa;
+  border-color: rgba(163, 191, 250, var(--border-opacity));
+}
+
+.checked\:border-indigo-400:checked {
+  --border-opacity: 1;
+  border-color: #7f9cf5;
+  border-color: rgba(127, 156, 245, var(--border-opacity));
+}
+
+.checked\:border-indigo-500:checked {
+  --border-opacity: 1;
+  border-color: #667eea;
+  border-color: rgba(102, 126, 234, var(--border-opacity));
+}
+
+.checked\:border-indigo-600:checked {
+  --border-opacity: 1;
+  border-color: #5a67d8;
+  border-color: rgba(90, 103, 216, var(--border-opacity));
+}
+
+.checked\:border-indigo-700:checked {
+  --border-opacity: 1;
+  border-color: #4c51bf;
+  border-color: rgba(76, 81, 191, var(--border-opacity));
+}
+
+.checked\:border-indigo-800:checked {
+  --border-opacity: 1;
+  border-color: #434190;
+  border-color: rgba(67, 65, 144, var(--border-opacity));
+}
+
+.checked\:border-indigo-900:checked {
+  --border-opacity: 1;
+  border-color: #3c366b;
+  border-color: rgba(60, 54, 107, var(--border-opacity));
+}
+
+.checked\:border-purple-100:checked {
+  --border-opacity: 1;
+  border-color: #faf5ff;
+  border-color: rgba(250, 245, 255, var(--border-opacity));
+}
+
+.checked\:border-purple-200:checked {
+  --border-opacity: 1;
+  border-color: #e9d8fd;
+  border-color: rgba(233, 216, 253, var(--border-opacity));
+}
+
+.checked\:border-purple-300:checked {
+  --border-opacity: 1;
+  border-color: #d6bcfa;
+  border-color: rgba(214, 188, 250, var(--border-opacity));
+}
+
+.checked\:border-purple-400:checked {
+  --border-opacity: 1;
+  border-color: #b794f4;
+  border-color: rgba(183, 148, 244, var(--border-opacity));
+}
+
+.checked\:border-purple-500:checked {
+  --border-opacity: 1;
+  border-color: #9f7aea;
+  border-color: rgba(159, 122, 234, var(--border-opacity));
+}
+
+.checked\:border-purple-600:checked {
+  --border-opacity: 1;
+  border-color: #805ad5;
+  border-color: rgba(128, 90, 213, var(--border-opacity));
+}
+
+.checked\:border-purple-700:checked {
+  --border-opacity: 1;
+  border-color: #6b46c1;
+  border-color: rgba(107, 70, 193, var(--border-opacity));
+}
+
+.checked\:border-purple-800:checked {
+  --border-opacity: 1;
+  border-color: #553c9a;
+  border-color: rgba(85, 60, 154, var(--border-opacity));
+}
+
+.checked\:border-purple-900:checked {
+  --border-opacity: 1;
+  border-color: #44337a;
+  border-color: rgba(68, 51, 122, var(--border-opacity));
+}
+
+.checked\:border-pink-100:checked {
+  --border-opacity: 1;
+  border-color: #fff5f7;
+  border-color: rgba(255, 245, 247, var(--border-opacity));
+}
+
+.checked\:border-pink-200:checked {
+  --border-opacity: 1;
+  border-color: #fed7e2;
+  border-color: rgba(254, 215, 226, var(--border-opacity));
+}
+
+.checked\:border-pink-300:checked {
+  --border-opacity: 1;
+  border-color: #fbb6ce;
+  border-color: rgba(251, 182, 206, var(--border-opacity));
+}
+
+.checked\:border-pink-400:checked {
+  --border-opacity: 1;
+  border-color: #f687b3;
+  border-color: rgba(246, 135, 179, var(--border-opacity));
+}
+
+.checked\:border-pink-500:checked {
+  --border-opacity: 1;
+  border-color: #ed64a6;
+  border-color: rgba(237, 100, 166, var(--border-opacity));
+}
+
+.checked\:border-pink-600:checked {
+  --border-opacity: 1;
+  border-color: #d53f8c;
+  border-color: rgba(213, 63, 140, var(--border-opacity));
+}
+
+.checked\:border-pink-700:checked {
+  --border-opacity: 1;
+  border-color: #b83280;
+  border-color: rgba(184, 50, 128, var(--border-opacity));
+}
+
+.checked\:border-pink-800:checked {
+  --border-opacity: 1;
+  border-color: #97266d;
+  border-color: rgba(151, 38, 109, var(--border-opacity));
+}
+
+.checked\:border-pink-900:checked {
+  --border-opacity: 1;
+  border-color: #702459;
+  border-color: rgba(112, 36, 89, var(--border-opacity));
+}
+
 .border-opacity-0 {
   --border-opacity: 0;
 }
@@ -10304,6 +10881,106 @@ video {
 }
 
 .border-l {
+  border-left-width: 1px;
+}
+
+.checked\:border-0:checked {
+  border-width: 0;
+}
+
+.checked\:border-2:checked {
+  border-width: 2px;
+}
+
+.checked\:border-4:checked {
+  border-width: 4px;
+}
+
+.checked\:border-8:checked {
+  border-width: 8px;
+}
+
+.checked\:border:checked {
+  border-width: 1px;
+}
+
+.checked\:border-t-0:checked {
+  border-top-width: 0;
+}
+
+.checked\:border-r-0:checked {
+  border-right-width: 0;
+}
+
+.checked\:border-b-0:checked {
+  border-bottom-width: 0;
+}
+
+.checked\:border-l-0:checked {
+  border-left-width: 0;
+}
+
+.checked\:border-t-2:checked {
+  border-top-width: 2px;
+}
+
+.checked\:border-r-2:checked {
+  border-right-width: 2px;
+}
+
+.checked\:border-b-2:checked {
+  border-bottom-width: 2px;
+}
+
+.checked\:border-l-2:checked {
+  border-left-width: 2px;
+}
+
+.checked\:border-t-4:checked {
+  border-top-width: 4px;
+}
+
+.checked\:border-r-4:checked {
+  border-right-width: 4px;
+}
+
+.checked\:border-b-4:checked {
+  border-bottom-width: 4px;
+}
+
+.checked\:border-l-4:checked {
+  border-left-width: 4px;
+}
+
+.checked\:border-t-8:checked {
+  border-top-width: 8px;
+}
+
+.checked\:border-r-8:checked {
+  border-right-width: 8px;
+}
+
+.checked\:border-b-8:checked {
+  border-bottom-width: 8px;
+}
+
+.checked\:border-l-8:checked {
+  border-left-width: 8px;
+}
+
+.checked\:border-t:checked {
+  border-top-width: 1px;
+}
+
+.checked\:border-r:checked {
+  border-right-width: 1px;
+}
+
+.checked\:border-b:checked {
+  border-bottom-width: 1px;
+}
+
+.checked\:border-l:checked {
   border-left-width: 1px;
 }
 
@@ -31096,6 +31773,566 @@ video {
     border-color: rgba(112, 36, 89, var(--border-opacity));
   }
 
+  .sm\:checked\:border-transparent:checked {
+    border-color: transparent;
+  }
+
+  .sm\:checked\:border-current:checked {
+    border-color: currentColor;
+  }
+
+  .sm\:checked\:border-black:checked {
+    --border-opacity: 1;
+    border-color: #000;
+    border-color: rgba(0, 0, 0, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-white:checked {
+    --border-opacity: 1;
+    border-color: #fff;
+    border-color: rgba(255, 255, 255, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-100:checked {
+    --border-opacity: 1;
+    border-color: #f7fafc;
+    border-color: rgba(247, 250, 252, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-200:checked {
+    --border-opacity: 1;
+    border-color: #edf2f7;
+    border-color: rgba(237, 242, 247, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-300:checked {
+    --border-opacity: 1;
+    border-color: #e2e8f0;
+    border-color: rgba(226, 232, 240, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-400:checked {
+    --border-opacity: 1;
+    border-color: #cbd5e0;
+    border-color: rgba(203, 213, 224, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-500:checked {
+    --border-opacity: 1;
+    border-color: #a0aec0;
+    border-color: rgba(160, 174, 192, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-600:checked {
+    --border-opacity: 1;
+    border-color: #718096;
+    border-color: rgba(113, 128, 150, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-700:checked {
+    --border-opacity: 1;
+    border-color: #4a5568;
+    border-color: rgba(74, 85, 104, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-800:checked {
+    --border-opacity: 1;
+    border-color: #2d3748;
+    border-color: rgba(45, 55, 72, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-gray-900:checked {
+    --border-opacity: 1;
+    border-color: #1a202c;
+    border-color: rgba(26, 32, 44, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f5;
+    border-color: rgba(255, 245, 245, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7d7;
+    border-color: rgba(254, 215, 215, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-300:checked {
+    --border-opacity: 1;
+    border-color: #feb2b2;
+    border-color: rgba(254, 178, 178, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-400:checked {
+    --border-opacity: 1;
+    border-color: #fc8181;
+    border-color: rgba(252, 129, 129, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-500:checked {
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-600:checked {
+    --border-opacity: 1;
+    border-color: #e53e3e;
+    border-color: rgba(229, 62, 62, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-700:checked {
+    --border-opacity: 1;
+    border-color: #c53030;
+    border-color: rgba(197, 48, 48, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-800:checked {
+    --border-opacity: 1;
+    border-color: #9b2c2c;
+    border-color: rgba(155, 44, 44, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-red-900:checked {
+    --border-opacity: 1;
+    border-color: #742a2a;
+    border-color: rgba(116, 42, 42, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-100:checked {
+    --border-opacity: 1;
+    border-color: #fffaf0;
+    border-color: rgba(255, 250, 240, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-200:checked {
+    --border-opacity: 1;
+    border-color: #feebc8;
+    border-color: rgba(254, 235, 200, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-300:checked {
+    --border-opacity: 1;
+    border-color: #fbd38d;
+    border-color: rgba(251, 211, 141, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-400:checked {
+    --border-opacity: 1;
+    border-color: #f6ad55;
+    border-color: rgba(246, 173, 85, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-500:checked {
+    --border-opacity: 1;
+    border-color: #ed8936;
+    border-color: rgba(237, 137, 54, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-600:checked {
+    --border-opacity: 1;
+    border-color: #dd6b20;
+    border-color: rgba(221, 107, 32, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-700:checked {
+    --border-opacity: 1;
+    border-color: #c05621;
+    border-color: rgba(192, 86, 33, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-800:checked {
+    --border-opacity: 1;
+    border-color: #9c4221;
+    border-color: rgba(156, 66, 33, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-orange-900:checked {
+    --border-opacity: 1;
+    border-color: #7b341e;
+    border-color: rgba(123, 52, 30, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-100:checked {
+    --border-opacity: 1;
+    border-color: #fffff0;
+    border-color: rgba(255, 255, 240, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-200:checked {
+    --border-opacity: 1;
+    border-color: #fefcbf;
+    border-color: rgba(254, 252, 191, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-300:checked {
+    --border-opacity: 1;
+    border-color: #faf089;
+    border-color: rgba(250, 240, 137, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-400:checked {
+    --border-opacity: 1;
+    border-color: #f6e05e;
+    border-color: rgba(246, 224, 94, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-500:checked {
+    --border-opacity: 1;
+    border-color: #ecc94b;
+    border-color: rgba(236, 201, 75, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-600:checked {
+    --border-opacity: 1;
+    border-color: #d69e2e;
+    border-color: rgba(214, 158, 46, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-700:checked {
+    --border-opacity: 1;
+    border-color: #b7791f;
+    border-color: rgba(183, 121, 31, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-800:checked {
+    --border-opacity: 1;
+    border-color: #975a16;
+    border-color: rgba(151, 90, 22, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-yellow-900:checked {
+    --border-opacity: 1;
+    border-color: #744210;
+    border-color: rgba(116, 66, 16, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-100:checked {
+    --border-opacity: 1;
+    border-color: #f0fff4;
+    border-color: rgba(240, 255, 244, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-200:checked {
+    --border-opacity: 1;
+    border-color: #c6f6d5;
+    border-color: rgba(198, 246, 213, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-300:checked {
+    --border-opacity: 1;
+    border-color: #9ae6b4;
+    border-color: rgba(154, 230, 180, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-400:checked {
+    --border-opacity: 1;
+    border-color: #68d391;
+    border-color: rgba(104, 211, 145, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-500:checked {
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-600:checked {
+    --border-opacity: 1;
+    border-color: #38a169;
+    border-color: rgba(56, 161, 105, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-700:checked {
+    --border-opacity: 1;
+    border-color: #2f855a;
+    border-color: rgba(47, 133, 90, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-800:checked {
+    --border-opacity: 1;
+    border-color: #276749;
+    border-color: rgba(39, 103, 73, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-green-900:checked {
+    --border-opacity: 1;
+    border-color: #22543d;
+    border-color: rgba(34, 84, 61, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-100:checked {
+    --border-opacity: 1;
+    border-color: #e6fffa;
+    border-color: rgba(230, 255, 250, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-200:checked {
+    --border-opacity: 1;
+    border-color: #b2f5ea;
+    border-color: rgba(178, 245, 234, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-300:checked {
+    --border-opacity: 1;
+    border-color: #81e6d9;
+    border-color: rgba(129, 230, 217, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-400:checked {
+    --border-opacity: 1;
+    border-color: #4fd1c5;
+    border-color: rgba(79, 209, 197, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-500:checked {
+    --border-opacity: 1;
+    border-color: #38b2ac;
+    border-color: rgba(56, 178, 172, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-600:checked {
+    --border-opacity: 1;
+    border-color: #319795;
+    border-color: rgba(49, 151, 149, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-700:checked {
+    --border-opacity: 1;
+    border-color: #2c7a7b;
+    border-color: rgba(44, 122, 123, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-800:checked {
+    --border-opacity: 1;
+    border-color: #285e61;
+    border-color: rgba(40, 94, 97, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-teal-900:checked {
+    --border-opacity: 1;
+    border-color: #234e52;
+    border-color: rgba(35, 78, 82, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf8ff;
+    border-color: rgba(235, 248, 255, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-200:checked {
+    --border-opacity: 1;
+    border-color: #bee3f8;
+    border-color: rgba(190, 227, 248, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-300:checked {
+    --border-opacity: 1;
+    border-color: #90cdf4;
+    border-color: rgba(144, 205, 244, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-400:checked {
+    --border-opacity: 1;
+    border-color: #63b3ed;
+    border-color: rgba(99, 179, 237, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-500:checked {
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-600:checked {
+    --border-opacity: 1;
+    border-color: #3182ce;
+    border-color: rgba(49, 130, 206, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-700:checked {
+    --border-opacity: 1;
+    border-color: #2b6cb0;
+    border-color: rgba(43, 108, 176, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-800:checked {
+    --border-opacity: 1;
+    border-color: #2c5282;
+    border-color: rgba(44, 82, 130, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-blue-900:checked {
+    --border-opacity: 1;
+    border-color: #2a4365;
+    border-color: rgba(42, 67, 101, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf4ff;
+    border-color: rgba(235, 244, 255, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-200:checked {
+    --border-opacity: 1;
+    border-color: #c3dafe;
+    border-color: rgba(195, 218, 254, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-300:checked {
+    --border-opacity: 1;
+    border-color: #a3bffa;
+    border-color: rgba(163, 191, 250, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-400:checked {
+    --border-opacity: 1;
+    border-color: #7f9cf5;
+    border-color: rgba(127, 156, 245, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-500:checked {
+    --border-opacity: 1;
+    border-color: #667eea;
+    border-color: rgba(102, 126, 234, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-600:checked {
+    --border-opacity: 1;
+    border-color: #5a67d8;
+    border-color: rgba(90, 103, 216, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-700:checked {
+    --border-opacity: 1;
+    border-color: #4c51bf;
+    border-color: rgba(76, 81, 191, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-800:checked {
+    --border-opacity: 1;
+    border-color: #434190;
+    border-color: rgba(67, 65, 144, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-indigo-900:checked {
+    --border-opacity: 1;
+    border-color: #3c366b;
+    border-color: rgba(60, 54, 107, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-100:checked {
+    --border-opacity: 1;
+    border-color: #faf5ff;
+    border-color: rgba(250, 245, 255, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-200:checked {
+    --border-opacity: 1;
+    border-color: #e9d8fd;
+    border-color: rgba(233, 216, 253, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-300:checked {
+    --border-opacity: 1;
+    border-color: #d6bcfa;
+    border-color: rgba(214, 188, 250, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-400:checked {
+    --border-opacity: 1;
+    border-color: #b794f4;
+    border-color: rgba(183, 148, 244, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-500:checked {
+    --border-opacity: 1;
+    border-color: #9f7aea;
+    border-color: rgba(159, 122, 234, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-600:checked {
+    --border-opacity: 1;
+    border-color: #805ad5;
+    border-color: rgba(128, 90, 213, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-700:checked {
+    --border-opacity: 1;
+    border-color: #6b46c1;
+    border-color: rgba(107, 70, 193, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-800:checked {
+    --border-opacity: 1;
+    border-color: #553c9a;
+    border-color: rgba(85, 60, 154, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-purple-900:checked {
+    --border-opacity: 1;
+    border-color: #44337a;
+    border-color: rgba(68, 51, 122, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f7;
+    border-color: rgba(255, 245, 247, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7e2;
+    border-color: rgba(254, 215, 226, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-300:checked {
+    --border-opacity: 1;
+    border-color: #fbb6ce;
+    border-color: rgba(251, 182, 206, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-400:checked {
+    --border-opacity: 1;
+    border-color: #f687b3;
+    border-color: rgba(246, 135, 179, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-500:checked {
+    --border-opacity: 1;
+    border-color: #ed64a6;
+    border-color: rgba(237, 100, 166, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-600:checked {
+    --border-opacity: 1;
+    border-color: #d53f8c;
+    border-color: rgba(213, 63, 140, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-700:checked {
+    --border-opacity: 1;
+    border-color: #b83280;
+    border-color: rgba(184, 50, 128, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-800:checked {
+    --border-opacity: 1;
+    border-color: #97266d;
+    border-color: rgba(151, 38, 109, var(--border-opacity));
+  }
+
+  .sm\:checked\:border-pink-900:checked {
+    --border-opacity: 1;
+    border-color: #702459;
+    border-color: rgba(112, 36, 89, var(--border-opacity));
+  }
+
   .sm\:border-opacity-0 {
     --border-opacity: 0;
   }
@@ -31513,6 +32750,106 @@ video {
   }
 
   .sm\:border-l {
+    border-left-width: 1px;
+  }
+
+  .sm\:checked\:border-0:checked {
+    border-width: 0;
+  }
+
+  .sm\:checked\:border-2:checked {
+    border-width: 2px;
+  }
+
+  .sm\:checked\:border-4:checked {
+    border-width: 4px;
+  }
+
+  .sm\:checked\:border-8:checked {
+    border-width: 8px;
+  }
+
+  .sm\:checked\:border:checked {
+    border-width: 1px;
+  }
+
+  .sm\:checked\:border-t-0:checked {
+    border-top-width: 0;
+  }
+
+  .sm\:checked\:border-r-0:checked {
+    border-right-width: 0;
+  }
+
+  .sm\:checked\:border-b-0:checked {
+    border-bottom-width: 0;
+  }
+
+  .sm\:checked\:border-l-0:checked {
+    border-left-width: 0;
+  }
+
+  .sm\:checked\:border-t-2:checked {
+    border-top-width: 2px;
+  }
+
+  .sm\:checked\:border-r-2:checked {
+    border-right-width: 2px;
+  }
+
+  .sm\:checked\:border-b-2:checked {
+    border-bottom-width: 2px;
+  }
+
+  .sm\:checked\:border-l-2:checked {
+    border-left-width: 2px;
+  }
+
+  .sm\:checked\:border-t-4:checked {
+    border-top-width: 4px;
+  }
+
+  .sm\:checked\:border-r-4:checked {
+    border-right-width: 4px;
+  }
+
+  .sm\:checked\:border-b-4:checked {
+    border-bottom-width: 4px;
+  }
+
+  .sm\:checked\:border-l-4:checked {
+    border-left-width: 4px;
+  }
+
+  .sm\:checked\:border-t-8:checked {
+    border-top-width: 8px;
+  }
+
+  .sm\:checked\:border-r-8:checked {
+    border-right-width: 8px;
+  }
+
+  .sm\:checked\:border-b-8:checked {
+    border-bottom-width: 8px;
+  }
+
+  .sm\:checked\:border-l-8:checked {
+    border-left-width: 8px;
+  }
+
+  .sm\:checked\:border-t:checked {
+    border-top-width: 1px;
+  }
+
+  .sm\:checked\:border-r:checked {
+    border-right-width: 1px;
+  }
+
+  .sm\:checked\:border-b:checked {
+    border-bottom-width: 1px;
+  }
+
+  .sm\:checked\:border-l:checked {
     border-left-width: 1px;
   }
 
@@ -52240,6 +53577,566 @@ video {
     border-color: rgba(112, 36, 89, var(--border-opacity));
   }
 
+  .md\:checked\:border-transparent:checked {
+    border-color: transparent;
+  }
+
+  .md\:checked\:border-current:checked {
+    border-color: currentColor;
+  }
+
+  .md\:checked\:border-black:checked {
+    --border-opacity: 1;
+    border-color: #000;
+    border-color: rgba(0, 0, 0, var(--border-opacity));
+  }
+
+  .md\:checked\:border-white:checked {
+    --border-opacity: 1;
+    border-color: #fff;
+    border-color: rgba(255, 255, 255, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-100:checked {
+    --border-opacity: 1;
+    border-color: #f7fafc;
+    border-color: rgba(247, 250, 252, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-200:checked {
+    --border-opacity: 1;
+    border-color: #edf2f7;
+    border-color: rgba(237, 242, 247, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-300:checked {
+    --border-opacity: 1;
+    border-color: #e2e8f0;
+    border-color: rgba(226, 232, 240, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-400:checked {
+    --border-opacity: 1;
+    border-color: #cbd5e0;
+    border-color: rgba(203, 213, 224, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-500:checked {
+    --border-opacity: 1;
+    border-color: #a0aec0;
+    border-color: rgba(160, 174, 192, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-600:checked {
+    --border-opacity: 1;
+    border-color: #718096;
+    border-color: rgba(113, 128, 150, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-700:checked {
+    --border-opacity: 1;
+    border-color: #4a5568;
+    border-color: rgba(74, 85, 104, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-800:checked {
+    --border-opacity: 1;
+    border-color: #2d3748;
+    border-color: rgba(45, 55, 72, var(--border-opacity));
+  }
+
+  .md\:checked\:border-gray-900:checked {
+    --border-opacity: 1;
+    border-color: #1a202c;
+    border-color: rgba(26, 32, 44, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f5;
+    border-color: rgba(255, 245, 245, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7d7;
+    border-color: rgba(254, 215, 215, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-300:checked {
+    --border-opacity: 1;
+    border-color: #feb2b2;
+    border-color: rgba(254, 178, 178, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-400:checked {
+    --border-opacity: 1;
+    border-color: #fc8181;
+    border-color: rgba(252, 129, 129, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-500:checked {
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-600:checked {
+    --border-opacity: 1;
+    border-color: #e53e3e;
+    border-color: rgba(229, 62, 62, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-700:checked {
+    --border-opacity: 1;
+    border-color: #c53030;
+    border-color: rgba(197, 48, 48, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-800:checked {
+    --border-opacity: 1;
+    border-color: #9b2c2c;
+    border-color: rgba(155, 44, 44, var(--border-opacity));
+  }
+
+  .md\:checked\:border-red-900:checked {
+    --border-opacity: 1;
+    border-color: #742a2a;
+    border-color: rgba(116, 42, 42, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-100:checked {
+    --border-opacity: 1;
+    border-color: #fffaf0;
+    border-color: rgba(255, 250, 240, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-200:checked {
+    --border-opacity: 1;
+    border-color: #feebc8;
+    border-color: rgba(254, 235, 200, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-300:checked {
+    --border-opacity: 1;
+    border-color: #fbd38d;
+    border-color: rgba(251, 211, 141, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-400:checked {
+    --border-opacity: 1;
+    border-color: #f6ad55;
+    border-color: rgba(246, 173, 85, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-500:checked {
+    --border-opacity: 1;
+    border-color: #ed8936;
+    border-color: rgba(237, 137, 54, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-600:checked {
+    --border-opacity: 1;
+    border-color: #dd6b20;
+    border-color: rgba(221, 107, 32, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-700:checked {
+    --border-opacity: 1;
+    border-color: #c05621;
+    border-color: rgba(192, 86, 33, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-800:checked {
+    --border-opacity: 1;
+    border-color: #9c4221;
+    border-color: rgba(156, 66, 33, var(--border-opacity));
+  }
+
+  .md\:checked\:border-orange-900:checked {
+    --border-opacity: 1;
+    border-color: #7b341e;
+    border-color: rgba(123, 52, 30, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-100:checked {
+    --border-opacity: 1;
+    border-color: #fffff0;
+    border-color: rgba(255, 255, 240, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-200:checked {
+    --border-opacity: 1;
+    border-color: #fefcbf;
+    border-color: rgba(254, 252, 191, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-300:checked {
+    --border-opacity: 1;
+    border-color: #faf089;
+    border-color: rgba(250, 240, 137, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-400:checked {
+    --border-opacity: 1;
+    border-color: #f6e05e;
+    border-color: rgba(246, 224, 94, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-500:checked {
+    --border-opacity: 1;
+    border-color: #ecc94b;
+    border-color: rgba(236, 201, 75, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-600:checked {
+    --border-opacity: 1;
+    border-color: #d69e2e;
+    border-color: rgba(214, 158, 46, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-700:checked {
+    --border-opacity: 1;
+    border-color: #b7791f;
+    border-color: rgba(183, 121, 31, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-800:checked {
+    --border-opacity: 1;
+    border-color: #975a16;
+    border-color: rgba(151, 90, 22, var(--border-opacity));
+  }
+
+  .md\:checked\:border-yellow-900:checked {
+    --border-opacity: 1;
+    border-color: #744210;
+    border-color: rgba(116, 66, 16, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-100:checked {
+    --border-opacity: 1;
+    border-color: #f0fff4;
+    border-color: rgba(240, 255, 244, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-200:checked {
+    --border-opacity: 1;
+    border-color: #c6f6d5;
+    border-color: rgba(198, 246, 213, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-300:checked {
+    --border-opacity: 1;
+    border-color: #9ae6b4;
+    border-color: rgba(154, 230, 180, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-400:checked {
+    --border-opacity: 1;
+    border-color: #68d391;
+    border-color: rgba(104, 211, 145, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-500:checked {
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-600:checked {
+    --border-opacity: 1;
+    border-color: #38a169;
+    border-color: rgba(56, 161, 105, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-700:checked {
+    --border-opacity: 1;
+    border-color: #2f855a;
+    border-color: rgba(47, 133, 90, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-800:checked {
+    --border-opacity: 1;
+    border-color: #276749;
+    border-color: rgba(39, 103, 73, var(--border-opacity));
+  }
+
+  .md\:checked\:border-green-900:checked {
+    --border-opacity: 1;
+    border-color: #22543d;
+    border-color: rgba(34, 84, 61, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-100:checked {
+    --border-opacity: 1;
+    border-color: #e6fffa;
+    border-color: rgba(230, 255, 250, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-200:checked {
+    --border-opacity: 1;
+    border-color: #b2f5ea;
+    border-color: rgba(178, 245, 234, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-300:checked {
+    --border-opacity: 1;
+    border-color: #81e6d9;
+    border-color: rgba(129, 230, 217, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-400:checked {
+    --border-opacity: 1;
+    border-color: #4fd1c5;
+    border-color: rgba(79, 209, 197, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-500:checked {
+    --border-opacity: 1;
+    border-color: #38b2ac;
+    border-color: rgba(56, 178, 172, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-600:checked {
+    --border-opacity: 1;
+    border-color: #319795;
+    border-color: rgba(49, 151, 149, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-700:checked {
+    --border-opacity: 1;
+    border-color: #2c7a7b;
+    border-color: rgba(44, 122, 123, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-800:checked {
+    --border-opacity: 1;
+    border-color: #285e61;
+    border-color: rgba(40, 94, 97, var(--border-opacity));
+  }
+
+  .md\:checked\:border-teal-900:checked {
+    --border-opacity: 1;
+    border-color: #234e52;
+    border-color: rgba(35, 78, 82, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf8ff;
+    border-color: rgba(235, 248, 255, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-200:checked {
+    --border-opacity: 1;
+    border-color: #bee3f8;
+    border-color: rgba(190, 227, 248, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-300:checked {
+    --border-opacity: 1;
+    border-color: #90cdf4;
+    border-color: rgba(144, 205, 244, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-400:checked {
+    --border-opacity: 1;
+    border-color: #63b3ed;
+    border-color: rgba(99, 179, 237, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-500:checked {
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-600:checked {
+    --border-opacity: 1;
+    border-color: #3182ce;
+    border-color: rgba(49, 130, 206, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-700:checked {
+    --border-opacity: 1;
+    border-color: #2b6cb0;
+    border-color: rgba(43, 108, 176, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-800:checked {
+    --border-opacity: 1;
+    border-color: #2c5282;
+    border-color: rgba(44, 82, 130, var(--border-opacity));
+  }
+
+  .md\:checked\:border-blue-900:checked {
+    --border-opacity: 1;
+    border-color: #2a4365;
+    border-color: rgba(42, 67, 101, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf4ff;
+    border-color: rgba(235, 244, 255, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-200:checked {
+    --border-opacity: 1;
+    border-color: #c3dafe;
+    border-color: rgba(195, 218, 254, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-300:checked {
+    --border-opacity: 1;
+    border-color: #a3bffa;
+    border-color: rgba(163, 191, 250, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-400:checked {
+    --border-opacity: 1;
+    border-color: #7f9cf5;
+    border-color: rgba(127, 156, 245, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-500:checked {
+    --border-opacity: 1;
+    border-color: #667eea;
+    border-color: rgba(102, 126, 234, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-600:checked {
+    --border-opacity: 1;
+    border-color: #5a67d8;
+    border-color: rgba(90, 103, 216, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-700:checked {
+    --border-opacity: 1;
+    border-color: #4c51bf;
+    border-color: rgba(76, 81, 191, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-800:checked {
+    --border-opacity: 1;
+    border-color: #434190;
+    border-color: rgba(67, 65, 144, var(--border-opacity));
+  }
+
+  .md\:checked\:border-indigo-900:checked {
+    --border-opacity: 1;
+    border-color: #3c366b;
+    border-color: rgba(60, 54, 107, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-100:checked {
+    --border-opacity: 1;
+    border-color: #faf5ff;
+    border-color: rgba(250, 245, 255, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-200:checked {
+    --border-opacity: 1;
+    border-color: #e9d8fd;
+    border-color: rgba(233, 216, 253, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-300:checked {
+    --border-opacity: 1;
+    border-color: #d6bcfa;
+    border-color: rgba(214, 188, 250, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-400:checked {
+    --border-opacity: 1;
+    border-color: #b794f4;
+    border-color: rgba(183, 148, 244, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-500:checked {
+    --border-opacity: 1;
+    border-color: #9f7aea;
+    border-color: rgba(159, 122, 234, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-600:checked {
+    --border-opacity: 1;
+    border-color: #805ad5;
+    border-color: rgba(128, 90, 213, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-700:checked {
+    --border-opacity: 1;
+    border-color: #6b46c1;
+    border-color: rgba(107, 70, 193, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-800:checked {
+    --border-opacity: 1;
+    border-color: #553c9a;
+    border-color: rgba(85, 60, 154, var(--border-opacity));
+  }
+
+  .md\:checked\:border-purple-900:checked {
+    --border-opacity: 1;
+    border-color: #44337a;
+    border-color: rgba(68, 51, 122, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f7;
+    border-color: rgba(255, 245, 247, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7e2;
+    border-color: rgba(254, 215, 226, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-300:checked {
+    --border-opacity: 1;
+    border-color: #fbb6ce;
+    border-color: rgba(251, 182, 206, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-400:checked {
+    --border-opacity: 1;
+    border-color: #f687b3;
+    border-color: rgba(246, 135, 179, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-500:checked {
+    --border-opacity: 1;
+    border-color: #ed64a6;
+    border-color: rgba(237, 100, 166, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-600:checked {
+    --border-opacity: 1;
+    border-color: #d53f8c;
+    border-color: rgba(213, 63, 140, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-700:checked {
+    --border-opacity: 1;
+    border-color: #b83280;
+    border-color: rgba(184, 50, 128, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-800:checked {
+    --border-opacity: 1;
+    border-color: #97266d;
+    border-color: rgba(151, 38, 109, var(--border-opacity));
+  }
+
+  .md\:checked\:border-pink-900:checked {
+    --border-opacity: 1;
+    border-color: #702459;
+    border-color: rgba(112, 36, 89, var(--border-opacity));
+  }
+
   .md\:border-opacity-0 {
     --border-opacity: 0;
   }
@@ -52657,6 +54554,106 @@ video {
   }
 
   .md\:border-l {
+    border-left-width: 1px;
+  }
+
+  .md\:checked\:border-0:checked {
+    border-width: 0;
+  }
+
+  .md\:checked\:border-2:checked {
+    border-width: 2px;
+  }
+
+  .md\:checked\:border-4:checked {
+    border-width: 4px;
+  }
+
+  .md\:checked\:border-8:checked {
+    border-width: 8px;
+  }
+
+  .md\:checked\:border:checked {
+    border-width: 1px;
+  }
+
+  .md\:checked\:border-t-0:checked {
+    border-top-width: 0;
+  }
+
+  .md\:checked\:border-r-0:checked {
+    border-right-width: 0;
+  }
+
+  .md\:checked\:border-b-0:checked {
+    border-bottom-width: 0;
+  }
+
+  .md\:checked\:border-l-0:checked {
+    border-left-width: 0;
+  }
+
+  .md\:checked\:border-t-2:checked {
+    border-top-width: 2px;
+  }
+
+  .md\:checked\:border-r-2:checked {
+    border-right-width: 2px;
+  }
+
+  .md\:checked\:border-b-2:checked {
+    border-bottom-width: 2px;
+  }
+
+  .md\:checked\:border-l-2:checked {
+    border-left-width: 2px;
+  }
+
+  .md\:checked\:border-t-4:checked {
+    border-top-width: 4px;
+  }
+
+  .md\:checked\:border-r-4:checked {
+    border-right-width: 4px;
+  }
+
+  .md\:checked\:border-b-4:checked {
+    border-bottom-width: 4px;
+  }
+
+  .md\:checked\:border-l-4:checked {
+    border-left-width: 4px;
+  }
+
+  .md\:checked\:border-t-8:checked {
+    border-top-width: 8px;
+  }
+
+  .md\:checked\:border-r-8:checked {
+    border-right-width: 8px;
+  }
+
+  .md\:checked\:border-b-8:checked {
+    border-bottom-width: 8px;
+  }
+
+  .md\:checked\:border-l-8:checked {
+    border-left-width: 8px;
+  }
+
+  .md\:checked\:border-t:checked {
+    border-top-width: 1px;
+  }
+
+  .md\:checked\:border-r:checked {
+    border-right-width: 1px;
+  }
+
+  .md\:checked\:border-b:checked {
+    border-bottom-width: 1px;
+  }
+
+  .md\:checked\:border-l:checked {
     border-left-width: 1px;
   }
 
@@ -73384,6 +75381,566 @@ video {
     border-color: rgba(112, 36, 89, var(--border-opacity));
   }
 
+  .lg\:checked\:border-transparent:checked {
+    border-color: transparent;
+  }
+
+  .lg\:checked\:border-current:checked {
+    border-color: currentColor;
+  }
+
+  .lg\:checked\:border-black:checked {
+    --border-opacity: 1;
+    border-color: #000;
+    border-color: rgba(0, 0, 0, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-white:checked {
+    --border-opacity: 1;
+    border-color: #fff;
+    border-color: rgba(255, 255, 255, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-100:checked {
+    --border-opacity: 1;
+    border-color: #f7fafc;
+    border-color: rgba(247, 250, 252, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-200:checked {
+    --border-opacity: 1;
+    border-color: #edf2f7;
+    border-color: rgba(237, 242, 247, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-300:checked {
+    --border-opacity: 1;
+    border-color: #e2e8f0;
+    border-color: rgba(226, 232, 240, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-400:checked {
+    --border-opacity: 1;
+    border-color: #cbd5e0;
+    border-color: rgba(203, 213, 224, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-500:checked {
+    --border-opacity: 1;
+    border-color: #a0aec0;
+    border-color: rgba(160, 174, 192, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-600:checked {
+    --border-opacity: 1;
+    border-color: #718096;
+    border-color: rgba(113, 128, 150, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-700:checked {
+    --border-opacity: 1;
+    border-color: #4a5568;
+    border-color: rgba(74, 85, 104, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-800:checked {
+    --border-opacity: 1;
+    border-color: #2d3748;
+    border-color: rgba(45, 55, 72, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-gray-900:checked {
+    --border-opacity: 1;
+    border-color: #1a202c;
+    border-color: rgba(26, 32, 44, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f5;
+    border-color: rgba(255, 245, 245, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7d7;
+    border-color: rgba(254, 215, 215, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-300:checked {
+    --border-opacity: 1;
+    border-color: #feb2b2;
+    border-color: rgba(254, 178, 178, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-400:checked {
+    --border-opacity: 1;
+    border-color: #fc8181;
+    border-color: rgba(252, 129, 129, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-500:checked {
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-600:checked {
+    --border-opacity: 1;
+    border-color: #e53e3e;
+    border-color: rgba(229, 62, 62, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-700:checked {
+    --border-opacity: 1;
+    border-color: #c53030;
+    border-color: rgba(197, 48, 48, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-800:checked {
+    --border-opacity: 1;
+    border-color: #9b2c2c;
+    border-color: rgba(155, 44, 44, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-red-900:checked {
+    --border-opacity: 1;
+    border-color: #742a2a;
+    border-color: rgba(116, 42, 42, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-100:checked {
+    --border-opacity: 1;
+    border-color: #fffaf0;
+    border-color: rgba(255, 250, 240, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-200:checked {
+    --border-opacity: 1;
+    border-color: #feebc8;
+    border-color: rgba(254, 235, 200, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-300:checked {
+    --border-opacity: 1;
+    border-color: #fbd38d;
+    border-color: rgba(251, 211, 141, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-400:checked {
+    --border-opacity: 1;
+    border-color: #f6ad55;
+    border-color: rgba(246, 173, 85, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-500:checked {
+    --border-opacity: 1;
+    border-color: #ed8936;
+    border-color: rgba(237, 137, 54, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-600:checked {
+    --border-opacity: 1;
+    border-color: #dd6b20;
+    border-color: rgba(221, 107, 32, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-700:checked {
+    --border-opacity: 1;
+    border-color: #c05621;
+    border-color: rgba(192, 86, 33, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-800:checked {
+    --border-opacity: 1;
+    border-color: #9c4221;
+    border-color: rgba(156, 66, 33, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-orange-900:checked {
+    --border-opacity: 1;
+    border-color: #7b341e;
+    border-color: rgba(123, 52, 30, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-100:checked {
+    --border-opacity: 1;
+    border-color: #fffff0;
+    border-color: rgba(255, 255, 240, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-200:checked {
+    --border-opacity: 1;
+    border-color: #fefcbf;
+    border-color: rgba(254, 252, 191, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-300:checked {
+    --border-opacity: 1;
+    border-color: #faf089;
+    border-color: rgba(250, 240, 137, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-400:checked {
+    --border-opacity: 1;
+    border-color: #f6e05e;
+    border-color: rgba(246, 224, 94, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-500:checked {
+    --border-opacity: 1;
+    border-color: #ecc94b;
+    border-color: rgba(236, 201, 75, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-600:checked {
+    --border-opacity: 1;
+    border-color: #d69e2e;
+    border-color: rgba(214, 158, 46, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-700:checked {
+    --border-opacity: 1;
+    border-color: #b7791f;
+    border-color: rgba(183, 121, 31, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-800:checked {
+    --border-opacity: 1;
+    border-color: #975a16;
+    border-color: rgba(151, 90, 22, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-yellow-900:checked {
+    --border-opacity: 1;
+    border-color: #744210;
+    border-color: rgba(116, 66, 16, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-100:checked {
+    --border-opacity: 1;
+    border-color: #f0fff4;
+    border-color: rgba(240, 255, 244, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-200:checked {
+    --border-opacity: 1;
+    border-color: #c6f6d5;
+    border-color: rgba(198, 246, 213, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-300:checked {
+    --border-opacity: 1;
+    border-color: #9ae6b4;
+    border-color: rgba(154, 230, 180, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-400:checked {
+    --border-opacity: 1;
+    border-color: #68d391;
+    border-color: rgba(104, 211, 145, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-500:checked {
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-600:checked {
+    --border-opacity: 1;
+    border-color: #38a169;
+    border-color: rgba(56, 161, 105, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-700:checked {
+    --border-opacity: 1;
+    border-color: #2f855a;
+    border-color: rgba(47, 133, 90, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-800:checked {
+    --border-opacity: 1;
+    border-color: #276749;
+    border-color: rgba(39, 103, 73, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-green-900:checked {
+    --border-opacity: 1;
+    border-color: #22543d;
+    border-color: rgba(34, 84, 61, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-100:checked {
+    --border-opacity: 1;
+    border-color: #e6fffa;
+    border-color: rgba(230, 255, 250, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-200:checked {
+    --border-opacity: 1;
+    border-color: #b2f5ea;
+    border-color: rgba(178, 245, 234, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-300:checked {
+    --border-opacity: 1;
+    border-color: #81e6d9;
+    border-color: rgba(129, 230, 217, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-400:checked {
+    --border-opacity: 1;
+    border-color: #4fd1c5;
+    border-color: rgba(79, 209, 197, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-500:checked {
+    --border-opacity: 1;
+    border-color: #38b2ac;
+    border-color: rgba(56, 178, 172, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-600:checked {
+    --border-opacity: 1;
+    border-color: #319795;
+    border-color: rgba(49, 151, 149, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-700:checked {
+    --border-opacity: 1;
+    border-color: #2c7a7b;
+    border-color: rgba(44, 122, 123, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-800:checked {
+    --border-opacity: 1;
+    border-color: #285e61;
+    border-color: rgba(40, 94, 97, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-teal-900:checked {
+    --border-opacity: 1;
+    border-color: #234e52;
+    border-color: rgba(35, 78, 82, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf8ff;
+    border-color: rgba(235, 248, 255, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-200:checked {
+    --border-opacity: 1;
+    border-color: #bee3f8;
+    border-color: rgba(190, 227, 248, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-300:checked {
+    --border-opacity: 1;
+    border-color: #90cdf4;
+    border-color: rgba(144, 205, 244, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-400:checked {
+    --border-opacity: 1;
+    border-color: #63b3ed;
+    border-color: rgba(99, 179, 237, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-500:checked {
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-600:checked {
+    --border-opacity: 1;
+    border-color: #3182ce;
+    border-color: rgba(49, 130, 206, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-700:checked {
+    --border-opacity: 1;
+    border-color: #2b6cb0;
+    border-color: rgba(43, 108, 176, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-800:checked {
+    --border-opacity: 1;
+    border-color: #2c5282;
+    border-color: rgba(44, 82, 130, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-blue-900:checked {
+    --border-opacity: 1;
+    border-color: #2a4365;
+    border-color: rgba(42, 67, 101, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf4ff;
+    border-color: rgba(235, 244, 255, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-200:checked {
+    --border-opacity: 1;
+    border-color: #c3dafe;
+    border-color: rgba(195, 218, 254, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-300:checked {
+    --border-opacity: 1;
+    border-color: #a3bffa;
+    border-color: rgba(163, 191, 250, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-400:checked {
+    --border-opacity: 1;
+    border-color: #7f9cf5;
+    border-color: rgba(127, 156, 245, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-500:checked {
+    --border-opacity: 1;
+    border-color: #667eea;
+    border-color: rgba(102, 126, 234, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-600:checked {
+    --border-opacity: 1;
+    border-color: #5a67d8;
+    border-color: rgba(90, 103, 216, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-700:checked {
+    --border-opacity: 1;
+    border-color: #4c51bf;
+    border-color: rgba(76, 81, 191, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-800:checked {
+    --border-opacity: 1;
+    border-color: #434190;
+    border-color: rgba(67, 65, 144, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-indigo-900:checked {
+    --border-opacity: 1;
+    border-color: #3c366b;
+    border-color: rgba(60, 54, 107, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-100:checked {
+    --border-opacity: 1;
+    border-color: #faf5ff;
+    border-color: rgba(250, 245, 255, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-200:checked {
+    --border-opacity: 1;
+    border-color: #e9d8fd;
+    border-color: rgba(233, 216, 253, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-300:checked {
+    --border-opacity: 1;
+    border-color: #d6bcfa;
+    border-color: rgba(214, 188, 250, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-400:checked {
+    --border-opacity: 1;
+    border-color: #b794f4;
+    border-color: rgba(183, 148, 244, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-500:checked {
+    --border-opacity: 1;
+    border-color: #9f7aea;
+    border-color: rgba(159, 122, 234, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-600:checked {
+    --border-opacity: 1;
+    border-color: #805ad5;
+    border-color: rgba(128, 90, 213, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-700:checked {
+    --border-opacity: 1;
+    border-color: #6b46c1;
+    border-color: rgba(107, 70, 193, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-800:checked {
+    --border-opacity: 1;
+    border-color: #553c9a;
+    border-color: rgba(85, 60, 154, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-purple-900:checked {
+    --border-opacity: 1;
+    border-color: #44337a;
+    border-color: rgba(68, 51, 122, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f7;
+    border-color: rgba(255, 245, 247, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7e2;
+    border-color: rgba(254, 215, 226, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-300:checked {
+    --border-opacity: 1;
+    border-color: #fbb6ce;
+    border-color: rgba(251, 182, 206, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-400:checked {
+    --border-opacity: 1;
+    border-color: #f687b3;
+    border-color: rgba(246, 135, 179, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-500:checked {
+    --border-opacity: 1;
+    border-color: #ed64a6;
+    border-color: rgba(237, 100, 166, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-600:checked {
+    --border-opacity: 1;
+    border-color: #d53f8c;
+    border-color: rgba(213, 63, 140, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-700:checked {
+    --border-opacity: 1;
+    border-color: #b83280;
+    border-color: rgba(184, 50, 128, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-800:checked {
+    --border-opacity: 1;
+    border-color: #97266d;
+    border-color: rgba(151, 38, 109, var(--border-opacity));
+  }
+
+  .lg\:checked\:border-pink-900:checked {
+    --border-opacity: 1;
+    border-color: #702459;
+    border-color: rgba(112, 36, 89, var(--border-opacity));
+  }
+
   .lg\:border-opacity-0 {
     --border-opacity: 0;
   }
@@ -73801,6 +76358,106 @@ video {
   }
 
   .lg\:border-l {
+    border-left-width: 1px;
+  }
+
+  .lg\:checked\:border-0:checked {
+    border-width: 0;
+  }
+
+  .lg\:checked\:border-2:checked {
+    border-width: 2px;
+  }
+
+  .lg\:checked\:border-4:checked {
+    border-width: 4px;
+  }
+
+  .lg\:checked\:border-8:checked {
+    border-width: 8px;
+  }
+
+  .lg\:checked\:border:checked {
+    border-width: 1px;
+  }
+
+  .lg\:checked\:border-t-0:checked {
+    border-top-width: 0;
+  }
+
+  .lg\:checked\:border-r-0:checked {
+    border-right-width: 0;
+  }
+
+  .lg\:checked\:border-b-0:checked {
+    border-bottom-width: 0;
+  }
+
+  .lg\:checked\:border-l-0:checked {
+    border-left-width: 0;
+  }
+
+  .lg\:checked\:border-t-2:checked {
+    border-top-width: 2px;
+  }
+
+  .lg\:checked\:border-r-2:checked {
+    border-right-width: 2px;
+  }
+
+  .lg\:checked\:border-b-2:checked {
+    border-bottom-width: 2px;
+  }
+
+  .lg\:checked\:border-l-2:checked {
+    border-left-width: 2px;
+  }
+
+  .lg\:checked\:border-t-4:checked {
+    border-top-width: 4px;
+  }
+
+  .lg\:checked\:border-r-4:checked {
+    border-right-width: 4px;
+  }
+
+  .lg\:checked\:border-b-4:checked {
+    border-bottom-width: 4px;
+  }
+
+  .lg\:checked\:border-l-4:checked {
+    border-left-width: 4px;
+  }
+
+  .lg\:checked\:border-t-8:checked {
+    border-top-width: 8px;
+  }
+
+  .lg\:checked\:border-r-8:checked {
+    border-right-width: 8px;
+  }
+
+  .lg\:checked\:border-b-8:checked {
+    border-bottom-width: 8px;
+  }
+
+  .lg\:checked\:border-l-8:checked {
+    border-left-width: 8px;
+  }
+
+  .lg\:checked\:border-t:checked {
+    border-top-width: 1px;
+  }
+
+  .lg\:checked\:border-r:checked {
+    border-right-width: 1px;
+  }
+
+  .lg\:checked\:border-b:checked {
+    border-bottom-width: 1px;
+  }
+
+  .lg\:checked\:border-l:checked {
     border-left-width: 1px;
   }
 
@@ -94528,6 +97185,566 @@ video {
     border-color: rgba(112, 36, 89, var(--border-opacity));
   }
 
+  .xl\:checked\:border-transparent:checked {
+    border-color: transparent;
+  }
+
+  .xl\:checked\:border-current:checked {
+    border-color: currentColor;
+  }
+
+  .xl\:checked\:border-black:checked {
+    --border-opacity: 1;
+    border-color: #000;
+    border-color: rgba(0, 0, 0, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-white:checked {
+    --border-opacity: 1;
+    border-color: #fff;
+    border-color: rgba(255, 255, 255, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-100:checked {
+    --border-opacity: 1;
+    border-color: #f7fafc;
+    border-color: rgba(247, 250, 252, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-200:checked {
+    --border-opacity: 1;
+    border-color: #edf2f7;
+    border-color: rgba(237, 242, 247, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-300:checked {
+    --border-opacity: 1;
+    border-color: #e2e8f0;
+    border-color: rgba(226, 232, 240, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-400:checked {
+    --border-opacity: 1;
+    border-color: #cbd5e0;
+    border-color: rgba(203, 213, 224, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-500:checked {
+    --border-opacity: 1;
+    border-color: #a0aec0;
+    border-color: rgba(160, 174, 192, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-600:checked {
+    --border-opacity: 1;
+    border-color: #718096;
+    border-color: rgba(113, 128, 150, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-700:checked {
+    --border-opacity: 1;
+    border-color: #4a5568;
+    border-color: rgba(74, 85, 104, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-800:checked {
+    --border-opacity: 1;
+    border-color: #2d3748;
+    border-color: rgba(45, 55, 72, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-gray-900:checked {
+    --border-opacity: 1;
+    border-color: #1a202c;
+    border-color: rgba(26, 32, 44, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f5;
+    border-color: rgba(255, 245, 245, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7d7;
+    border-color: rgba(254, 215, 215, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-300:checked {
+    --border-opacity: 1;
+    border-color: #feb2b2;
+    border-color: rgba(254, 178, 178, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-400:checked {
+    --border-opacity: 1;
+    border-color: #fc8181;
+    border-color: rgba(252, 129, 129, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-500:checked {
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-600:checked {
+    --border-opacity: 1;
+    border-color: #e53e3e;
+    border-color: rgba(229, 62, 62, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-700:checked {
+    --border-opacity: 1;
+    border-color: #c53030;
+    border-color: rgba(197, 48, 48, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-800:checked {
+    --border-opacity: 1;
+    border-color: #9b2c2c;
+    border-color: rgba(155, 44, 44, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-red-900:checked {
+    --border-opacity: 1;
+    border-color: #742a2a;
+    border-color: rgba(116, 42, 42, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-100:checked {
+    --border-opacity: 1;
+    border-color: #fffaf0;
+    border-color: rgba(255, 250, 240, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-200:checked {
+    --border-opacity: 1;
+    border-color: #feebc8;
+    border-color: rgba(254, 235, 200, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-300:checked {
+    --border-opacity: 1;
+    border-color: #fbd38d;
+    border-color: rgba(251, 211, 141, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-400:checked {
+    --border-opacity: 1;
+    border-color: #f6ad55;
+    border-color: rgba(246, 173, 85, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-500:checked {
+    --border-opacity: 1;
+    border-color: #ed8936;
+    border-color: rgba(237, 137, 54, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-600:checked {
+    --border-opacity: 1;
+    border-color: #dd6b20;
+    border-color: rgba(221, 107, 32, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-700:checked {
+    --border-opacity: 1;
+    border-color: #c05621;
+    border-color: rgba(192, 86, 33, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-800:checked {
+    --border-opacity: 1;
+    border-color: #9c4221;
+    border-color: rgba(156, 66, 33, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-orange-900:checked {
+    --border-opacity: 1;
+    border-color: #7b341e;
+    border-color: rgba(123, 52, 30, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-100:checked {
+    --border-opacity: 1;
+    border-color: #fffff0;
+    border-color: rgba(255, 255, 240, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-200:checked {
+    --border-opacity: 1;
+    border-color: #fefcbf;
+    border-color: rgba(254, 252, 191, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-300:checked {
+    --border-opacity: 1;
+    border-color: #faf089;
+    border-color: rgba(250, 240, 137, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-400:checked {
+    --border-opacity: 1;
+    border-color: #f6e05e;
+    border-color: rgba(246, 224, 94, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-500:checked {
+    --border-opacity: 1;
+    border-color: #ecc94b;
+    border-color: rgba(236, 201, 75, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-600:checked {
+    --border-opacity: 1;
+    border-color: #d69e2e;
+    border-color: rgba(214, 158, 46, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-700:checked {
+    --border-opacity: 1;
+    border-color: #b7791f;
+    border-color: rgba(183, 121, 31, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-800:checked {
+    --border-opacity: 1;
+    border-color: #975a16;
+    border-color: rgba(151, 90, 22, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-yellow-900:checked {
+    --border-opacity: 1;
+    border-color: #744210;
+    border-color: rgba(116, 66, 16, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-100:checked {
+    --border-opacity: 1;
+    border-color: #f0fff4;
+    border-color: rgba(240, 255, 244, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-200:checked {
+    --border-opacity: 1;
+    border-color: #c6f6d5;
+    border-color: rgba(198, 246, 213, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-300:checked {
+    --border-opacity: 1;
+    border-color: #9ae6b4;
+    border-color: rgba(154, 230, 180, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-400:checked {
+    --border-opacity: 1;
+    border-color: #68d391;
+    border-color: rgba(104, 211, 145, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-500:checked {
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-600:checked {
+    --border-opacity: 1;
+    border-color: #38a169;
+    border-color: rgba(56, 161, 105, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-700:checked {
+    --border-opacity: 1;
+    border-color: #2f855a;
+    border-color: rgba(47, 133, 90, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-800:checked {
+    --border-opacity: 1;
+    border-color: #276749;
+    border-color: rgba(39, 103, 73, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-green-900:checked {
+    --border-opacity: 1;
+    border-color: #22543d;
+    border-color: rgba(34, 84, 61, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-100:checked {
+    --border-opacity: 1;
+    border-color: #e6fffa;
+    border-color: rgba(230, 255, 250, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-200:checked {
+    --border-opacity: 1;
+    border-color: #b2f5ea;
+    border-color: rgba(178, 245, 234, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-300:checked {
+    --border-opacity: 1;
+    border-color: #81e6d9;
+    border-color: rgba(129, 230, 217, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-400:checked {
+    --border-opacity: 1;
+    border-color: #4fd1c5;
+    border-color: rgba(79, 209, 197, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-500:checked {
+    --border-opacity: 1;
+    border-color: #38b2ac;
+    border-color: rgba(56, 178, 172, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-600:checked {
+    --border-opacity: 1;
+    border-color: #319795;
+    border-color: rgba(49, 151, 149, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-700:checked {
+    --border-opacity: 1;
+    border-color: #2c7a7b;
+    border-color: rgba(44, 122, 123, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-800:checked {
+    --border-opacity: 1;
+    border-color: #285e61;
+    border-color: rgba(40, 94, 97, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-teal-900:checked {
+    --border-opacity: 1;
+    border-color: #234e52;
+    border-color: rgba(35, 78, 82, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf8ff;
+    border-color: rgba(235, 248, 255, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-200:checked {
+    --border-opacity: 1;
+    border-color: #bee3f8;
+    border-color: rgba(190, 227, 248, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-300:checked {
+    --border-opacity: 1;
+    border-color: #90cdf4;
+    border-color: rgba(144, 205, 244, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-400:checked {
+    --border-opacity: 1;
+    border-color: #63b3ed;
+    border-color: rgba(99, 179, 237, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-500:checked {
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-600:checked {
+    --border-opacity: 1;
+    border-color: #3182ce;
+    border-color: rgba(49, 130, 206, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-700:checked {
+    --border-opacity: 1;
+    border-color: #2b6cb0;
+    border-color: rgba(43, 108, 176, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-800:checked {
+    --border-opacity: 1;
+    border-color: #2c5282;
+    border-color: rgba(44, 82, 130, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-blue-900:checked {
+    --border-opacity: 1;
+    border-color: #2a4365;
+    border-color: rgba(42, 67, 101, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-100:checked {
+    --border-opacity: 1;
+    border-color: #ebf4ff;
+    border-color: rgba(235, 244, 255, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-200:checked {
+    --border-opacity: 1;
+    border-color: #c3dafe;
+    border-color: rgba(195, 218, 254, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-300:checked {
+    --border-opacity: 1;
+    border-color: #a3bffa;
+    border-color: rgba(163, 191, 250, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-400:checked {
+    --border-opacity: 1;
+    border-color: #7f9cf5;
+    border-color: rgba(127, 156, 245, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-500:checked {
+    --border-opacity: 1;
+    border-color: #667eea;
+    border-color: rgba(102, 126, 234, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-600:checked {
+    --border-opacity: 1;
+    border-color: #5a67d8;
+    border-color: rgba(90, 103, 216, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-700:checked {
+    --border-opacity: 1;
+    border-color: #4c51bf;
+    border-color: rgba(76, 81, 191, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-800:checked {
+    --border-opacity: 1;
+    border-color: #434190;
+    border-color: rgba(67, 65, 144, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-indigo-900:checked {
+    --border-opacity: 1;
+    border-color: #3c366b;
+    border-color: rgba(60, 54, 107, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-100:checked {
+    --border-opacity: 1;
+    border-color: #faf5ff;
+    border-color: rgba(250, 245, 255, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-200:checked {
+    --border-opacity: 1;
+    border-color: #e9d8fd;
+    border-color: rgba(233, 216, 253, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-300:checked {
+    --border-opacity: 1;
+    border-color: #d6bcfa;
+    border-color: rgba(214, 188, 250, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-400:checked {
+    --border-opacity: 1;
+    border-color: #b794f4;
+    border-color: rgba(183, 148, 244, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-500:checked {
+    --border-opacity: 1;
+    border-color: #9f7aea;
+    border-color: rgba(159, 122, 234, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-600:checked {
+    --border-opacity: 1;
+    border-color: #805ad5;
+    border-color: rgba(128, 90, 213, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-700:checked {
+    --border-opacity: 1;
+    border-color: #6b46c1;
+    border-color: rgba(107, 70, 193, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-800:checked {
+    --border-opacity: 1;
+    border-color: #553c9a;
+    border-color: rgba(85, 60, 154, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-purple-900:checked {
+    --border-opacity: 1;
+    border-color: #44337a;
+    border-color: rgba(68, 51, 122, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-100:checked {
+    --border-opacity: 1;
+    border-color: #fff5f7;
+    border-color: rgba(255, 245, 247, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-200:checked {
+    --border-opacity: 1;
+    border-color: #fed7e2;
+    border-color: rgba(254, 215, 226, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-300:checked {
+    --border-opacity: 1;
+    border-color: #fbb6ce;
+    border-color: rgba(251, 182, 206, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-400:checked {
+    --border-opacity: 1;
+    border-color: #f687b3;
+    border-color: rgba(246, 135, 179, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-500:checked {
+    --border-opacity: 1;
+    border-color: #ed64a6;
+    border-color: rgba(237, 100, 166, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-600:checked {
+    --border-opacity: 1;
+    border-color: #d53f8c;
+    border-color: rgba(213, 63, 140, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-700:checked {
+    --border-opacity: 1;
+    border-color: #b83280;
+    border-color: rgba(184, 50, 128, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-800:checked {
+    --border-opacity: 1;
+    border-color: #97266d;
+    border-color: rgba(151, 38, 109, var(--border-opacity));
+  }
+
+  .xl\:checked\:border-pink-900:checked {
+    --border-opacity: 1;
+    border-color: #702459;
+    border-color: rgba(112, 36, 89, var(--border-opacity));
+  }
+
   .xl\:border-opacity-0 {
     --border-opacity: 0;
   }
@@ -94945,6 +98162,106 @@ video {
   }
 
   .xl\:border-l {
+    border-left-width: 1px;
+  }
+
+  .xl\:checked\:border-0:checked {
+    border-width: 0;
+  }
+
+  .xl\:checked\:border-2:checked {
+    border-width: 2px;
+  }
+
+  .xl\:checked\:border-4:checked {
+    border-width: 4px;
+  }
+
+  .xl\:checked\:border-8:checked {
+    border-width: 8px;
+  }
+
+  .xl\:checked\:border:checked {
+    border-width: 1px;
+  }
+
+  .xl\:checked\:border-t-0:checked {
+    border-top-width: 0;
+  }
+
+  .xl\:checked\:border-r-0:checked {
+    border-right-width: 0;
+  }
+
+  .xl\:checked\:border-b-0:checked {
+    border-bottom-width: 0;
+  }
+
+  .xl\:checked\:border-l-0:checked {
+    border-left-width: 0;
+  }
+
+  .xl\:checked\:border-t-2:checked {
+    border-top-width: 2px;
+  }
+
+  .xl\:checked\:border-r-2:checked {
+    border-right-width: 2px;
+  }
+
+  .xl\:checked\:border-b-2:checked {
+    border-bottom-width: 2px;
+  }
+
+  .xl\:checked\:border-l-2:checked {
+    border-left-width: 2px;
+  }
+
+  .xl\:checked\:border-t-4:checked {
+    border-top-width: 4px;
+  }
+
+  .xl\:checked\:border-r-4:checked {
+    border-right-width: 4px;
+  }
+
+  .xl\:checked\:border-b-4:checked {
+    border-bottom-width: 4px;
+  }
+
+  .xl\:checked\:border-l-4:checked {
+    border-left-width: 4px;
+  }
+
+  .xl\:checked\:border-t-8:checked {
+    border-top-width: 8px;
+  }
+
+  .xl\:checked\:border-r-8:checked {
+    border-right-width: 8px;
+  }
+
+  .xl\:checked\:border-b-8:checked {
+    border-bottom-width: 8px;
+  }
+
+  .xl\:checked\:border-l-8:checked {
+    border-left-width: 8px;
+  }
+
+  .xl\:checked\:border-t:checked {
+    border-top-width: 1px;
+  }
+
+  .xl\:checked\:border-r:checked {
+    border-right-width: 1px;
+  }
+
+  .xl\:checked\:border-b:checked {
+    border-bottom-width: 1px;
+  }
+
+  .xl\:checked\:border-l:checked {
     border-left-width: 1px;
   }
 

@@ -37,15 +37,15 @@ public class APIController extends AtlasController{
     }
 
     @GetMapping("/markers/search")
-    public List<Marker> markerSearch(@RequestParam("lat") String lat, @RequestParam("lng") String lng, HttpSession session){
+    public List<Marker> markerSearch(@RequestParam("lat") String lat, @RequestParam("lng") String lng, @RequestParam("radius") String radius, HttpSession session){
         User user = getUserFromSession(session);
         //TODO Address correct rejection of request if invalid user
         if(user == null){
             return null;
         };
-
+        double r = Double.parseDouble(radius);
         String lnglat = "SRID=4326;POINT(" + lng + " " + lat + ")";
-        List<Marker> markers = markerRepository.getMarkerNearPoint(lnglat);
+        List<Marker> markers = markerRepository.getMarkerNearPoint(lnglat, r);
 
         return markers;
     }

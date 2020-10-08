@@ -1,13 +1,13 @@
 let temp = []; //all markers
 let circleMap; //a circle on the map
 let isMenuVisible = false;
-let isInfoVisible = false;
 let selectedMarker;
 
 window.addEventListener("load", () => {
     epicenter();
-    document.querySelector("#markerList").addEventListener("click", updateInfoCard);
-
+    document.querySelector("#tabList").addEventListener("click", updateInfoCard);
+    let radioTabs = document.querySelectorAll("input[name='menu']");
+    radioTabs.forEach(radio => radio.addEventListener('change', tabToggle));
 
 
 });
@@ -15,22 +15,45 @@ window.addEventListener("load", () => {
 //toggle menu
 function hMenuShow(){
     isMenuVisible = !isMenuVisible;
-    let hMenu = document.getElementsByName("hMenu");
-    let hMenuBtn = document.getElementById("hMenuBtn")
-    hMenuBtn.classList.toggle("ml-64");
-    for (let mDiv of hMenu) {
-            mDiv.classList.toggle("hidden");
+    let hMenu = document.getElementById("hMenu");
+    hMenu.classList.toggle("hidden");
+    if(isMenuVisible) {
+       tabToggle();
+    } else {
+        let tabs = document.getElementsByName("tab-toggle");
+        for(let tab of tabs) {
+           tab.classList.add("hidden");
+           }
     }
+
 };
 //toggle tabs
 function tabToggle(){
-    isInfoVisible = !isInfoVisible;
+    //hide all tabs
+    //use radio input
+    let tabId = document.querySelector("input[name='menu']:checked").id;
+
+    //hide all tabs , if it matches unhide
     let tabs = document.getElementsByName("tab-toggle");
-    let tab_mask = document.getElementById("tab_mask");
-    tab_mask.classList.toggle("ml-32");
-    for (let tab of tabs) {
+    for(let tab of tabs) {
+       tab.classList.add("hidden");
+       if(("tab" + tabId).toLowerCase() === tab.id.toLowerCase()) {
             tab.classList.toggle("hidden");
+       }
     }
+//
+//    //check for target match and toggle hidden
+//    markerInfo
+//    tabMark
+//    setLocation
+    //show active tab (which is target
+//
+//    isInfoVisible = !isInfoVisible;
+//    //let tab_mask = document.getElementById("tab_mask");
+//   // tab_mask.classList.toggle("ml-32");
+//    for (let tab of tabs) {
+//            tab.classList.toggle("hidden");
+//    }
 };
 
 //update card with clicked marker from list
@@ -56,8 +79,9 @@ function updateMarkerInfo(marker) {
     }
     selectedMarker = marker;
     selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
-    document.querySelector("#markInfo_contents").classList.remove("hidden");
-    document.querySelector("#miName").innerHTML = "";
+    //document.querySelector("#markInfo_contents").classList.remove("hidden");
+    //set mark info page with new marker info
+//    document.querySelector("#miName").innerHTML = "";
     document.querySelector("#miId").innerHTML = " ID: " + marker.markerId;
     document.querySelector("#miName").innerHTML = marker.title;
     document.querySelector("#miDescription").innerHTML = marker.description;
@@ -66,14 +90,14 @@ function updateMarkerInfo(marker) {
     } else {
                 document.querySelector("#miImage").src ="";
     }
-        //make sure menu is visible
-        if(!isMenuVisible) {
-            hMenuShow();
-        };
-        //switch cards to see info
-        if(!isInfoVisible) {
-            tabToggle();
-        };
+
+    //make sure menu is visible
+    if(!isMenuVisible) {
+        hMenuShow();
+    };
+    //switch cards to see info
+    document.querySelector("input[id='mark']").checked="checked";
+    tabToggle();
 }
 
 
@@ -96,7 +120,8 @@ document.querySelector("#viewMarkerMessage").innerHTML="";
 // request resources with formatted string -- uses circlecenter
     let circleLat = circleMap.getCenter().lat();
     let circleLng = circleMap.getCenter().lng();
-    let allMarkerURl = "/api/markers/search?lat=" + circleLat + "&lng="+ circleLng;
+    let radius = circleMap.getRadius();
+    let allMarkerURl = "/api/markers/search?lat=" + circleLat + "&lng="+ circleLng + "&radius="+ radius;
         fetch(allMarkerURl)
         .then(response => response.json())
         .then(data => {
@@ -115,20 +140,23 @@ document.querySelector("#viewMarkerMessage").innerHTML="";
                     map
                 }));
             };
-//             clean out old markers
-             while(document.querySelector("#markerList").firstChild) {
-                            document.querySelector("#markerList").removeChild(document.querySelector("#markerList").firstChild);
-                            document.querySelector("#markInfo_contents").classList.toggle("hidden");
+//             clean out old markers info
+                            let oldList = document.querySelectorAll("button[name='listedMarker']");
+                            oldList.forEach(entry => entry.remove());
+                            document.querySelector("#miId").innerHTML = "";
                             document.querySelector("#miName").innerHTML = "";
-                        }
+                            document.querySelector("#miDescription").innerHTML = "";
+                            document.querySelector("#miImage").src ="";
+//
 
             temp.forEach(mapMarker => {
 
                 let newB = document.createElement("button");
-                document.querySelector("#markerList").append(newB);
+                document.querySelector("#tabList").append(newB);
                 newB.innerHTML = mapMarker.title;
-                newB.setAttribute('class', "bg-gray-100 pl-5 h-8 font-light text-left pr-5 hover:bg-blue-600 hover:text-white hover:font-medium");
+                newB.setAttribute('class', "bg-white pl-5 h-8 font-light text-left pr-5 hover:bg-blue-600 hover:text-white hover:font-medium");
                 newB.setAttribute('id', mapMarker.markerId);
+                newB.setAttribute('name', "listedMarker");
                 mapMarker.addListener("click", () => updateMarkerInfo(mapMarker));
             });
             //opens the menu to see the list of markers
@@ -136,9 +164,8 @@ document.querySelector("#viewMarkerMessage").innerHTML="";
                 hMenuShow();
             };
             //switch cards to see info
-            if(isInfoVisible) {
-                tabToggle();
-            };
+            document.querySelector("input[id='list']").checked="checked";
+            tabToggle();
 
             if(temp.length == 0) {
                 document.querySelector("#viewMarkerMessage").innerHTML="No markers found for that area.";
@@ -154,9 +181,10 @@ function epicenter() {
         if(circleMap == null) {
             circleMap = new google.maps.Circle({
             center: new google.maps.LatLng(event.latLng.lat(),event.latLng.lng()),
-            strokeColor: "#FF0000",
+            strokeColor: "#3366ff",
             strokeOpacity: 0.75,
             strokeWeight: 2,
+            editable: true,
             draggable: true,
             geodesic: true,
             map,
@@ -164,6 +192,7 @@ function epicenter() {
         });
         markerSearch();
         circleMap.addListener("center_changed", markerSearch);
+        circleMap.addListener("radius_changed", markerSearch);
         } else {
           circleMap.setCenter(event.latLng);
         }

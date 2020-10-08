@@ -11,13 +11,38 @@
     <script th:src="@{/js/zipCodeZoom.js}" defer></script>
 
 </head>
-<body>
+<body class="min-h-0">
+<div id="mapContainer" class="absolute top-0 left-0 h-screen w-screen z-0">
+    <div id="map"></div>
+</div>
+
+<div class="relative min-h-0 flex flex-col w-0 h-full">
+    <div th:replace="fragments :: navigation"></div>
 
 
-<div th:replace="fragments :: navigation"></div>
-<div id="map"></div>
-<div th:replace="fragments :: zipCodeZoomComponent"></div>
-<th:block th:replace="fragments:: addMarkerComponent"></th:block>
+<!--    custom hamburger-->
+    <div>
+        <div th:replace="fragments :: hamburgerAdd"></div>
+    </div>
+
+
+    <div class="flex-1 pl-4 text-sm min-h-0 h-64 w-64">
+        <div th:replace="fragments :: zipCodeZoomComponent"></div>
+        <!--                <p id="viewMarkerMessage" class="bg-white pl-5 text-sm text-blue-800"></p>-->
+<!--        <div th:replace="fragments :: markerList"></div>-->
+        <div th:replace="fragments :: addMarkerComponent"></div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+<!--<div th:replace="fragments :: navigation"></div>-->
+<!--<div id="map"></div>-->
+<!--<div th:replace="fragments :: zipCodeZoomComponent"></div>-->
+<!--<th:block th:replace="fragments:: addMarkerComponent"></th:block>-->
 
 </body>
 </html>

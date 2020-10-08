@@ -44,12 +44,12 @@ public class UserController extends AtlasController{
 
         Optional<Marker> markerToBeUpdated = markerRepository.findById(updateMarkerDTO.getId());
         if(markerToBeUpdated.isEmpty()) {
-            model.addAttribute("works", "Error Updating marker – try again");
+            model.addAttribute("works", "Error Updating marker – try again -- was not... ");
             return "marker/success";
         }
 //        prevents creative javascript from submission -- via altering marker id --
         if(markerToBeUpdated.get().getUser().getId() != getUserFromSession(session).getId()) {
-            model.addAttribute("works", "Error Updating marker – try again");
+            model.addAttribute("works", "Error Updating marker – try again -- was not... ");
             return "marker/success";
         }
 
@@ -73,7 +73,7 @@ public class UserController extends AtlasController{
         //no image for updating -- just save the marker
         markerRepository.save(markerTBU);
 
-        model.addAttribute("works", "updated!");
+        model.addAttribute("works", markerTBU.getMarkerName() + " -- Update!");
         return "marker/success";
     }
 

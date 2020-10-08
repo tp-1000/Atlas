@@ -1,37 +1,19 @@
 //populate form values with correct marker info
     let markers = [];
-    let myfile = new File([], "noUpdate.jpg");
+//    let myfile = new File([], "noUpdate.jpg");
     let isMenuVisible = false;
-    let isInfoVisible = false;
     let selectedMarker;
 
 
 window.addEventListener("load", () => {
     getMyMarkers();
-    document.querySelector("#markerList").addEventListener("click", updateInfoCard);
-    if(document.getElementsByName("error").length > 0){
-        hMenuShow();
-        tabToggle();
-        document.querySelector("#update-marker").classList.remove("hidden");
-        let id = document.getElementById("id").value;
+    document.querySelector("#tabList").addEventListener("click", updateInfoCard);
 
-        let tempMarker;
 
-        for(let j = 0; j < markers.length; j++) {
-                if(markers[j].markerId == id) {
-                    tempMarker = markers[j];
-                    break;
-                }
-            }
 
-        let errorPreviewImage = document.getElementById("updateImage");
+    let radioTabs = document.querySelectorAll("input[name='menu']");
+        radioTabs.forEach(radio => radio.addEventListener('change', tabToggle));
 
-        if(tempMarker.imageName !== "no_image_picked") {
-              errorPreviewImage.src = "http://localhost:8080/api/download/" + tempMarker.imageName;
-            } else {
-              previewImage.src = "";
-            }
-    }
     })
 
 function getMyMarkers() {
@@ -67,6 +49,7 @@ function getMyMarkers() {
                 map
                 });
         });
+        reGrabImageIfErrors();
     }
 };
 
@@ -104,21 +87,31 @@ function addMarkerListener() {
 //toggle menu
 function hMenuShow(){
     isMenuVisible = !isMenuVisible;
-    let hMenu = document.getElementsByName("hMenu");
-    let hMenuBtn = document.getElementById("hMenuBtn")
-    hMenuBtn.classList.toggle("ml-64");
-    for (let mDiv of hMenu) {
-            mDiv.classList.toggle("hidden");
+    let hMenu = document.getElementById("hMenu");
+    hMenu.classList.toggle("hidden");
+    if(isMenuVisible) {
+       tabToggle();
+    } else {
+        let tabs = document.getElementsByName("tab-toggle");
+        for(let tab of tabs) {
+           tab.classList.add("hidden");
+           }
     }
+
 };
 //toggle tabs
 function tabToggle(){
-    isInfoVisible = !isInfoVisible;
+    //hide all tabs
+    //use radio input
+    let tabId = document.querySelector("input[name='menu']:checked").id;
+
+    //hide all tabs if its matches unhide
     let tabs = document.getElementsByName("tab-toggle");
-    let tab_mask = document.getElementById("tab_mask");
-    tab_mask.classList.toggle("ml-32");
-    for (let tab of tabs) {
+    for(let tab of tabs) {
+       tab.classList.add("hidden");
+       if(("tab" + tabId).toLowerCase() === tab.id.toLowerCase()) {
             tab.classList.toggle("hidden");
+       }
     }
 };
 
@@ -167,8 +160,6 @@ function updateMarkerInfo(mapMarker) {
     }
     selectedMarker = mapMarker;
     selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
-//toggle hidden off for form
-    document.querySelector("#update-marker").classList.remove("hidden");
 
     let markerForm = document.querySelector("#update-marker");
     let formId = markerForm.querySelector("[name='id']");
@@ -194,8 +185,40 @@ function updateMarkerInfo(mapMarker) {
         hMenuShow();
     };
     //switch cards to see info
-    if(!isInfoVisible) {
-        tabToggle();
-    };
+    document.querySelector("input[id='mark']").checked="checked";
+    tabToggle();
 }
 
+//get name off map marker and grabs image
+function reGrabImageIfErrors() {
+    if(document.getElementsByName("error").length > 0){
+        //show update error
+        hMenuShow();
+        document.querySelector("input[id='mark']").checked="checked";
+        tabToggle();
+
+        //id from form is used to find the image name off the loaded map marker
+        let id = document.getElementById("id").value;
+
+        let tempMarker;
+
+        for(let j = 0; j < markers.length; j++) {
+                if(markers[j].markerId == id) {
+                    tempMarker = markers[j];
+                    break;
+                }
+            }
+
+        let errorPreviewImage = document.getElementById("updateImage");
+
+        if(tempMarker.imageName !== "no_image_picked") {
+              errorPreviewImage.src = "http://localhost:8080/api/download/" + tempMarker.imageName;
+            } else {
+              previewImage.src = "";
+            }
+
+        //selected marker needs to bounce
+        selectedMarker = tempMarker;
+        selectedMarker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+}

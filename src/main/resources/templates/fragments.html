@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
     <head >
         <meta charset="UTF-8">
         <title th:text="${title}">Title</title>
@@ -7,42 +7,12 @@
     </head>
 <body>
 
-<!--marker-->
-<!---->
-<!---->
-<!--add-->
-<div th:fragment="addMarkerComponent">
-    <p id="addMarkerMessage"></p>
-    <form id="create-marker" action="/marker/add" method="post" enctype="multipart/form-data">
-        <lable for="markerName">Name</lable>
-        <input type="text" th:field="${addMarkerDTO.markerName}">
-        <p th:errors="${addMarkerDTO.markerName}"></p>
-
-        <label for="image">Upload Photo</label>
-        <input type="file" th:field="${addMarkerDTO.image}" accept="image/*">
-        <p th:errors="${addMarkerDTO.image}"></p>
-
-        <label for="description">Description</label>
-        <input th:field="${addMarkerDTO.description}">
-        <p th:errors="${addMarkerDTO.description}"></p>
-
-        <lable for="latitude">Lat</lable>
-        <input type="text" th:field="${addMarkerDTO.latitude}">
-        <p th:errors="${addMarkerDTO.latitude}"></p>
-
-        <lable for="longitude">Lng</lable>
-        <input type="text" th:field="${addMarkerDTO.longitude}">
-        <p th:errors="${addMarkerDTO.longitude}"></p>
-
-        <button type="submit" th:onclick="setLngLat()">submit</button>
-    </form>
-</div>
 
 <!--searchzipp-->
-<form th:fragment="zipCodeZoomComponent" id="setLocation" th:onsubmit="setLocationWithZipcode(key, this)" class="flex shadow-lg" >
+<form name="tab-toggle" th:fragment="zipCodeZoomComponent" id="tabSearch" th:onsubmit="setLocationWithZipcode(key, this)" class="hidden flex py-1 h-10 w-full border-t-2 border-black bg-gray-700 shadow-xl shadow-inner" >
         <label for="zip"></label>
-        <input class="border-none w-24 h-10 text-lg rounded text-center" id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)" placeholder="zipcode" required>
-        <button class="border-none ml-4 w-10 text-lg text-center rounded shadow-lg inline bg-white block hover:bg-blue-700 hover:font-semibold hover:text-white" type="submit">Go!</button>
+        <input class="mx-auto w-40 text-white bg-gray-700 text-lg active:border-white text-center" id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)" placeholder="zipcode" required>
+        <button class="w-10 text-lg text-center border-l-2 border-white shadow-lg inline block hover:bg-blue-500 font-semibold text-white" type="submit">Go!</button>
 </form>
 
 <!--No longer used, auto search from setting circle center-->
@@ -54,70 +24,137 @@
 
 <!--NAVIGATION-->
 <!---->
-<div th:fragment="navigation" class="shadow bg-black bg-opacity-25 w-screen flex text-3xl" >
+<div th:fragment="navigation" class="w-screen p-2 flex text-3xl font-medium text-white" >
 <!--    logo/home-->
-    <div class="">
+    <div class="flex shadow-xl shadow-inner rounded-sm bg-black bg-opacity-25">
         <a class="max-w-none" th:href="@{/}">
             <img class="m-4 h-16"  th:src="@{/image/logo/atlas2.svg}" alt="Home atlas logo">
         </a>
+        <div class="self-center border-dotted border-white border-l-4 pl-2 hover:underline ml-auto mr-5">
+            <a th:href="@{/user/all}" th:text="${validUser.userName}"></a>
+        </div>
     </div>
-    <!--if user is true show logged-in block .. -->
-    <th:block th:unless="${validUser}">
-        <div class="self-center ml-auto mr-5">
-            <a class="hover:underline" th:href="@{/login}">Login</a>
-        </div>
-        <div class="self-center hover:underline mr-5">
-            <a th:href="@{/register}">Register</a>
-        </div>
-    </th:block>
     <!--if user is false show register block .. -->
-    <th:block th:if="${validUser}">
-            <div class="self-center hover:underline ml-auto mr-5">
-                <a th:href="@{/user/all}" th:text="${validUser.userName}"></a>
-            </div>
-            <div class="self-center hover:underline mr-5">
+
+            <div class="self-center ml-auto text-black text-opacity-75 hover:underline mr-5">
                 <a th:href="@{/logout}">Logout</a>
             </div>
-    </th:block>
+
+<!--    &lt;!&ndash;if user is true show logged-in block .. &ndash;&gt;-->
+<!--        <th:block th:unless="${validUser}">-->
+<!--            <div class="self-center ml-auto mr-5">-->
+<!--                <a class="self-center pl-2 border-l-4 border-dotted broder-white hover:underline mr-5" th:href="@{/login}">Login</a>-->
+<!--            </div>-->
+<!--            <div class="self-center hover:underline mr-5">-->
+<!--                <a th:href="@{/register}">Register</a>-->
+<!--            </div>-->
+<!--        </th:block>-->
 </div>
 
 <!-- hamburger menu-->
-<button th:fragment="hamburger" id="hMenuBtn" class="pt-3 pl-3 grid gird-row-3" onclick="hMenuShow()">
+<div th:fragment="hamburger" id="hMenuBtn" class="pl-2 h-12 flex flex-row">
 
-    <a name="bar" class="w-6 h-2 pt-1 group-hover:bg-white">
-        <div class="pt-1 w-full h-1 bg-black"></div>
-    </a>
-    <a name="bar" class="w-6 h-2 pt-1 group-hover:bg-white">
-        <div class="pt-1 w-full h-1 bg-black"></div>
-    </a>
-    <a name="bar" class="w-6 h-2 pt-1 group-hover:bg-white">
-        <div class="pt-1 w-full h-1 bg-black"></div>
-    </a>
-</button>
+    <div id="hMenu" class="hidden  bg-black bg-opacity-25 shadow-lg shadow-inner rounded-sm" change="tabToggle">
+        <div class="w-64 flex justify-center space-x-10 flex-row">
+        <label class="block relative cursor-pointer">
+            <img class="py-2 h-12"  th:src="@{/image/menu/list.svg}" alt="Home atlas logo">
+            <input autocomplete="off" type="radio" name="menu" id="list" class="hidden">
+            <div class=""></div>
+        </label>
+
+        <label class="block relative cursor-pointer">
+            <img class="py-2 h-12"  th:src="@{/image/menu/mark.svg}" alt="Home atlas logo">
+            <input autocomplete="off" type="radio" name="menu" id="mark" class="hidden">
+            <div class=""></div>
+        </label>
+
+        <label class="block relative cursor-pointer">
+            <img class="h-12"  th:src="@{/image/menu/search.svg}" alt="Home atlas logo">
+            <input autocomplete="off" type="radio" name="menu" id="search" class="hidden" checked>
+            <div class="border-b-gray-700"></div>
+        </label>
+        </div>
+    </div>
+
+    <div class="" >
+        <label class="ml-3 w-8 h-12 py-2 group cursor-pointer grid grid-cols">
+            <input type="checkbox" class="hidden" onclick="hMenuShow()">
+
+<!--                <div class="w-full rounded-full h-2 bg-white group-hover:bg-blue-700"></div>-->
+                <div name="bar" class="w-full rounded-full h-2 bg-white"></div>
+
+
+<!--                <div class="w-full h-2 rounded-full bg-white group-hover:bg-blue-700"></div>-->
+                <div name="bar" id="middleBar" class="w-full h-2 rounded-full bg-white"></div>
+
+
+<!--                <div class="w-full h-2 rounded-full bg-white group-hover:bg-blue-700"></div>-->
+                <div name="bar" class="w-full h-2 rounded-full bg-white"></div>
+        </label>
+    </div>
+</div>
+
+<div th:fragment="hamburgerAdd" id="hMenuBtn" class="pl-2 h-12 flex flex-row">
+
+    <div id="hMenu" class="hidden  bg-black bg-opacity-25 shadow-lg shadow-inner rounded-sm" change="tabToggle">
+        <div class="w-64 flex justify-center space-x-10 flex-row">
+
+            <label class="block relative cursor-pointer">
+                <img class="py-2 h-12"  th:src="@{/image/menu/add.svg}" alt="Home atlas logo">
+                <input autocomplete="off" type="radio" name="menu" id="add" class="hidden">
+                <div class=""></div>
+            </label>
+
+            <label class="block relative cursor-pointer">
+                <img class="h-12"  th:src="@{/image/menu/search.svg}" alt="Home atlas logo">
+                <input autocomplete="off" type="radio" name="menu" id="search" class="hidden" checked>
+                <div class="border-b-gray-700"></div>
+            </label>
+        </div>
+    </div>
+
+    <div class="" >
+        <label class="ml-3 w-8 h-12 py-2 group cursor-pointer grid grid-cols">
+            <input type="checkbox" class="hidden" onclick="hMenuShow()">
+
+            <!--                <div class="w-full rounded-full h-2 bg-white group-hover:bg-blue-700"></div>-->
+            <div name="bar" class="w-full rounded-full h-2 bg-white"></div>
+
+
+            <!--                <div class="w-full h-2 rounded-full bg-white group-hover:bg-blue-700"></div>-->
+            <div name="bar" id="middleBar" class="w-full h-2 rounded-full bg-white"></div>
+
+
+            <!--                <div class="w-full h-2 rounded-full bg-white group-hover:bg-blue-700"></div>-->
+            <div name="bar" class="w-full h-2 rounded-full bg-white"></div>
+        </label>
+    </div>
+</div>
+
 
 <!--LOGIN-->
 <!--intro-->
-<div class="mx-auto max-w-xs mt-6" name="introduction" th:fragment="intro">
-    <div class="">
-        <a class="w-auto" th:href="@{/}">
-            <img class="mx-auto mb-8 h-24"  th:src="@{/image/logo/atlas2.svg}" alt="Home atlas logo">
-        </a>
-    </div>
+<div class="mx-auto w-64 p-5" name="introduction" th:fragment="intro">
+<!--    <div class="">-->
+<!--        <a class="w-auto" th:href="@{/}">-->
+<!--            <img class="mx-auto mb-8 h-24"  th:src="@{/image/logo/atlas2.svg}" alt="Home atlas logo">-->
+<!--        </a>-->
+<!--    </div>-->
     <p class="text-sm font-medium pb-4">Explore your neighborhood.
         <span class="text-sm font-thin">Let Atlas be your guide. Use an interactive map to discover points of interest in your area.</span>
     </p>
 
     <p class="text-sm font-medium pb-8">Share your own points of interest.
-        <span class="text-sm font-thin">Pick a spot on a map and add details to your marker.
+        <span class="text-sm font-thin">Pick a spot on a map. Add details to your marker.
     Have Atlas save it for others to discover.</span>
     </p>
 
 
 </div>
 <!--loginForm-->
-<form th:fragment="loginForm" class="flex justify-center mx-auto max-w-xs bg-white shadow-xl rounded pt-5 pb-5" action="/login" method="post">
+<form th:fragment="loginForm" class="w-64 flex justify-center border-l-4 border-dotted border-gray-400 pt-5 pb-5" action="/login" method="post">
     <div>
-        <p class="pt-2 pb-5">Please <b>login</b> or <a class="text-blue-700 hover:underline" th:href="@{/register}">register</a> to continue</p>
+        <p class="text-center pb-5">Please <b>login</b> or <a class="text-blue-700 hover:underline" th:href="@{/register}">register</a></p>
         <div class="flex flex-col">
             <label class="block text-sm font-medium" for="userName">Username</label>
             <input class="pl-2 shadow appearance-none border rounded" th:field="${loginUserDTO.userName}" type="text">
@@ -135,9 +172,9 @@
 </form>
 <!---->
 <!--RegisterForm-->
-<form class="flex justify-center mx-auto max-w-xs bg-white shadow-xl rounded pt-5 pb-5" th:fragment="registerForm" action="/register" method="post">
+<form class="w-64 flex justify-center border-l-4 border-dotted border-gray-400 pt-5 pb-5" th:fragment="registerForm" action="/register" method="post">
     <div>
-        <p class="pt-2 pb-5">Please <b>register</b> or <a class="text-blue-700 hover:underline" th:href="@{/login}">login</a> to continue</p>
+        <p class="text-center pb-5">Please <b>register</b> or <a class="text-blue-700 hover:underline" th:href="@{/login}">login</a></p>
         <div class="flex flex-col">
             <label class="block text-sm font-medium" for="userName">Username</label>
             <input class="pl-2 shadow appearance-none border rounded" th:field="${registerUserDTO.userName}" type="text">
@@ -146,18 +183,19 @@
         <div class="flex mt-2 flex-col">
             <label class="block text-sm font-medium" for="password">Password</label>
             <input class="pl-2 shadow appearance-none border rounded" th:field="${registerUserDTO.password}" type="password">
-            <p class="input-error" th:errors="${registerUserDTO.password}"></p>
+            <p class="h-6 input-error" th:errors="${registerUserDTO.password}"></p>
         </div>
         <div class="mt-5 flex flex-col">
-            <button class="h-10 px-2 self-center border rounded shadow-lg hover:bg-blue-200 bg-blue-700 font-semibold text-white" type="submit">Register</button>
+            <button class="px-2 h-10 self-center border rounded hover:bg-blue-200 shadow-lg bg-blue-700 font-semibold text-white" type="submit">Register</button>
         </div>
     </div>
 </form>
 <!---->
 <!---->
-<div th:fragment="success">
-    <p>Success!</p>
-    <p th:text="${works}"></p>
+<div class="mx-auto text-center w-auto text-xl mt-32" th:fragment="success">
+        <p>Success!</p>
+        <p th:text="${works}" class="font-bold"></p>
+        <p>Added To Atlas</p>
 </div>
 
 <!--welcome-->
@@ -168,12 +206,54 @@
     <a class="border shadow rounded-sm block text-center mt-2 pt-4 pb-4 hover:bg-blue-200 bg-blue-700 text-white font-medium" th:href="@{/marker/add}">Create a new marker</a>
 </div>
 
+<!--marker-->
+<!---->
+<!---->
+<!--add-->
+<div name="tab-toggle" id="tabAdd" th:fragment="addMarkerComponent" class="border-t-2 shadow-xl border-gray-700 hidden pt-2 bg-white">
+    <p id="addMarkerMessage"></p>
+    <form id="create-marker" action="/marker/add" method="post" enctype="multipart/form-data" class="flex bg-white flex-col pl-5 pr-5 justify-between bg-white w-full">
+<!--        write custome error to say hey click the map we need the location -->
+        <lable for="markerName" class="mt-2 bg-white rounded">
+            <textarea rows="2" placeholder="name" cols="14" class="resize-none pl-1 border-2 rounded border-dotted text-3xl w-full font-semibold" type="text" th:field="${addMarkerDTO.markerName}"></textarea>
+        </lable>
+            <p class="input-error" th:errors="${addMarkerDTO.markerName}"></p>
+
+        <label for="description" class="mt-8 mx-2 bg-white rounded">
+            <textarea rows="3" placeholder="description" cols="14" class="pt-2 border-2 rounded border-dotted px-2 resize-none leading-tight font-light w-full" th:field="${addMarkerDTO.description}"></textarea>
+        </label>
+        <p class="input-error" th:errors="${addMarkerDTO.description}"></p>
+
+
+
+        <label class="h-10 cursor-pointer pt-2 bg-gray-100 mx-2 mt-6 border rounded text-center lineHeight- text-sm shadow-lg font-semibold hover:border-6 hover:border-white" for="image">Add photo...
+            <input type="file" th:field="${addMarkerDTO.image}"  accept="image/*" class="block h-0 w-0" onchange="preview(this)">
+        </label>
+        <p class="input-error" th:errors="${addMarkerDTO.image}"></p>
+            <img id="updateImage" class="my-4 mx-auto h-32 rounded">
+
+
+
+        <lable class="hidden" for="latitude">Lat
+            <input type="text" th:field="${addMarkerDTO.latitude}">
+            <p class="input-error" th:errors="${addMarkerDTO.latitude}"></p>
+        </lable>
+
+        <lable class="hidden" for="longitude">Lng
+            <input type="text" th:field="${addMarkerDTO.longitude}">
+            <p class="input-error" th:errors="${addMarkerDTO.longitude}"></p>
+        </lable>
+
+
+        <button type="submit"  style="background-color:#b9d3c2" class="h-10 mb-4 w-24 px-2 self-center border rounded text-sm shadow-lg font-semibold text-white hover:border-6 hover:border-white" th:onclick="setLngLat()">submit</button>
+    </form>
+</div>
 
 <!--USER-->
 <!--update marker form-->
-<div name="tab-toggle" th:fragment="updateMarkerComponent" class="h-full pt-2 bg-white hidden">
+<div name="tab-toggle" id="tabMark" th:fragment="updateMarkerComponent" class="border-t-2 shadow-xl border-gray-700 pt-2 bg-white hidden">
 <!--    <p id="updateMarkerMessage">Make changes</p>-->
-    <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data" class="hidden flex flex-col pl-5 pr-5 justify-between bg-white w-full">
+    <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data" class="flex flex-col pl-5 pr-5 justify-between bg-white w-full">
         <div class="w-full pb-4">
             <p class="input-error" name="error" th:errors="${updateMarkerDTO.markerName}"></p>
             <label for="markerName"></label>
@@ -195,8 +275,8 @@
         </div>
 
         <div class="mx-auto mt-16 mb-2">
-            <button type="submit" style="background-color:#b9d3c2" class="h-10 w-24 px-2 self-center border rounded text-sm shadow-lg font-semibold text-white hover:border-4 hover:border-white">Update</button>
-            <button form="update-marker" type="submit" style="background-color:#ea4335" formaction="/user/delete" class="h-10 w-18 px-2 self-center text-sm border rounded shadow-lg font-semibold text-white hover:border-4 hover:border-white">Delete</button>
+            <button type="submit" style="background-color:#b9d3c2" class="h-10 w-24 px-2 self-center border rounded text-sm shadow-lg font-semibold text-white hover:border-6 hover:border-white">Update</button>
+            <button form="update-marker" type="submit" style="background-color:#ea4335" formaction="/user/delete" class="h-10 w-18 px-2 self-center text-sm border rounded shadow-lg font-semibold text-white hover:border-6 hover:border-white">Delete</button>
         </div>
 
        <div class="flex flex-col leading-tight text-right text-gray-400 font-hairline text-xs pb-2 ">
@@ -248,24 +328,25 @@
 
 <!---->
 <!--marker info card-->
-<div name="tab-toggle" th:fragment="markerCard" id="markerInfo" class="h-full pt-2 bg-white hidden">
-        <div id="markInfo_contents" class="hidden flex flex-col pl-5 pr-5 justify-between h-full w-full">
-            <div>
-                <p id="miName" class="text-3xl font-semibold"></p>
-                <p id="miDescription" class="font-light"></p>
+<div name="tab-toggle" th:fragment="markerCard" id="tabMark" class="pt-2 border-t-2 shadow-xl border-gray-700 bg-white hidden">
+    <div id="markInfo_contents" class="flex flex-col h-full w-full">
+            <div class="leading-tight">
+                <p id="miName" class="text-2xl px-2 font-semibold"></p>
+                <p id="miDescription" class="px-2 ml-1 text-sm mb-4 font-light"></p>
+            </div>
+            <div class="px-1">
+                <img class="rounded-sm w-full" id="miImage" src="">
             </div>
             <div>
-                <img class="w-full" id="miImage" src="">
-            </div>
-            <div>
-                <p class="text-right text-gray-600 font-hairline text-xs " id="miId"></p>
+                <p class="text-right text-gray-600 font-hairline text-xs pr-1 pb-1" id="miId"></p>
             </div>
         </div>
 </div>
 
 <!--marker list-->
-<div name="tab-toggle" class="w-full pt-2 bg-white h-full flex flex-col" id="markerList" th:fragment="markerList">
-    <button name="listedMarker" class="bg-gray-100 text-left pl-5 pr-5 h-8 font-light hover:bg-blue-600 hover:text-white hover:font-medium" th:each="marker : ${markers}" th:text="${marker.markerName}" th:id="${marker.id}"></button>
+<div name="tab-toggle" style="height:29.5rem" class="border-t-2 border-gray-700 w-full shadow-xl overflow-auto pt-2 pb-4 bg-white flex flex-col hidden" id="tabList" th:fragment="markerList">
+    <p th:unless="${markers}" id="viewMarkerMessage" class="bg-white text-center text-sm text-blue-800">Click map to start search</p>
+    <button name="listedMarker" class="bg-white text-left pl-5 pr-5 h-8 font-light hover:bg-blue-600 hover:text-white hover:font-medium" th:each="marker : ${markers}" th:text="${marker.markerName}" th:id="${marker.id}"></button>
 </div>
 
 
