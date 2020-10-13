@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
-public class UpdateMarkerDTO {
+public class UpdateMarkerDTO{
 
 
     @Min(0)

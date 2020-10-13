@@ -9,7 +9,7 @@
 
 
 <!--searchzipp-->
-<form name="tab-toggle" th:fragment="zipCodeZoomComponent" id="tabSearch" th:onsubmit="setLocationWithZipcode(key, this)" class="hidden flex py-1 h-10 w-full border-t-2 border-black bg-gray-700 shadow-xl shadow-inner" >
+<form name="tab-toggle" th:fragment="zipCodeZoomComponent" id="tabSearch" th:onsubmit="setLocationWithZipcode(key, this)" class="hidden pointer-events-auto flex py-1 h-10 w-full border-t-2 border-black bg-gray-700 shadow-xl shadow-inner" >
         <label for="zip"></label>
         <input class="mx-auto w-40 text-white bg-gray-700 text-lg active:border-white text-center" id="zip" type="text" pattern="(^\d{5}$)|(^\d{9}$)|(^\d{5}-\d{4}$)" placeholder="zipcode" required>
         <button class="w-10 text-lg text-center border-l-2 border-white shadow-lg inline block hover:bg-blue-500 font-semibold text-white" type="submit">Go!</button>
@@ -26,7 +26,7 @@
 <!---->
 <div th:fragment="navigation" class="w-screen p-2 flex text-3xl font-medium text-white" >
 <!--    logo/home-->
-    <div class="flex shadow-xl shadow-inner rounded-sm bg-black bg-opacity-25">
+    <div class="flex shadow-xl pointer-events-auto shadow-inner rounded-sm bg-black bg-opacity-25">
         <a class="max-w-none" th:href="@{/}">
             <img class="m-4 h-16"  th:src="@{/image/logo/atlas2.svg}" alt="Home atlas logo">
         </a>
@@ -36,7 +36,7 @@
     </div>
     <!--if user is false show register block .. -->
 
-            <div class="self-center ml-auto text-black text-opacity-75 hover:underline mr-5">
+            <div class="self-center ml-auto pointer-events-auto text-black text-opacity-75 hover:underline mr-5">
                 <a th:href="@{/logout}">Logout</a>
             </div>
 
@@ -52,7 +52,7 @@
 </div>
 
 <!-- hamburger menu-->
-<div th:fragment="hamburger" id="hMenuBtn" class="pl-2 h-12 flex flex-row">
+<div th:fragment="hamburger" id="hMenuBtn" class="pl-2 pointer-events-auto h-12 flex flex-row">
 
     <div id="hMenu" class="hidden  bg-black bg-opacity-25 shadow-lg shadow-inner rounded-sm" change="tabToggle">
         <div class="w-64 flex justify-center space-x-10 flex-row">
@@ -191,11 +191,45 @@
     </div>
 </form>
 <!---->
-<!---->
-<div class="mx-auto text-center w-auto text-xl mt-32" th:fragment="success">
-        <p>Success!</p>
-        <p th:text="${works}" class="font-bold"></p>
-        <p>Added To Atlas</p>
+<!--status page-->
+<div class="mx-auto text-center w-auto mt-16" th:fragment="statusBlock">
+        <!-- each visit will have have its own status message, constructed in controller-->
+        <p th:text="${status}" class="text-4xl font-bold"></p>
+        <!-- only successful update will display marker with changes highlighted with green -->
+        <!-- repeat of markerInfo page-->
+        <th:block th:if="${update.id}">
+            <p class="text-base tracking-tight">Changes marked with green</p>
+            <div id="infoCard" class="pt-2 mx-auto w-64 mb-16 mt-6 shadow-xl border-gray-700 bg-white">
+                <div id="infoCardContents" class="border-t pt-4 flex flex-col h-full w-full">
+                    <div class="leading-tight">
+                        <p id="updateName" th:text="${update.markerName}" class="text-2xl px-2 font-semibold" th:classappend="(${update.markerName != old.markerName})? 'border-4 border-green-300'" ></p>
+                        <p id="updateDescription" th:text="${update.description}" class="px-2 ml-1 text-sm mb-4 font-light" th:classappend="(${update.description != old.description})? 'border-4 m-1 border-green-300'"></p>
+                    </div>
+                    <div class="px-1">
+                        <img class="rounded-sm w-full" id="uImage" th:src="|http://localhost:8080/api/download/${update.imageName}|" th:classappend="${isNewImage}? 'border-4 border-green-300'">
+                    </div>
+
+                    <div class="flex flex-col leading-tight text-center text-gray-400 font-hairline text-xs pb-2 ">
+
+                        <div class="mt-2 border-t-2">
+                            <p>Id: <span th:text="${update.id}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
+                        </div>
+
+                        <div th:classappend="(${update.location != old.location})? 'border-4 border-green-300'">
+                            <div>
+                                <p>Lat: <span th:text="${update.location.getY()}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
+                            </div>
+
+                            <div>
+                                <p>Lng: <span th:text="${update.location.getX()}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </th:block>
+
 </div>
 
 <!--welcome-->
@@ -210,7 +244,7 @@
 <!---->
 <!---->
 <!--add-->
-<div name="tab-toggle" id="tabAdd" th:fragment="addMarkerComponent" class="border-t-2 shadow-xl border-gray-700 hidden pt-2 bg-white">
+<div name="tab-toggle" id="tabAdd" th:fragment="addMarkerComponent" class="border-t-2 pointer-events-auto shadow-xl border-gray-700 hidden pt-2 bg-white">
     <p id="addMarkerMessage"></p>
     <form id="create-marker" action="/marker/add" method="post" enctype="multipart/form-data" class="flex bg-white flex-col pl-5 pr-5 justify-between bg-white w-full">
 <!--        write custome error to say hey click the map we need the location -->
@@ -251,7 +285,7 @@
 
 <!--USER-->
 <!--update marker form-->
-<div name="tab-toggle" id="tabMark" th:fragment="updateMarkerComponent" class="border-t-2 shadow-xl border-gray-700 pt-2 bg-white hidden">
+<div name="tab-toggle" id="tabMark" th:fragment="updateMarkerComponent" class="border-t-2 pointer-events-auto overflow-auto h-full mb-2 shadow-xl border-gray-700 pt-2 bg-white hidden" style="max-height:34rem;">
 <!--    <p id="updateMarkerMessage">Make changes</p>-->
     <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data" class="flex flex-col pl-5 pr-5 justify-between bg-white w-full">
         <div class="w-full pb-4">
@@ -328,25 +362,26 @@
 
 <!---->
 <!--marker info card-->
-<div name="tab-toggle" th:fragment="markerCard" id="tabMark" class="pt-2 border-t-2 shadow-xl border-gray-700 bg-white hidden">
-    <div id="markInfo_contents" class="flex flex-col h-full w-full">
+<div name="tab-toggle" th:fragment="markerCard" id="tabMark" class="pt-2 border-t-2 overflow-auto pointer-events-auto h-full mb-2 min-h-0 shadow-xl border-gray-700 bg-white hidden" style="max-height:32rem;">
+    <div id="markInfo_contents" class="flex overflow-auto flex-col h-full w-full">
             <div class="leading-tight">
                 <p id="miName" class="text-2xl px-2 font-semibold"></p>
                 <p id="miDescription" class="px-2 ml-1 text-sm mb-4 font-light"></p>
             </div>
             <div class="px-1">
-                <img class="rounded-sm w-full" id="miImage" src="">
+                <img class="rounded-sm flex-none w-full" id="miImage" src="">
             </div>
             <div>
-                <p class="text-right text-gray-600 font-hairline text-xs pr-1 pb-1" id="miId"></p>
+                <p class="text-right text-gray-600 font-hairline text-xs pr-2 pt-2" id="miId"></p>
             </div>
         </div>
 </div>
 
 <!--marker list-->
-<div name="tab-toggle" style="height:29.5rem" class="border-t-2 border-gray-700 w-full shadow-xl overflow-auto pt-2 pb-4 bg-white flex flex-col hidden" id="tabList" th:fragment="markerList">
+<div name="tab-toggle" class="border-t-2 border-gray-700 h-full w-full pointer-events-auto shadow-xl overflow-auto pt-2 pb-1 pb-4 bg-white hidden" style="max-height:32rem;" id="tabList" th:fragment="markerList">
     <p th:unless="${markers}" id="viewMarkerMessage" class="bg-white text-center text-sm text-blue-800">Click map to start search</p>
-    <button name="listedMarker" class="bg-white text-left pl-5 pr-5 h-8 font-light hover:bg-blue-600 hover:text-white hover:font-medium" th:each="marker : ${markers}" th:text="${marker.markerName}" th:id="${marker.id}"></button>
+    <button name="listedMarker" class="bg-white pl-5 h-6 w-full font-light text-left pr-5 hover:bg-blue-600 hover:text-white hover:font-medium last:mb-1" th:each="marker : ${markers}" th:text="${marker.markerName}" th:id="${marker.id}"></button>
+    <div class="w-full h-2"></div>
 </div>
 
 

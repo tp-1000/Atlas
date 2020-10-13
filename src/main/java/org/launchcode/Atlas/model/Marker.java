@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @JsonSerialize(using = MarkerSerializer.class)
 @Entity
-public class Marker extends AbstractEntity{
+public class Marker extends AbstractEntity implements Cloneable{
 
     private String markerName;
 
@@ -95,4 +95,8 @@ public class Marker extends AbstractEntity{
         this.location = gf.createPoint(xy);
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

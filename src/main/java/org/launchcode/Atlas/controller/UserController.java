@@ -44,17 +44,27 @@ public class UserController extends AtlasController{
 
         Optional<Marker> markerToBeUpdated = markerRepository.findById(updateMarkerDTO.getId());
         if(markerToBeUpdated.isEmpty()) {
-            model.addAttribute("works", "Error Updating marker – try again -- was not... ");
+            model.addAttribute("status", "Error Updating marker – try again -- was not... ");
             return "marker/success";
         }
 //        prevents creative javascript from submission -- via altering marker id --
         if(markerToBeUpdated.get().getUser().getId() != getUserFromSession(session).getId()) {
-            model.addAttribute("works", "Error Updating marker – try again -- was not... ");
+            model.addAttribute("status", "Error Updating marker – try again -- was not... ");
             return "marker/success";
         }
 
         MultipartFile image = updateMarkerDTO.getImage();
         Marker markerTBU = markerToBeUpdated.get();
+
+        //a conditional test in template used to show updated attibutes
+        //adds old to template for comparison to updated marker
+        try {
+            model.addAttribute("old", markerTBU.clone());
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
+
 
 //      updates marker input (rewrites with old)
         markerTBU.setLocationWithBigDecimal(updateMarkerDTO.getLongitude(), updateMarkerDTO.getLatitude());
@@ -67,13 +77,15 @@ public class UserController extends AtlasController{
             markerTBU.setImageName(image.getOriginalFilename());
             atlasFileSystemStorage.deleteFile(oldImageName);
             atlasFileSystemStorage.saveFile(image, markerTBU.getImageName());
-
+            //lets template know image was updated
+            model.addAttribute("isNewImage", true);
         }
 
         //no image for updating -- just save the marker
         markerRepository.save(markerTBU);
 
-        model.addAttribute("works", markerTBU.getMarkerName() + " -- Update!");
+        model.addAttribute("status", "Update Saved!");
+        model.addAttribute("update", markerTBU);
         return "marker/success";
     }
 
@@ -84,18 +96,18 @@ public class UserController extends AtlasController{
         //is marker really a marker
         Optional<Marker> markerToBeUpdated = markerRepository.findById(updateMarkerDTO.getId());
         if(markerToBeUpdated.isEmpty()) {
-            model.addAttribute("works", "Error deleting selected marker – Try again");
+            model.addAttribute("status", "Error deleting selected marker – Try again");
             return "marker/success";
         }
 //      Test if marker belongs to current user?
 //      prevents creative javascript form submission -- via altering marker id
         if(markerToBeUpdated.get().getUser().getId() != getUserFromSession(session).getId()) {
-            model.addAttribute("works", "Error deleting selected marker – Try again");
+            model.addAttribute("status", "Error deleting selected marker – Try again");
             return "marker/success";
         }
 
         Marker markerTBU = markerToBeUpdated.get();
-        model.addAttribute("works", "Marker \"" + markerTBU.getMarkerName() + "\" deleted.");
+        model.addAttribute("status", "Marker \"" + markerTBU.getMarkerName() + "\" deleted.");
         String imageName = markerTBU.getImageName();
         markerRepository.deleteById(markerTBU.getId());
         atlasFileSystemStorage.deleteFile(imageName);

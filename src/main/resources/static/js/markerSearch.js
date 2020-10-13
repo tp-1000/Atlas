@@ -154,7 +154,7 @@ document.querySelector("#viewMarkerMessage").innerHTML="";
                 let newB = document.createElement("button");
                 document.querySelector("#tabList").append(newB);
                 newB.innerHTML = mapMarker.title;
-                newB.setAttribute('class', "bg-white pl-5 h-8 font-light text-left pr-5 hover:bg-blue-600 hover:text-white hover:font-medium");
+                newB.setAttribute('class', "bg-white pl-5 h-6 w-full font-light text-left pr-5 hover:bg-blue-600 hover:text-white hover:font-medium last:mb-1");
                 newB.setAttribute('id', mapMarker.markerId);
                 newB.setAttribute('name', "listedMarker");
                 mapMarker.addListener("click", () => updateMarkerInfo(mapMarker));
