@@ -94,7 +94,7 @@
     </div>
 </div>
 
-<div th:fragment="hamburgerAdd" id="hMenuBtn" class="pl-2 h-12 flex flex-row">
+<div th:fragment="hamburgerAdd" id="hMenuBtn" class="pl-2 h-12 pointer-events-auto flex flex-row">
 
     <div id="hMenu" class="hidden  bg-black bg-opacity-25 shadow-lg shadow-inner rounded-sm" change="tabToggle">
         <div class="w-64 flex justify-center space-x-10 flex-row">
@@ -244,26 +244,26 @@
 <!---->
 <!---->
 <!--add-->
-<div name="tab-toggle" id="tabAdd" th:fragment="addMarkerComponent" class="border-t-2 pointer-events-auto shadow-xl border-gray-700 hidden pt-2 bg-white">
-    <p id="addMarkerMessage"></p>
-    <form id="create-marker" action="/marker/add" method="post" enctype="multipart/form-data" class="flex bg-white flex-col pl-5 pr-5 justify-between bg-white w-full">
+<div name="tab-toggle" id="tabAdd" th:fragment="addMarkerComponent" class="border-t-2 pointer-events-auto h-full overflow-auto shadow-xl border-gray-700 hidden pt-2 bg-white" style="max-height:48rem;">
+    <p  class="input-error px-4" id="addMarkerMessage"></p>
+    <form id="create-marker" action="/marker/add" method="post" enctype="multipart/form-data" class="flex bg-white flex-col px-4 bg-white w-full">
 <!--        write custome error to say hey click the map we need the location -->
-        <lable for="markerName" class="mt-2 bg-white rounded">
-            <textarea rows="2" placeholder="name" cols="14" class="resize-none pl-1 border-2 rounded border-dotted text-3xl w-full font-semibold" type="text" th:field="${addMarkerDTO.markerName}"></textarea>
+        <lable for="markerName" class="mt-2 w-full bg-white rounded">
+            <textarea rows="2" placeholder="name" cols="14" class="resize-none px-1 border-2 rounded border-dotted text-3xl w-full font-semibold" type="text" th:field="${addMarkerDTO.markerName}"></textarea>
         </lable>
-            <p class="input-error" th:errors="${addMarkerDTO.markerName}"></p>
+        <p name="error" class="input-error" th:errors="${addMarkerDTO.markerName}"></p>
 
-        <label for="description" class="mt-8 mx-2 bg-white rounded">
-            <textarea rows="3" placeholder="description" cols="14" class="pt-2 border-2 rounded border-dotted px-2 resize-none leading-tight font-light w-full" th:field="${addMarkerDTO.description}"></textarea>
+        <label for="description" class="mt-2 w-full bg-white rounded">
+            <textarea rows="3" placeholder="description" cols="14" class="pt-2 px-2 border-2 rounded border-dotted resize-none leading-tight font-light w-full" th:field="${addMarkerDTO.description}"></textarea>
         </label>
-        <p class="input-error" th:errors="${addMarkerDTO.description}"></p>
+        <p name="error" class="input-error" th:errors="${addMarkerDTO.description}"></p>
 
 
 
-        <label class="h-10 cursor-pointer pt-2 bg-gray-100 mx-2 mt-6 border rounded text-center lineHeight- text-sm shadow-lg font-semibold hover:border-6 hover:border-white" for="image">Add photo...
+        <label class="h-10 cursor-pointer pt-2 w-full bg-gray-100 mt-2 border rounded text-center lineHeight- text-sm shadow-lg font-semibold hover:border-6 hover:border-white" for="image">Add photo...
             <input type="file" th:field="${addMarkerDTO.image}"  accept="image/*" class="block h-0 w-0" onchange="preview(this)">
         </label>
-        <p class="input-error" th:errors="${addMarkerDTO.image}"></p>
+        <p name="error" class="input-error" th:errors="${addMarkerDTO.image}"></p>
             <img id="updateImage" class="my-4 mx-auto h-32 rounded">
 
 
@@ -287,8 +287,8 @@
 <!--update marker form-->
 <div name="tab-toggle" id="tabMark" th:fragment="updateMarkerComponent" class="border-t-2 pointer-events-auto overflow-auto h-full mb-2 shadow-xl border-gray-700 pt-2 bg-white hidden" style="max-height:34rem;">
 <!--    <p id="updateMarkerMessage">Make changes</p>-->
-    <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data" class="flex flex-col pl-5 pr-5 justify-between bg-white w-full">
-        <div class="w-full pb-4">
+    <form id="update-marker" action="/user/update" method="post" enctype="multipart/form-data" class="flex flex-col px-4 bg-white w-full">
+        <div class="w-full pb-2">
             <p class="input-error" name="error" th:errors="${updateMarkerDTO.markerName}"></p>
             <label for="markerName"></label>
             <textarea th:field="${updateMarkerDTO.markerName}" rows="2" cols="14" class="resize-none text-3xl w-full font-semibold"></textarea>
@@ -297,7 +297,7 @@
         <div>
             <p class="input-error" name="error" th:errors="${updateMarkerDTO.description}"></p>
             <label for="description"></label>
-            <textarea th:field="${updateMarkerDTO.description}" class="px-2 mb-4 resize-none leading-tight font-light w-full h-24"></textarea>
+            <textarea th:field="${updateMarkerDTO.description}" class="resize-none leading-tight font-light w-full h-24"></textarea>
         </div>
 
         <div>

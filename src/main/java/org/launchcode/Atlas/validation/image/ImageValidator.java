@@ -15,7 +15,7 @@ public class ImageValidator implements ConstraintValidator<ValidImage, Multipart
     @Override
     public boolean isValid(MultipartFile value, ConstraintValidatorContext context) {
         if(value == null || value.isEmpty()){
-            return true;
+            return false;
         }
             String fileName = value.getOriginalFilename();
             return Pattern.matches("[^\\s].+\\.((jpeg)|(png)|(gif)|(jpg))", fileName);

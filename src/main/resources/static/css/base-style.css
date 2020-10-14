@@ -9,9 +9,26 @@
         padding: 0;
       }
 /**/
+input[type='radio']:checked + div {
+    //border-bottom-style: solid;
+    //border-width: .15rem;
+    //border-color: white;
+        position: absolute;
+        bottom: .15rem;
+        left: 42%;
+      width: .30rem;
+      height: .30rem;
+      background-color: #36f;
+      border-radius: 50%;
+      border-width: .1rem;
+      border-color: white;
+    }
+}
+
+
 /* custome utilities */
 .input-error {
-    @apply text-red-500 text-xs italic;
+    @apply text-red-500 text-xs italic leading-tight;
 }
 /*-------------------*/
 

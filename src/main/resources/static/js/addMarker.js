@@ -20,6 +20,12 @@ window.addEventListener("load", function () {
     let radioTabs = document.querySelectorAll("input[name='menu']");
     radioTabs.forEach(radio => radio.addEventListener('change', tabToggle));
 
+    if(document.getElementsByName("error").length > 0){
+            //show update error
+            hMenuShow();
+            document.querySelector("input[id='add']").checked="checked";
+            tabToggle();
+     }
 })
 
 //helper function add a marker - if marker is present just move it
@@ -42,7 +48,7 @@ function addMarker(clickLocation){
 function setLngLat() {
         if(myMarker == null){
             let event = window.event;
-            document.querySelector("#addMarkerMessage").innerHTML="Click a location on the map to set marker."
+            document.querySelector("#addMarkerMessage").innerHTML="Click map to set marker location"
             event.preventDefault();
         return;
         }
