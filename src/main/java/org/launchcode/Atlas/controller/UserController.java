@@ -85,7 +85,7 @@ public class UserController extends AtlasController{
         markerRepository.save(markerTBU);
 
         model.addAttribute("status", "Update Saved!");
-        model.addAttribute("update", markerTBU);
+        model.addAttribute("marker", markerTBU);
         return "marker/success";
     }
 

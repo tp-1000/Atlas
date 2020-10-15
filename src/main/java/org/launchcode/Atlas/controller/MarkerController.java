@@ -59,12 +59,8 @@ public class MarkerController extends AtlasController{
         Optional<Marker> marker = markerRepository.findById(aMarker.getId());
         Marker marker1 = marker.get();
 
-        //should be cleaned up, submit template messy
-        model.addAttribute("old", false);
-        model.addAttribute("isNewImage", false);
-
-        model.addAttribute("status", "Update Saved!");
-        model.addAttribute("update", marker1);
+        model.addAttribute("status", "Marker Added!");
+        model.addAttribute("marker", marker1);
         return "marker/success";
     }
 

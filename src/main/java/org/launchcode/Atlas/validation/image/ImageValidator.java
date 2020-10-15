@@ -14,8 +14,9 @@ public class ImageValidator implements ConstraintValidator<ValidImage, Multipart
 
     @Override
     public boolean isValid(MultipartFile value, ConstraintValidatorContext context) {
+        //okay if there isn't an image file uploaded, app wont break, js required though so may never be experienced
         if(value == null || value.isEmpty()){
-            return false;
+            return true;
         }
             String fileName = value.getOriginalFilename();
             return Pattern.matches("[^\\s].+\\.((jpeg)|(png)|(gif)|(jpg))", fileName);

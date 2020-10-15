@@ -197,31 +197,31 @@
         <p th:text="${status}" class="text-4xl font-bold"></p>
         <!-- only successful update will display marker with changes highlighted with green -->
         <!-- repeat of markerInfo page-->
-        <th:block th:if="${update.id}">
-            <p class="text-base tracking-tight">Changes marked with green</p>
+        <th:block th:if="${marker}">
+            <p th:if="${old}" class="text-base tracking-tight">Changes marked with green</p>
             <div id="infoCard" class="pt-2 mx-auto w-64 mb-16 mt-6 shadow-xl border-gray-700 bg-white">
                 <div id="infoCardContents" class="border-t pt-4 flex flex-col h-full w-full">
                     <div class="leading-tight">
-                        <p id="updateName" th:text="${update.markerName}" class="text-2xl px-2 font-semibold" th:classappend="(${update.markerName != old.markerName})? 'border-4 border-green-300'" ></p>
-                        <p id="updateDescription" th:text="${update.description}" class="px-2 ml-1 text-sm mb-4 font-light" th:classappend="(${update.description != old.description})? 'border-4 m-1 border-green-300'"></p>
+                        <p id="name" th:text="${marker.markerName}" class="text-2xl px-2 font-semibold" th:classappend="(${old} != null)? (${marker.markerName} == ${old.markerName}? '' :'border-4 border-green-300') : ''" ></p>
+                        <p id="description" th:text="${marker.description}" class="px-2 ml-1 text-sm mb-4 font-light" th:classappend="(${old} != null)? (${marker.description} == ${old.description}? '' :'border-4 border-green-300') : ''" ></p>
                     </div>
                     <div class="px-1">
-                        <img class="rounded-sm w-full" id="uImage" th:src="|http://localhost:8080/api/download/${update.imageName}|" th:classappend="${isNewImage}? 'border-4 border-green-300'">
+                        <img class="rounded-sm w-full" id="image" th:src="|http://localhost:8080/api/download/${marker.imageName}|" th:classappend="${isNewImage}? 'border-4 border-green-300' : ''">
                     </div>
 
                     <div class="flex flex-col leading-tight text-center text-gray-400 font-hairline text-xs pb-2 ">
 
                         <div class="mt-2 border-t-2">
-                            <p>Id: <span th:text="${update.id}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
+                            <p>Id: <span th:text="${marker.id}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
                         </div>
 
-                        <div th:classappend="(${update.location != old.location})? 'border-4 border-green-300'">
+                        <div th:classappend="(${old} != null)? (${marker.location} == ${old.location}? '' :'border-4 border-green-300') : ''" >
                             <div>
-                                <p>Lat: <span th:text="${update.location.getY()}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
+                                <p>Lat: <span th:text="${marker.location.getY()}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
                             </div>
 
                             <div>
-                                <p>Lng: <span th:text="${update.location.getX()}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
+                                <p>Lng: <span th:text="${marker.location.getX()}" class="leading-tight text-left text-gray-400 font-hairline text-xs"></span></p>
                             </div>
                         </div>
 
@@ -261,7 +261,7 @@
 
 
         <label class="h-10 cursor-pointer pt-2 w-full bg-gray-100 mt-2 border rounded text-center lineHeight- text-sm shadow-lg font-semibold hover:border-6 hover:border-white" for="image">Add photo...
-            <input type="file" th:field="${addMarkerDTO.image}"  accept="image/*" class="block h-0 w-0" onchange="preview(this)">
+            <input type="file" th:field="${addMarkerDTO.image}"  accept="image/*" class="block h-0 w-0" onchange="preview(this)" required>
         </label>
         <p name="error" class="input-error" th:errors="${addMarkerDTO.image}"></p>
             <img id="updateImage" class="my-4 mx-auto h-32 rounded">
