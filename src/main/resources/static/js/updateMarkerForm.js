@@ -179,7 +179,7 @@ function resizeImg(img) {
         canvasNew = document.createElement('canvas');
 //this does nothing because conditional set to true.
 //if run it will step down the size slowly (see above -- set stepAmount -- result is blurry and maybe not an improvement
-        if(canvas[longestSide] - amount <= 300 || amount <= 30) {
+        if(canvas[longestSide] - amount <= 300 || amount <= 30 || true) {
             //final setting of sides (remember the ratio)
             canvasNew[shortestSide] = Math.round(canvas[shortestSide] * (300/canvas[longestSide]));
             canvasNew[longestSide] = 300;
