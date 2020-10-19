@@ -53,7 +53,9 @@ public class UserController extends AtlasController{
             return "marker/success";
         }
 
-        MultipartFile image = updateMarkerDTO.getImage();
+        //MultipartFile image = updateMarkerDTO.getImage();
+        String dataURL = updateMarkerDTO.getImageAdd();
+
         Marker markerTBU = markerToBeUpdated.get();
 
         //a conditional test in template used to show updated attibutes
@@ -72,11 +74,11 @@ public class UserController extends AtlasController{
         markerTBU.setDescription(updateMarkerDTO.getDescription());
 
         //Check if there is a file, update with it and remove old file
-        if(image != null && ! image.isEmpty()) {
+        if(dataURL != null && ! dataURL.isEmpty()) {
             String oldImageName = markerTBU.getImageName();
-            markerTBU.setImageName(image.getOriginalFilename());
+            markerTBU.setImageName(dataURL);
             atlasFileSystemStorage.deleteFile(oldImageName);
-            atlasFileSystemStorage.saveFile(image, markerTBU.getImageName());
+            atlasFileSystemStorage.saveDataURL(dataURL, markerTBU.getImageName());
             //lets template know image was updated
             model.addAttribute("isNewImage", true);
         }
@@ -99,14 +101,15 @@ public class UserController extends AtlasController{
             model.addAttribute("status", "Error deleting selected marker – Try again");
             return "marker/success";
         }
+        Marker markerTBU = markerToBeUpdated.get();
+
 //      Test if marker belongs to current user?
 //      prevents creative javascript form submission -- via altering marker id
-        if(markerToBeUpdated.get().getUser().getId() != getUserFromSession(session).getId()) {
+        if(markerTBU.getUser().getId() != getUserFromSession(session).getId()) {
             model.addAttribute("status", "Error deleting selected marker – Try again");
             return "marker/success";
         }
 
-        Marker markerTBU = markerToBeUpdated.get();
         model.addAttribute("status", "Marker \"" + markerTBU.getMarkerName() + "\" deleted.");
         String imageName = markerTBU.getImageName();
         markerRepository.deleteById(markerTBU.getId());

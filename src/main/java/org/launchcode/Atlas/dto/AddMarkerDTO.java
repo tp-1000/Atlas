@@ -25,9 +25,20 @@ public class AddMarkerDTO {
     @ValidImage
     private MultipartFile image;
 
+    @NotBlank(message = "Please select an image")
+    private String imageAdd;
+
     @NotBlank
     @Size(min = 1, max = 1000, message = "Must be 1 to 1000 characters")
     private String description;
+
+    public String getImageAdd() {
+        return imageAdd;
+    }
+
+    public void setImageAdd(String imageAdd) {
+        this.imageAdd = imageAdd;
+    }
 
     public String getDescription() {
         return description;
@@ -68,4 +79,7 @@ public class AddMarkerDTO {
     public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
+
+
+
 }

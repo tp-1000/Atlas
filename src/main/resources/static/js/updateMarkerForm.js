@@ -122,14 +122,91 @@ function preview(input) {
 
         //set up reader --- triggered each time the loading event completes
         reader.onload = function (event){
+         //file->blob->image->resize->canvas->compressed image
+                    // image is created from file, think invisible preview (properties but unrednered)
+                    let blob = new Blob([event.target.result]);
+                    //create url Handle
+                    let blobURLHandle = window.URL.createObjectURL(blob);
+
+                    //may not be needed, if i only want to display the compressed image
+                    let workingImg = new Image(); //empty constructor
+                    workingImg.src = blobURLHandle; // same process will be done on the final preview with the rendered src #updateImage
+                    workingImg.onload = function() {
+                        let previewImage = document.querySelector("#updateImage")
+                        previewImage.src = resizeImg(workingImg);
+
+                        // add to form as (raw) DTO takes a raw and converts to image file.
+                        let newinput = document.createElement("input");
+                        newinput.type = 'hidden';
+                        newinput.name = 'imageAdd';
+                        newinput.value = previewImage.src; // put result from canvas into new hidden input
+                        document.querySelector('#update-marker').appendChild(newinput);
+                    }
             //set src of image tag with result of uploaded image event(uploaded image, not sure
-            document.querySelector("#updateImage").setAttribute("src", event.target.result);
+            //document.querySelector("#updateImage").setAttribute("src", event.target.result);
         };
 
         //once the file is uploaded, read it. once its read, set it for image scr
-        reader.readAsDataURL(input.files[0]);
+        reader.readAsArrayBuffer(input.files[0]);
     }
 };
+
+function resizeImg(img) {
+    let canvas = document.createElement('canvas');
+
+    canvas.height = img.height;
+    canvas.width = img.width;
+
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+
+    let stepAmount = 0;
+    let long, short, canvasNew;
+
+    if(img.width > img.height) {
+       long = "width";
+       short = "height";
+       stepAmount = Math.round((img.width-300)*.1);
+    } else {
+       long = "height";
+       short = "width";
+       stepAmount = Math.round((img.height-300)*.1)
+    }
+
+    //initial draw.. pass into function (it will be a non scaled canvas"image")
+    //we will also know the increment amount at this time and pass it in as well
+    function lessDestructionResize(canvas, longestSide, shortestSide, amount) {
+        canvasNew = document.createElement('canvas');
+//this does nothing because conditional set to true.
+//if run it will step down the size slowly (see above -- set stepAmount -- result is blurry and maybe not an improvement
+        if(canvas[longestSide] - amount <= 300 || amount <= 30) {
+            //final setting of sides (remember the ratio)
+            canvasNew[shortestSide] = Math.round(canvas[shortestSide] * (300/canvas[longestSide]));
+            canvasNew[longestSide] = 300;
+
+            //set canvas for drawing
+            let ctx = canvasNew.getContext("2d");
+            ctx.drawImage(canvas, 0, 0, canvasNew.width, canvasNew.height);
+
+            return canvasNew.toDataURL("image/jpeg", 0.8);
+        }
+
+        canvasNew[shortestSide] = Math.round(canvas[shortestSide] * ((canvas[longestSide]-amount)/canvas[longestSide]));
+//        canvasNew[shortestSide] = canvas.250 * (400-30)/400);
+        canvasNew[longestSide] = canvas[longestSide] - amount;
+        let ctx = canvasNew.getContext("2d");
+        ctx.drawImage(canvas, 0, 0, canvasNew.width, canvasNew.height);
+
+
+
+
+
+        return lessDestructionResize(canvasNew, longestSide, shortestSide, amount);
+    }
+
+
+    return lessDestructionResize(img, long, short ,stepAmount);
+}
 
 //update card with clicked marker from list
 function updateInfoCard(event) {

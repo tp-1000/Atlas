@@ -10,10 +10,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.nio.file.*;
+import java.util.Base64;
 
 @Service
 public class AtlasFileSystemService implements AtlasFileSystemStorage{
@@ -37,7 +43,6 @@ public class AtlasFileSystemService implements AtlasFileSystemStorage{
     }
 
 
-    @Override
     public String saveFile(MultipartFile file, String newName) {
         if(newName.equals("no_image_picked")){
             return "no image was uploaded";
@@ -53,6 +58,23 @@ public class AtlasFileSystemService implements AtlasFileSystemStorage{
             return fileName;
         } catch (IOException e) {
             throw new AtlasFileStorageException("Could not upload the file");
+        }
+    }
+
+    @Override
+    public String saveDataURL(String dataURL, String fullFileName) {
+        //first part of dataURL is ignored for base64 conversion
+        byte[] imagedata = Base64.getDecoder().decode(dataURL.substring(dataURL.indexOf(",")+1));
+
+        try(ByteArrayInputStream ByteArrayImageStream = new ByteArrayInputStream(imagedata)) {
+            Path dfile = this.DIRLOCATION.resolve(fullFileName);
+//            BufferedImage bufferedImage = ImageIO.read(ByteArrayImageStream);
+//            ImageIO.write(bufferedImage, "jpeg", new File(newName));
+            Files.copy(ByteArrayImageStream, dfile, StandardCopyOption.REPLACE_EXISTING);
+            return "ID_image.jpeg added to local storage";
+//        ImageIO.write(bufferedImage, "jpeg", ImageIO.createImageOutputStream(bufferedImage));
+        } catch (IOException e) {
+            throw  new AtlasFileStorageException("Could not upload the file");
         }
     }
 

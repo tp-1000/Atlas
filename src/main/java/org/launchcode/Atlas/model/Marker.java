@@ -46,19 +46,20 @@ public class Marker extends AbstractEntity implements Cloneable{
         this.description = description;
     }
 
+
     public String getImageName() {
         if(imageName.equals("no_image_picked")){
             return imageName;
         }
-        return this.getId()+imageName;
+        return this.getId()+this.imageName;
     }
 
-    //preserves extension and adds marker id to the base
+    //preserves extension and when get() adds marker id to the base
     public void setImageName(String originalName) {
         if(originalName == null || originalName.isEmpty()){
             this.imageName = "no_image_picked";
         } else {
-            this.imageName = "_image." + originalName.replaceAll(".*\\.", "");
+            this.imageName = "_image.jpeg";
         }
     }
 

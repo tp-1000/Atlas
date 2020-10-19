@@ -47,17 +47,19 @@ public class MarkerController extends AtlasController{
         }
 
         MultipartFile image = addMarkerDTO.getImage();
-
+        String dataURL = addMarkerDTO.getImageAdd();
         Marker aMarker = new Marker(addMarkerDTO.getMarkerName(), addMarkerDTO.getLongitude(), addMarkerDTO.getLatitude(), image.getOriginalFilename(), addMarkerDTO.getDescription());
         User user = getUserFromSession(session);
         aMarker.setUser(user);
 
         markerRepository.save(aMarker);
 
-        atlasFileSystemStorage.saveFile(image, aMarker.getImageName());
 //         confirm placement only used to provide success details on success page
         Optional<Marker> marker = markerRepository.findById(aMarker.getId());
         Marker marker1 = marker.get();
+
+        //note may need to change name getter/setter in marker object.. acutally I could make it coded into the marker
+        atlasFileSystemStorage.saveDataURL(dataURL, marker1.getImageName());
 
         model.addAttribute("status", "Marker Added!");
         model.addAttribute("marker", marker1);
