@@ -87,6 +87,13 @@ Special thanks to [LauchCode](https://www.launchcode.org/), whose guidance and s
 ##### Location 
 : GeoPoint or Longitude and Latitude (38°37'29.0"N 90°11'04.8"W) or (38.624724, -90.184664)
 
+
+#### ScreenShots
+![Screenshot login](readmeResources/Screen Shot 2020-10-08 at 9.50.00 PM.jpg)
+![Screenshot options](readmeResources/Screen Shot 2020-10-08 at 10.12.04 PM.jpg)
+![Screenshot confirmation](readmeResources/Screen Shot 2020-10-08 at 9.49.17 PM.jpg)
+![Screenshot search](readmeResources/out.gif)
+
 ## License
 Full text for [License](LICENSE).
 

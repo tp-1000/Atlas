@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 uploads/
+Atlas overflow/
 
 ### STS ###
 .apt_generated
